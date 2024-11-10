@@ -17,16 +17,23 @@ The original game <em>Block Run</em>, was created as a simple platform game in P
 	<li><em><strong>Space:</strong></em> Move to next level (<em>must be inside an end of level portal</em>).</li>
 </ul>
 
-<h3>Current Version: <strong><em>v0.52</em></strong></h3>
+<h3>Future Planned Changes:</h3>
+<ul>
+  <li>Bosses: Big Red, Spiker , and Ghost (planned) 0.7x-1.0x</li>
+  <li>Shop System for coins : Checkpoint unlocker, hearts, death protector (planned) 0.6x</li>
+  <li>Overworld with level select system (planned) 0.6x</li>
+  <li>Title Sreen with save and load screen (planned) 0.5x</li>
+  <li>Ice tiles. (planned) 0.5x</li>
+  <li>Falling tiles. (planned) 0.5x</li>
+  <li>Stage 4 and 5 (planned) 0.6x-0.9x</li>
+</ul>  
+
+<h3>Current Version: <strong><em>v0.53</em></strong></h3>
 <ul>
   <li>Walking and Running movements now have acceleration, making the gameplay feel more fluid and smooth.</li>
   <li>Code Refacor.</li>
-  <li>Bosses: Big Red, Spiker , and Ghost (planned)</li>
-  <li>Shop System for coins : Checkpoint unlocker, hearts, death protector (planned)</li>
-  <li>Overworld with level select system (planned)</li>
-  <li>Title Sreen with save and load screen (planned)</li>
-  <li>Falling tiles and ice tiles. (planned)</li>
-  <li>Stage 4 and 5 (planned)</li>
+  <li>Level Resign and slightly bigger map (one lbock taller and wider)</li>
+  <li>Silver Locks and Keys.</li>
 </ul>
 
 <h3><em>v0.50</em></h3>
