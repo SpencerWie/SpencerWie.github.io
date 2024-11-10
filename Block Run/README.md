@@ -17,10 +17,10 @@ The original game <em>Block Run</em>, was created as a simple platform game in P
 	<li><em><strong>Space:</strong></em> Move to next level (<em>must be inside an end of level portal</em>).</li>
 </ul>
 
-<h3>Current Version: <strong><em>v0.51</em></strong></h3>
+<h3>Current Version: <strong><em>v0.52</em></strong></h3>
 <ul>
   <li>Walking and Running movements now have acceleration, making the gameplay feel more fluid and smooth.</li>
-  <li>Code Refacor (planned)</li>
+  <li>Code Refacor.</li>
   <li>Bosses: Big Red, Spiker , and Ghost (planned)</li>
   <li>Shop System for coins : Checkpoint unlocker, hearts, death protector (planned)</li>
   <li>Overworld with level select system (planned)</li>
