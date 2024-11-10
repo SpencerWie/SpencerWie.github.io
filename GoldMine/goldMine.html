@@ -12,7 +12,7 @@
 <body><CENTER>
 <div id="loader">Loading...</div></CENTER>
 <!--Credits to Szymon Matuszewski for the great music!-->
-<audio autoplay loop >
+<audio id="music" autoplay loop>
   <source src="Szymon_Matuszewski_Art.mp3" type="audio/mpeg">
   <source src="Szymon_Matuszewski_Art.ogg" type="audio/ogg">
 </audio> 
@@ -551,6 +551,12 @@ function FillRow(row){
 	}
 }
 
+function musicPlay() {
+    document.getElementById('music').play();
+	document.getElementById('music').volume = 0.01;
+    document.removeEventListener('click', musicPlay);
+}
+
 function generateGroundandAir(){
 	//Currently this is fixed. It could easily made dynamic but I don't want the user being about to change the size of the cave and top.
 	ClearRow(0);//Air
@@ -732,6 +738,7 @@ document.onmouseup = function(e){
 	}
 	if(InfoMenu.image == infoMenu_X){
 		InfoMenu.active=false;
+		document.addEventListener('click', musicPlay);
 	}
 	if(infoIcon.image == info_icon_X){
 		if(InfoMenu.active==true){InfoMenu.active=false;}
@@ -958,7 +965,6 @@ function main(){
 	generateGroundandAir();
 	generateBuildings();
 	DrawMap();
-	alert("According to reports there is a large diamond far down below. Your mission is to go find that diamond! Also don't forget you can upgrade your ship in the Upgrade Shop to the Right.")
 	var timer = setInterval(function(){update()},50);
 }
 
