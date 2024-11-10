@@ -3,6 +3,7 @@ COINS = 0;
 HEARTS = 3;
 LEVEL = 1;
 KEYS = 0;
+SKEYS = 0;
 ALPHA_INTENSITY = 20.0; // Higher value means better vision of blocks.
 var scrollX = 0;
 var scrollY = 0;
@@ -16,35 +17,38 @@ createMap(level_1);
 
 function loadImages() 
 {
-   var playerBlink = new Image(); playerBlink.src = "imgs/player_blink.png";
-   var Block = new Image(); Block.src = "imgs/block.png";
-	var MovingBlock = new Image(); MovingBlock.src = "imgs/moving_block.png"
-   var Coin = new Image(); Coin.src = "imgs/coin.png"
-   var Heart = new Image(); Heart.src = "imgs/heart.png"
-   var Background = new Image(); Background.src = "imgs/clouds.jpg";
-   var Enemies = new Image(); Enemies.src = "imgs/enemies.png";
-   var Portal = new Image(); Portal.src = "imgs/portal.png";
-   var Lock = new Image(); Lock.src = "imgs/lock.png";
-   var Key = new Image(); Key.src = "imgs/key.png";
-   var Spikes = new Image(); Spikes.src = "imgs/spikes.png";
-   var Platform = new Image(); Platform.src = "imgs/platform.png";
+    var playerBlink = new Image(); playerBlink.src = "imgs/player_blink.png";
+    var Block = new Image(); Block.src = "imgs/block.png";
+    // var MovingBlock = new Image(); MovingBlock.src = "imgs/moving_block.png"
+    var Coin = new Image(); Coin.src = "imgs/coin.png"
+    var Heart = new Image(); Heart.src = "imgs/heart.png"
+    var Background = new Image(); Background.src = "imgs/clouds.jpg";
+    var Enemies = new Image(); Enemies.src = "imgs/enemies.png";
+    var Portal = new Image(); Portal.src = "imgs/portal.png";
+    var Lock = new Image(); Lock.src = "imgs/lock.png";
+    var LockSilver = new Image(); LockSilver.src = "imgs/lock_silver.png";
+    var Key = new Image(); Key.src = "imgs/key.png";
+    var KeySilver = new Image(); KeySilver.src = "imgs/key_silver.png";
+    var Spikes = new Image(); Spikes.src = "imgs/spikes.png";
+    var Platform = new Image(); Platform.src = "imgs/platform.png";
 	var Enemy_Spike = new Image(); Enemy_Spike.src = "imgs/enemy_spike.png"
    
-   images = {
-      player_blink: playerBlink,
-      block: Block,
-		moving_block: MovingBlock,
-      coin: Coin,
-      heart: Heart,
-      background: Background,
-      enemies: Enemies,
-      portal: Portal,
-      lock: Lock,
-      key: Key,
-      spikes: Spikes,
-      platform: Platform,
+    images = {
+        player_blink: playerBlink,
+        block: Block,
+        coin: Coin,
+        heart: Heart,
+        background: Background,
+        enemies: Enemies,
+        portal: Portal,
+        lock: Lock,
+        lock_silver: LockSilver,
+        key: Key,
+        key_silver: KeySilver,
+        spikes: Spikes,
+        platform: Platform,
 		enemy_spike: Enemy_Spike
-   }
+    }
    
    return images;
 }
@@ -101,8 +105,6 @@ function handleYscroll() {
 }
 
 function createMap(map) {
-    var X = 0;
-    var Y = 0;
     var SIZE = 32;
     
     ctx.setTransform(1, 0, 0, 1, 0, 0);
@@ -114,44 +116,24 @@ function createMap(map) {
     scrollY = 0;
     yLevel = 0;
     
-    for( Y = 0; Y < map.length; Y++ ) {
-       for( X = 0; X < map[0].length; X++ ) {
-          if(map[Y].charAt(X) == '#') 
-             items.push(new Block(X*SIZE, Y*SIZE));
-          else if(map[Y].charAt(X) == '_') 
-             items.push(new Platform(X*SIZE, Y*SIZE)); 
-          else if(map[Y].charAt(X) == 'o') 
-             items.push(new Coin(X*SIZE, Y*SIZE));
-          else if(map[Y].charAt(X) == 'H') 
-             items.push(new Heart(X*SIZE, Y*SIZE));            
-          else if(map[Y].charAt(X) == 'E') 
-             items.push(new Enemy(X*SIZE, Y*SIZE, 40, 52, images["enemies"], 4, 5, 2, "red block"));
-          else if(map[Y].charAt(X) == 'S') 
-             items.push(new Enemy(X*SIZE, Y*SIZE, 30, 30, images["enemy_spike"], 4, 5, 2, "spike"));
-          else if(map[Y].charAt(X) == 'P')   
-                 items.push(new Portal(X*SIZE, Y*SIZE, "", ""));
-          else if(map[Y].charAt(X) == 'M')
-                 items.push(new MovingBlock(X*SIZE, Y*SIZE));
-            else if(map[Y].charAt(X) == 'T')
-                 items.push(new GhostBlock(X*SIZE, Y*SIZE));
-          else if(map[Y].charAt(X) == 'L') {  
-               var lock = new Block(X*SIZE, Y*SIZE);
-               lock.image = images["lock"];
-               items.push(lock);  
-          }  
-          else if(map[Y].charAt(X) == 'K') {  
-               var key = new Block(X*SIZE, Y*SIZE);
-               key.image = images["key"];
-               items.push(key);  
-          }    
-          else if(map[Y].charAt(X) == 'v') 
-             items.push(new Spikes(X*SIZE, Y*SIZE, "bottom"));     
-          else if(map[Y].charAt(X) == '^') 
-             items.push(new Spikes(X*SIZE, Y*SIZE, "top"));  
-          else if(map[Y].charAt(X) == '>') 
-             items.push(new Spikes(X*SIZE, Y*SIZE, "right"));  
-          else if(map[Y].charAt(X) == '<') 
-             items.push(new Spikes(X*SIZE, Y*SIZE, "left"));              
+    for(var Y = 0; Y < map.length; Y++ ) {
+        for(var X = 0; X < map[0].length; X++ ) {
+            var char = map[Y].charAt(X);
+            if(char == ' ') continue;
+            if(char == '#') items.push(new Block(X*SIZE, Y*SIZE));
+            else if(char == '_') items.push(new Platform(X*SIZE, Y*SIZE)); 
+            else if(char == 'o') items.push(new Coin(X*SIZE, Y*SIZE));
+            else if(char == 'H') items.push(new Heart(X*SIZE, Y*SIZE));            
+            else if(char == 'E') items.push(new Enemy(X*SIZE, Y*SIZE, 40, 52, images["enemies"], 4, 5, 2, "red block"));
+            else if(char == 'S') items.push(new Enemy(X*SIZE, Y*SIZE, 30, 30, images["enemy_spike"], 4, 5, 2, "spike"));
+            else if(char == 'P') items.push(new Portal(X*SIZE, Y*SIZE, "", ""));
+            else if(char == 'T') items.push(new GhostBlock(X*SIZE, Y*SIZE));
+            else if(char.toUpperCase() == 'L') items.push(new Lock(X*SIZE, Y*SIZE, char));
+            else if(char.toUpperCase() == 'K') items.push(new Key(X*SIZE, Y*SIZE, char));
+            else if(map[Y].charAt(X) == 'v') items.push(new Spikes(X*SIZE, Y*SIZE, "bottom"));     
+            else if(map[Y].charAt(X) == '^') items.push(new Spikes(X*SIZE, Y*SIZE, "top"));  
+            else if(map[Y].charAt(X) == '>') items.push(new Spikes(X*SIZE, Y*SIZE, "right"));  
+            else if(map[Y].charAt(X) == '<') items.push(new Spikes(X*SIZE, Y*SIZE, "left"));              
        }
     }
  }

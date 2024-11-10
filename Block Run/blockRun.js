@@ -11,9 +11,11 @@ timer = setInterval(function()
       items[item].draw();
    player.draw();   
    ctx.fillStyle = "red";
+   ctx.globalAlpha = 0.7;
    ctx.fillText("Beta: V 0.52", 10-scrollX, 10+scrollY);
    ctx.drawImage(images["coin"], 0,0, 32, 32, canvas.width-65-scrollX, scrollY, 32, 32);
    ctx.fillText(" x "+COINS, canvas.width-40-scrollX,20+scrollY);
    ctx.drawImage(images["heart"], 0,0, 32, 32, canvas.width-110-scrollX, scrollY, 32, 32);
-   ctx.fillText(" x "+HEARTS, canvas.width-85-scrollX,20+scrollY);   
+   ctx.fillText(" x "+HEARTS, canvas.width-85-scrollX,20+scrollY);
+   ctx.globalAlpha = 1;
 }, delay);

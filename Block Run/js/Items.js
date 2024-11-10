@@ -17,25 +17,39 @@ function Block(x, y) {
     this.width = 30; this.height = 30;
     
     this.draw = function() {
-       ctx.drawImage(this.image, this.x, this.y, this.width+2, this.height+2);
+        ctx.drawImage(this.image, this.x, this.y, this.width+2, this.height+2);
     }
+ }
+
+function Lock(x, y, type) {
+    Block.call(this, x, y);
+    var lockType = "lock";
+    if(type == "l") lockType = "lock_silver";
+    this.image = images[lockType];
+}
+
+function Key(x, y, type) {
+    Block.call(this, x, y);
+    var keyType = "key";
+    if(type == "k") keyType = "key_silver";
+    this.image = images[keyType];
  }
  
  function Platform(x, y) {
     Block.call(this, x, y);
     this.image = images['platform'];
-     this.height = 5;
+    this.height = 5;
  }
  
  function GhostBlock(x, y) {
-     Block.call(this, x, y);
+    Block.call(this, x, y);
     this.draw = function() {
-         ctx.globalAlpha = Math.pow(2/distance(this, player), 3)*(ALPHA_INTENSITY*1000);
-       ctx.drawImage(this.image, this.x, this.y, this.width+2, this.height+2);
-         ctx.globalAlpha = 1.0;
+        ctx.globalAlpha = Math.pow(2/distance(this, player), 3)*(ALPHA_INTENSITY*1000);
+        ctx.drawImage(this.image, this.x, this.y, this.width+2, this.height+2);
+        ctx.globalAlpha = 1.0;
     }
  }
- 
+ /*
  function MovingBlock(x, y) {
      Block.call(this, x, y);
      this.speed = 5;
@@ -54,7 +68,7 @@ function Block(x, y) {
        }
        this.x += this.speed;      
     }
- }
+ }*/
  
  function Heart(x, y) {
     this.x = x + 10; 

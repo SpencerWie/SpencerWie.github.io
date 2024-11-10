@@ -210,7 +210,7 @@ function Player() {
     this.handleCollisions = function() 
     {
        for(item in items) {
-          var isSolidBlock = (isItem(items[item],'block') || isItem(items[item],'lock'));
+          var isSolidBlock = isItem(items[item],'block') || isItem(items[item],'lock') || isItem(items[item],'lock_silver');
           var movingRight = this.dx <= 0; 
           var movingLeft = this.dx > 0; 
          
@@ -222,7 +222,16 @@ function Player() {
           if( isItem(items[item],'lock') && collide(this,items[item]) && KEYS > 0 ) {
              items.splice(item, 1);
              KEYS--;
-          }                 
+          }
+          if( isItem(items[item],'key_silver') && collide(this,items[item]) ) {
+             items.splice(item, 1);
+             SKEYS++;
+          }                         
+          // Locks [ breaks lock if you have a key, otherwise it's treated as a normal block ]
+          if( isItem(items[item],'lock_silver') && collide(this,items[item]) && SKEYS > 0 ) {
+             items.splice(item, 1);
+             SKEYS--;
+          }                    
           // Blocks
           if(movingRight && collide(this,items[item]) && (isSolidBlock)) {
              // Reposition player to be place right next to block, then get the difference and apply that to scrolling of canvas.
