@@ -95,7 +95,7 @@ function Key(x, y, type) {
        this.x -= offX; this.y -= offY;
     }   
     
-    if( this.type == "bottom" ) this.init(0, 0, 30, 10, 0, -20);
+    if( this.type == "bottom" ) this.init(0, 0, 30, 10, -10, -20);
     else if( this.type == "top" ) this.init(0, 1, 30, 10, 0, 0);
     else if( this.type == "left" ) this.init(1, 0, 10, 30, 0, 0);
     else if( this.type == "right" ) this.init(1, 1, 10, 30, -20, 0);

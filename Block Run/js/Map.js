@@ -1,10 +1,10 @@
-GRAVITY = 1.1; // 0.25
-COINS = 0;
-HEARTS = 3;
-LEVEL = 1;
-KEYS = 0;
-SKEYS = 0;
-ALPHA_INTENSITY = 20.0; // Higher value means better vision of blocks.
+var GRAVITY = 1.1; // 0.25
+var COINS = 0;
+var HEARTS = 3;
+var LEVEL = 1;
+var KEYS = 0;
+var SKEYS = 0;
+var ALPHA_INTENSITY = 20.0; // Higher value means better vision of blocks.
 var scrollX = 0;
 var scrollY = 0;
 var yLevel = 0;
@@ -12,6 +12,7 @@ var yLevelMax = document.getElementById("canvas").height - 32;
 
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
+ctx.imageSmoothingEnabled = false;
 images = loadImages();
 createMap(level_1);
 

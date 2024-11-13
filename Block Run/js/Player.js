@@ -325,6 +325,7 @@ function Player() {
            // Reset Player position.
            self.x = self.startX;   
            self.y = self.startY;
+           self.dy = 0;
            
            handleYscroll(); // Handle yScroll based on new position.
            
