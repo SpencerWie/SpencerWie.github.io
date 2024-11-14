@@ -34,7 +34,7 @@ function Shop() {
             if(mouseBetween(435, 84, 455, 100)) this.frameX = 1;
             else if(mouseBetween(390, 108, 407, 128) && COINS >= 20) this.frameX = 2
             else if(mouseBetween(390, 108+btnYOffset, 407, 128+btnYOffset) && COINS >= 30) this.frameX = 3
-            else if(mouseBetween(390, 108+btnYOffset*2, 407, 128+btnYOffset*2) && COINS >= 50) this.frameX = 4
+            else if(mouseBetween(390, 108+btnYOffset*2, 407, 128+btnYOffset*2) && COINS >= 50 && player.colors.length - 1 > player.unlockedColors) this.frameX = 4
             else if(mouseBetween(390, 108+btnYOffset*3, 407, 128+btnYOffset*3) && COINS >= 100) this.frameX = 5
             else this.frameX = 0;
 
