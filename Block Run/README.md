@@ -1,6 +1,6 @@
 <h1>Block Run Beta</h1>
 
-<p><a href="https://spencerwie.github.io/Block%20Run/blockRun.htmll"> Click here to play the lastest version of the game</a></p>
+<p><a href="https://spencerwie.github.io/Block%20Run/blockRun.html"> Click here to play the lastest version of the game</a></p>
 
 <img src="screenshot.PNG" style="display:block; margin: auto" alt="Game Play Example" />
 
@@ -21,20 +21,20 @@ The original game <em>Block Run</em>, was created as a simple platform game in P
 <h3>Future Planned Changes:</h3>
 <ul>
   <li>Bosses: Big Red, Spiker , and Ghost (planned) 0.7x-1.0x</li>
-  <li>Shop System for coins : Checkpoint unlocker, hearts, death protector</li>
-  <li>Overworld with level select system</li>
   <li>Title Sreen with save and load screen (planned) 0.5x</li>
   <li>Ice tiles. (planned) 0.6x</li>
   <li>Falling tiles. (planned) 0.6x</li>
   <li>Stage 5 (planned) 0.6x-0.8x</li>
 </ul>  
 
-<h3>Current Version: <strong><em>v0.53</em></strong></h3>
+<h3>Current Version: <strong><em>v0.56</em></strong></h3>
 <ul>
   <li>Walking and Running movements now have acceleration, making the gameplay feel more fluid and smooth.</li>
   <li>Code Refacor.</li>
-  <li>Level Resign and slightly bigger map (one lbock taller and wider)</li>
+  <li>Level Resign and slightly bigger map (one block taller and wider)</li>
   <li>Silver Locks and Keys.</li>
+  <li>Shop System for coins : Checkpoint unlocker, hearts, death protector</li>
+  <li>Overworld with level select system</li>
 </ul>
 
 <h3><em>v0.50</em></h3>
