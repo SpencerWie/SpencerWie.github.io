@@ -14,7 +14,6 @@ var UnlockedLevels = [true, true, false, false, false];
 
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
-var shop;
 var player = new Player();
 var currentMapIdx = 0;
 createMap(currentMapIdx);
