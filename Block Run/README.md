@@ -14,18 +14,19 @@ The original game <em>Block Run</em>, was created as a simple platform game in P
 	<li><em><strong>Up Arrow key:</strong></em> Jump.</li>
 	<li><em><strong>Down Arrow key:</strong></em> Duck.</li>
 	<li><em><strong>Shift (Hold):</strong></em> Sprint.</li>
-	<li><em><strong>Space:</strong></em> Move to next level (<em>must be inside an end of level portal</em>).</li>
+	<li><em><strong>Space:</strong></em> Action (Use Portal/Shop/etc).</li>
+  <li><em><strong>C:</strong></em> Change player color if brought, cycles through them going back to the default color.</li>
 </ul>
 
 <h3>Future Planned Changes:</h3>
 <ul>
   <li>Bosses: Big Red, Spiker , and Ghost (planned) 0.7x-1.0x</li>
-  <li>Shop System for coins : Checkpoint unlocker, hearts, death protector (planned) 0.6x</li>
-  <li>Overworld with level select system (planned) 0.6x</li>
+  <li>Shop System for coins : Checkpoint unlocker, hearts, death protector</li>
+  <li>Overworld with level select system</li>
   <li>Title Sreen with save and load screen (planned) 0.5x</li>
-  <li>Ice tiles. (planned) 0.5x</li>
-  <li>Falling tiles. (planned) 0.5x</li>
-  <li>Stage 4 and 5 (planned) 0.6x-0.9x</li>
+  <li>Ice tiles. (planned) 0.6x</li>
+  <li>Falling tiles. (planned) 0.6x</li>
+  <li>Stage 5 (planned) 0.6x-0.8x</li>
 </ul>  
 
 <h3>Current Version: <strong><em>v0.53</em></strong></h3>

@@ -7,10 +7,10 @@ function Player() {
     this.width = 28;
     this.height = 28;
     this.size = 32;
-    this.x = (canvas.width/2) - (this.size/2);   
-    this.y = (canvas.height/2) - (this.size/2);
-    this.startX = this.x;
-    this.startY = this.y;
+    this.startX = (canvas.width/2) - (this.size/2);   
+    this.startY = (canvas.height/2) - (this.size/2);
+    this.x = this.startX;   
+    this.y = this.startY;
     this.dx = 0; this.dy = 0;
     this.ddx = 0; this.ddy = 0;
     this.minSpeed = 2; this.walk = 7; this.run = 10;
@@ -29,10 +29,33 @@ function Player() {
     this.step = 0; // For frame movement (animation)
     this.lastPositions = [];    // Keeps track of the last `lastPositionsMax` player positions, used for movement animation
     this.lastPositionsMax = 10; // Maximum number of positions being kept track of
-    this.runColors = {r: 0, g: 0, b: 0}; // Color of running animation
+    this.selectedColor = 0; // Color of running animation
+    this.unlockedColors = 0; // Unlocked color indexes
+    this.colors = [{r: 0, g: 0, b: 0}, {r: 255, g: 249, b: 128}, {r: 255, g: 255, b: 255}];
+
+    var duckLeft =  { x: 2, y: 2 };
+    var duckRight = { x: 1, y: 2 };
     
     this.draw = function() {
-       ctx.drawImage(this.image, this.frameX*this.size, this.frameY*this.size, this.size, this.size, this.x, this.y, this.size, this.size);
+        ctx.drawImage(this.image, this.frameX*this.size, this.frameY*this.size, this.size, this.size, this.x, this.y, this.size, this.size);
+        if(this.unlockedColors > 0) {
+            // Draw a gold alpha around the player
+            if(this.selectedColor == 1) {
+                ctx.fillStyle = '#fff980';
+                ctx.globalAlpha = 0.5;
+                if(this.ducked) ctx.fillRect(this.x + 4, this.y + 20, this.size - 8, this.size - 24);
+                else ctx.fillRect(this.x + 4, this.y + 4, this.size - 8, this.size - 8);
+                ctx.globalAlpha = 1;
+            }
+            // Draw the player in an inverse color
+            else if (this.selectedColor == 2) {
+                ctx.globalCompositeOperation="difference";
+                ctx.fillStyle="white";
+                if(this.ducked) ctx.fillRect(this.x + 1, this.y + 15, this.size - 2, this.size - 16);
+                else ctx.fillRect(this.x + 1, this.y + 1, this.size - 2, this.size - 2);
+                ctx.globalCompositeOperation="source-over";
+            }
+        }
     }
     
     this.update = function() 
@@ -62,14 +85,20 @@ function Player() {
              var alphaEffect = 5.0; // The larger the more light the effect is
              var factor = (((i*length)+1)*alphaEffect);
              var aplha = length/factor;
-             var c = this.runColors;
+             var c = this.colors[this.selectedColor];
              ctx.fillStyle = "rgba("+c.r+","+c.g+","+c.b+","+aplha+")";
-             ctx.fillRect(pos.x, pos.y, this.size, this.size);
+             ctx.fillRect(pos.x + 1, pos.y, this.size - 2, this.size);
          }
     }
     
     this.BlinkAnimation = function() 
     {
+        if(this.ducked) {
+            this.step = 0;
+            this.timer = 200;
+            return;
+        } 
+
         var blink_timeframe = [[220 ,1 ,0] , [223 ,2 ,0] , [226, 1, 0] , [229 ,0 ,0]];
         this.timer++;
  
@@ -100,35 +129,35 @@ function Player() {
        this.dy += this.ddy; // Update variables
        this.y += this.dy;
          
-         //TODO: We need to be able to drop from a plateform by just using DOWN instead of jump+DOWN
+        //TODO: We need to be able to drop from a plateform by just using DOWN instead of jump+DOWN
        
-       // Vertical Block collisions. (needs to be seperate from horizonal for proper collisions)
-       for(item in items) {
-             // If we touched the plateform and are not ducking.
-             var platformCollision = !DOWN && isItem(items[item],'platform') && this.y+this.height <= items[item].y+this.maxYSpeed;
-             // For upwards collision check if we are moving up and hit a block, if so place player at the bottom of block and halt verticle motion.
-          if(this.dy < 0 && collide(this,items[item]) && isItem(items[item],'block')) {
-             this.dy = 0;
-             this.ddy = 0;
-             this.y = items[item].y + this.size;
-          }// For downwards collision check if we are moving down and hit a block, if so place player at the top of block and halt verticle motion.
-          else if(this.dy > 0 && collide(this,items[item]) && (isItem(items[item],'block') || platformCollision)) {
-             this.dy = 0;
-             this.ddy = 0;
-             this.y = items[item].y - this.size;
-             this.jump = true;
-          }
-          if(this.dy > 0 && collide(this,items[item]) && isItem(items[item],'moving_block') && this.y < items[item].y - this.maxYSpeed) {
-             this.dy = 0;
-             this.ddy = 0;
-             this.y = items[item].y - this.size;
-                 this.jump = true;
-          }
-       }
+        // Vertical Block collisions. (needs to be seperate from horizonal for proper collisions)
+        for(item in items) {
+            // If we touched the plateform and are not ducking.
+            var platformCollision = !DOWN && isItem(items[item],'platform') && this.y+this.height <= items[item].y+this.maxYSpeed;
+            // For upwards collision check if we are moving up and hit a block, if so place player at the bottom of block and halt verticle motion.
+            if(this.dy < 0 && collide(this,items[item]) && isItem(items[item],'block')) {
+                this.dy = 0;
+                this.ddy = 0;
+                this.y = items[item].y + this.size;
+            }// For downwards collision check if we are moving down and hit a block, if so place player at the top of block and halt verticle motion.
+            else if(this.dy > 0 && collide(this,items[item]) && (isItem(items[item],'block') || platformCollision)) {
+                 this.dy = 0;
+                 this.ddy = 0;
+                this.y = items[item].y - this.size;
+                this.jump = true;
+            }
+            if(this.dy > 0 && collide(this,items[item]) && isItem(items[item],'moving_block') && this.y < items[item].y - this.maxYSpeed) {
+                this.dy = 0;
+                this.ddy = 0;
+                this.y = items[item].y - this.size;
+                this.jump = true;
+            }
+        }
        
-       //Speed limits
-       if(this.dy > this.maxYSpeed) this.dy = this.maxYSpeed;          
-       if(this.dy < this.minYSpeed) this.dy = this.minYSpeed;   
+        //Speed limits
+        if(this.dy > this.maxYSpeed) this.dy = this.maxYSpeed;          
+        if(this.dy < this.minYSpeed) this.dy = this.minYSpeed;   
     }
     
     this.horizontalMovement = function()
@@ -166,11 +195,15 @@ function Player() {
           this.frameY = 0; // Face Right
        }
        if(!LEFT && !RIGHT) {// If no arrow keys no movement if accelerating slow depending on the direction.
-          if(this.frameY == 1) {
-             this.dx = 0 + this.accelerateWalk;
-          } else if (this.frameY == 0) {
-             this.dx = 0 - this.accelerateWalk;
-          } 
+            if(this.frameY == 1) {
+                this.dx = 0 + this.accelerateWalk;
+            } else if (this.frameY == 0) {
+                this.dx = 0 - this.accelerateWalk;
+            } else if(this.frameX == duckLeft.x && this.frameY == duckLeft.y) {
+                this.dx = 0 + this.accelerateWalk;
+            } else if(this.frameX == duckRight.x && this.frameY == duckRight.y) {
+                this.dx = 0 - this.accelerateWalk;
+            }
        } 
        this.handleDucking();
        // Update position and move camra.
@@ -181,8 +214,6 @@ function Player() {
     
     this.handleDucking = function()
     {  // Duck only when holding the down arrow and player isn't jumping
-       var duckLeft =  { x: 2, y: 2 };
-       var duckRight = { x: 1, y: 2 };
        if(!DOWN && this.ducked) 
        {
            this.ducked = false;
@@ -209,80 +240,90 @@ function Player() {
     
     this.handleCollisions = function() 
     {
-       for(item in items) {
-          var isSolidBlock = isItem(items[item],'block') || isItem(items[item],'lock') || isItem(items[item],'lock_silver');
-          var movingRight = this.dx <= 0; 
-          var movingLeft = this.dx > 0; 
-         
-          if( isItem(items[item],'key') && collide(this,items[item]) ) {
-             items.splice(item, 1);
-             KEYS++;
-          }                         
-          // Locks [ breaks lock if you have a key, otherwise it's treated as a normal block ]
-          if( isItem(items[item],'lock') && collide(this,items[item]) && KEYS > 0 ) {
-             items.splice(item, 1);
-             KEYS--;
-          }
-          if( isItem(items[item],'key_silver') && collide(this,items[item]) ) {
-             items.splice(item, 1);
-             SKEYS++;
-          }                         
-          // Locks [ breaks lock if you have a key, otherwise it's treated as a normal block ]
-          if( isItem(items[item],'lock_silver') && collide(this,items[item]) && SKEYS > 0 ) {
-             items.splice(item, 1);
-             SKEYS--;
-          }                    
-          // Blocks
-          if(movingRight && collide(this,items[item]) && (isSolidBlock)) {
-             // Reposition player to be place right next to block, then get the difference and apply that to scrolling of canvas.
-             var oldX = this.x;
-             this.x = items[item].x - this.size;
-             var diff = oldX - this.x
-             ctx.translate(diff, 0);
-             scrollX += diff;
-             this.speed = this.accelerateRun = this.accelerateWalk = 0;
-          }
-          else if(movingLeft && collide(this,items[item]) && (isSolidBlock)) {
-             var oldX = this.x;
-             this.x = items[item].x + this.size;
-             var diff = oldX - this.x
-             ctx.translate(diff, 0);
-             scrollX += diff;
-             this.speed = this.accelerateRun = this.accelerateWalk = 0;
-          }
-          // Coins
-          if( isItem(items[item],'coin') && collide(this,items[item]) ) {
-             items.splice(item, 1);
-             COINS++;
-          }
-          // Hearts
-          if( isItem(items[item],'heart') && collide(this,items[item]) ) {
-             items.splice(item, 1);
-             HEARTS++;
-          }         
-          // Spikes
-          if( isItem(items[item],'spikes') && collide(this,items[item]) ) {
-             this.die();
-          }         
-          // Monsters
-          if( isItem(items[item],'enemies') && collide(items[item], this) ){
-             //Red Block Enemy:Player land on head, enemey is damaged (shift XFrame or die if out of hp)
-             if( this.y + this.height < items[item].y + this.dy + 5  && this.dy > 0 ) {
-                this.dy = -this.jumpPower/1.5;
+        for(item in items) {
+            var isSolidBlock = isItem(items[item],'block') || isItem(items[item],'lock') || isItem(items[item],'lock_silver');
+            var movingRight = this.dx <= 0; 
+            var movingLeft = this.dx > 0; 
+            
+            if( isItem(items[item],'key') && collide(this,items[item]) ) {
+                items.splice(item, 1);
+                KEYS++;
+            }                         
+            // Locks [ breaks lock if you have a key, otherwise it's treated as a normal block ]
+            if( isItem(items[item],'lock') && collide(this,items[item]) && KEYS > 0 ) {
+                items.splice(item, 1);
+                KEYS--;
+            }
+            if( isItem(items[item],'key_silver') && collide(this,items[item]) ) {
+                items.splice(item, 1);
+                SKEYS++;
+            }                         
+            // Locks [ breaks lock if you have a key, otherwise it's treated as a normal block ]
+            if( isItem(items[item],'lock_silver') && collide(this,items[item]) && SKEYS > 0 ) {
+                items.splice(item, 1);
+                SKEYS--;
+            }                    
+            // Blocks
+            if(movingRight && collide(this,items[item]) && (isSolidBlock)) {
+                // Reposition player to be place right next to block, then get the difference and apply that to scrolling of canvas.
+                var oldX = this.x;
+                this.x = items[item].x - this.size;
+                var diff = oldX - this.x
+                ctx.translate(diff, 0);
+                scrollX += diff;
+                this.speed = this.accelerateRun = this.accelerateWalk = 0;
+            }
+            else if(movingLeft && collide(this,items[item]) && (isSolidBlock)) {
+                var oldX = this.x;
+                this.x = items[item].x + this.size;
+                var diff = oldX - this.x
+                ctx.translate(diff, 0);
+                scrollX += diff;
+                this.speed = this.accelerateRun = this.accelerateWalk = 0;
+            }
+            // Coins
+            if( isItem(items[item],'coin') && collide(this,items[item]) ) {
+                items.splice(item, 1);
+                COINS++;
+            }
+            // Hearts
+            if( isItem(items[item],'heart') && collide(this,items[item]) ) {
+                items.splice(item, 1);
+                HEARTS++;
+            }         
+            // Spikes
+            if( isItem(items[item],'spikes') && collide(this,items[item]) ) {
+                this.die();
+            }         
+            // Monsters
+            if( isItem(items[item],'enemies') && collide(items[item], this) ){
+                //Red Block Enemy:Player land on head, enemey is damaged (shift XFrame or die if out of hp)
+                if( this.y + this.height < items[item].y + this.dy + 5  && this.dy > 0 ) {
+                this.dy = -this.jumpPower/1.3;
                 this.ddy = -1;
                 this.jump = true; 
                 this.y = items[item].y - 25;
                 items[item].hp--;
                 if(items[item].type == "red block" && items[item].hp == 1){ 
-                   items[item].y += 20;
-                   items[item].height -= 20; 
+                    items[item].y += 20;
+                    items[item].height -= 20; 
                 }
                 if( items[item].hp > 0 ) items[item].frameX++;
                 else items.splice(item, 1);
-             } else { this.die(); } 
-          }
-             // Spike Enemy: Player dies on hit
-             if( isItem(items[item],'enemy_spike') && collide(items[item], this) ) this.die();
+                } else { this.die(); } 
+            }
+            // Spike Enemy: Player dies on hit
+            if( isItem(items[item],'enemy_spike') && collide(items[item], this) ) this.die();
+            // Shop: Toggle space to open text
+            if( isItem(items[item], 'shop_vendor') ) {
+                if (collide(items[item], this)) items[item].active = true;
+                else items[item].active = false;
+            }
+            // Portal: Toggle space to use text
+            if( isItem(items[item], 'portal') ) {
+                if (collide(items[item], this)) items[item].active = true;
+                else items[item].active = false;
+            }
        }     
        groundPoint.x = this.x;
        groundPoint.y = this.y + this.size + 1;  
@@ -312,29 +353,30 @@ function Player() {
     // When the player dies, subtract a life and place back to start point. Translate camera back as well.
     this.die = function() {
        var self = this
-       if(!DEAD)
-       {
-         setTimeout(function(){
-           // Change Sprite to normal 
-           DEAD = false;
-           self.frameX = self.frameY = 0;
-           // Reset Camera
-           ctx.translate( self.x - self.startX, 0  );
-           scrollX = 0; 
-           
-           // Reset Player position.
-           self.x = self.startX;   
-           self.y = self.startY;
-           self.dy = 0;
-           
-           handleYscroll(); // Handle yScroll based on new position.
-           
-           // If the player has hearts subtract, if the player is out of lives restart.
-           if( HEARTS > 1 ) HEARTS--;
-           else location.reload();
+        if(!DEAD){
+            setTimeout(function(){
+                self.reset();
+                // If the player has hearts subtract, if the player is out of lives restart.
+                if( HEARTS > 1 ) HEARTS--;
+                else location.reload();
          }, 3000);
        }
        DEAD = true;
+    }
+
+    this.reset = function() {
+        DEAD = false;
+        this.frameX = this.frameY = 0;
+        // Reset Camera
+        //ctx.moveTo(0, 0);
+        ctx.translate( this.x - this.startX, 0  );
+        scrollX = 0; 
+        
+        // Reset Player position.
+        this.x = this.startX;
+        this.y = this.startY;
+        this.dy = 0; this.dx = 0;
+        handleYscroll(); // Handle yScroll based on new position.
     }
  }
 
@@ -351,6 +393,10 @@ document.addEventListener("keyup", function(e) {
     if( e.keyCode == 38 ) UP = false;
     if( e.keyCode == 39 ) RIGHT = false;
     if( e.keyCode == 40 ) DOWN = false;  
-    if( e.keyCode == 16 ) SHIFT = false;    
-    if( e.keyCode == 32 ) nextLevel(); // SPACE
+    if( e.keyCode == 16 ) SHIFT = false;
+    if( e.keyCode == 67 ) { // C For Color Change
+        if(player.unlockedColors > player.selectedColor) player.selectedColor++;
+        else player.selectedColor = 0;
+    } 
+    if( e.keyCode == 32 ) action(); // SPACE
 });
