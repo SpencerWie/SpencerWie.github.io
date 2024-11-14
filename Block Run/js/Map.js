@@ -116,7 +116,7 @@ function createMap(index) {
             else if(char == '^') items.push(new Spikes(x, y, "top"));  
             else if(char == '>') items.push(new Spikes(x, y, "right"));  
             else if(char == '<') items.push(new Spikes(x, y, "left"));              
-            else if(char == '$') { shop = new Shop(x, y); items.push(shop); }
+            else if(char == '$') { items.push(shop); shop.setPosition(x, y); }
        }
     }
 }

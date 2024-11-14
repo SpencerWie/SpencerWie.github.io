@@ -1,8 +1,6 @@
-var shop;
-
-function Shop(x, y) {
-    this.x = x - 96;
-    this.y = y - 32;
+function Shop() {
+    this.x = 0;
+    this.y = 0;
     this.width = 96;
     this.height = 64;
     this.shopW = 220;
@@ -14,6 +12,11 @@ function Shop(x, y) {
 
     var mouseBetween = function(x1, y1, x2, y2) {
         return MouseX > x1 && MouseY > y1 && MouseX < x2 && MouseY < y2;
+    }
+
+    this.setPosition = function(x, y) {
+        this.x = x - 96;
+        this.y = y - 32;
     }
 
     this.draw = function() {
@@ -69,3 +72,5 @@ document.onmouseup = function(e) {
           }
     }
 };
+
+var shop = new Shop();
