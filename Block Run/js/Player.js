@@ -24,6 +24,7 @@ function Player() {
     this.frameY = 0; // Y frame on tilemap sprite
     this.image = images['player_blink'];
     this.jump = false;
+    this.doubleJump = false;
     this.canDoubleJump = false;
     this.ducked = false;
     this.timer = 0; // For animation
@@ -118,12 +119,19 @@ function Player() {
     this.verticalMovement = function()
     {
        if(DEAD) return;
+
        // Arrow Key detection, if we jumped from the ground.
        if(UP && this.jump && !DOWN){  
           this.dy = -this.jumpPower; 
           this.ddy = -1;
           this.jump = false;
-       }       
+       }
+       // If unlocked you can do a second jump once you start falling
+       else if(UP && !this.jump && this.canDoubleJump && this.doubleJump && this.dy > 9) {
+          this.dy = -this.jumpPower/1.7; 
+          this.ddy = -1;
+          this.doubleJump = false;
+       }
        
        if(this.dy < 10 && !this.jump) this.ddy = GRAVITY; // Apply Gravity
        
@@ -146,13 +154,7 @@ function Player() {
                  this.dy = 0;
                  this.ddy = 0;
                 this.y = items[item].y - this.size;
-                this.jump = true;
-            }
-            if(this.dy > 0 && collide(this,items[item]) && isItem(items[item],'moving_block') && this.y < items[item].y - this.maxYSpeed) {
-                this.dy = 0;
-                this.ddy = 0;
-                this.y = items[item].y - this.size;
-                this.jump = true;
+                this.jump = this.doubleJump = true;
             }
         }
        
