@@ -1,3 +1,40 @@
+// Shop Buy and exit buttons
+function Button(x, y, w, h, cost, callback) {
+    this.x = x;
+    this.y = y;
+    this.w = w;
+    this.h = h;
+    this.cost = cost;
+    this.condition = true;
+
+    this.click = function() {
+        if(this.canBuy()) {
+            callback();
+            COINS -= this.cost;
+        }
+    }
+
+    this.mouseOver = function() {
+        if(!this.canBuy()) return false;
+        return MouseX > this.x && MouseY > this.y && MouseX < this.x + this.w && MouseY < this.y + this.h;
+    }
+
+    this.canBuy = function() { return this.condition && COINS > this.cost; }
+}
+
+// Create Shop buttons
+var btnYOffset = 34;
+var exitBtn = new Button(435, 84, 20, 16, 0, () => { ShowShop = false; });
+var heartBtn = new Button(390, 108, 17, 20, 20, () => { HEARTS++; });
+var armorBtn = new Button(390, 108+btnYOffset, 17, 20, 30, () => { ARMOR = true; });
+var colorBtn = new Button(390, 108+btnYOffset*2, 17, 20, 50, () => { 
+    player.unlockedColors++;
+    player.selectedColor = player.unlockedColors;
+    shop.frameY = 1;
+});
+var doubleJumpBtn = new Button(390, 108+btnYOffset*3, 17, 20, 100, () => { player.canDoubleJump = true });
+var buttons = [exitBtn, heartBtn, armorBtn, colorBtn, doubleJumpBtn];
+
 function Shop() {
     this.x = 0;
     this.y = 0;
@@ -8,11 +45,8 @@ function Shop() {
     this.image = images["shop_vendor"];
     this.frameX = 0;
     this.frameY = 0;
+    this.onButton = -1;
     this.active = false;
-
-    var mouseBetween = function(x1, y1, x2, y2) {
-        return MouseX > x1 && MouseY > y1 && MouseX < x2 && MouseY < y2;
-    }
 
     this.setPosition = function(x, y) {
         this.x = x - 96;
@@ -20,57 +54,43 @@ function Shop() {
     }
 
     this.draw = function() {
+        // Display Space to shop or close shop when player leaves
         if(this.active) {
             this.frameX = 1;
         } else {
             this.frameX = 0;
             ShowShop = false;
         }
+
+        // Draw Vendor
         ctx.drawImage(this.image, this.frameX*this.width, 0, this.width, this.height, this.x, this.y, this.width, this.height);
 
+        // When player opened the shop draw shop dialog
         if(ShowShop) {
-            var btnYOffset = 34;
-            // Mouse if over Exit Button
-            if(mouseBetween(435, 84, 455, 100)) this.frameX = 1;
-            else if(mouseBetween(390, 108, 407, 128) && COINS >= 20) this.frameX = 2
-            else if(mouseBetween(390, 108+btnYOffset, 407, 128+btnYOffset) && COINS >= 30) this.frameX = 3
-            else if(mouseBetween(390, 108+btnYOffset*2, 407, 128+btnYOffset*2) && COINS >= 50 && player.colors.length - 1 > player.unlockedColors) this.frameX = 4
-            else if(mouseBetween(390, 108+btnYOffset*3, 407, 128+btnYOffset*3) && COINS >= 100) this.frameX = 5
-            else this.frameX = 0;
-
-            ctx.drawImage(images['shop_dialogs'], this.frameX*this.shopW, this.frameY*this.shopH, this.shopW, this.shopH, canvas.width - scrollX - canvas.width/2 - this.shopW/2, this.y - this.shopH + 16 + scrollY, this.shopW, this.shopH);
+            this.onButton = -1;
+            armorBtn.condition = !ARMOR;
+            colorBtn.condition = player.colors.length - 1 > player.unlockedColors;
+            doubleJumpBtn.condition = player.canDoubleJump == false;
+            for (let i = 0; i < buttons.length; i++) {
+                if(buttons[i].mouseOver()) {
+                    this.frameX = this.onButton = i;
+                    break;
+                }
+            }
+            ctx.drawImage(images['shop_dialogs'], (this.onButton + 1)*this.shopW, this.frameY*this.shopH, this.shopW, this.shopH, canvas.width - scrollX - canvas.width/2 - this.shopW/2, this.y - this.shopH + 16 + scrollY, this.shopW, this.shopH);
         }
     }
- }
+}
 
- document.onmousemove = function(e){
+document.onmousemove = function(e){
     MouseX = e.clientX - canvas.offsetLeft;
     MouseY = e.clientY - canvas.offsetTop;
 };
 
 document.onmouseup = function(e) {
     if(!ShowShop) return;
-    if(shop) {
-        switch(shop.frameX) {
-            case 1:
-                ShowShop = false;
-                break;
-            case 2:
-                HEARTS++;
-                COINS -= 20;
-                break
-            case 3:
-                // TODO: Armor functionalitiy
-                // COINS -= 304
-                break
-            case 4:
-                if(player.colors.length - 1 > player.unlockedColors) player.unlockedColors++;
-                player.selectedColor = player.unlockedColors;
-                COINS -= 50;
-                shop.frameY = 1;
-                break
-          }
-    }
+    var btn = buttons[shop.frameX];
+    if(shop.onButton > -1) btn.click();
 };
 
 var shop = new Shop();

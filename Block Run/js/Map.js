@@ -1,6 +1,7 @@
-var GRAVITY = 1.1; // 0.25
+var GRAVITY = 1.1;
 var COINS = 0;
 var HEARTS = 3;
+var ARMOR = false;
 var LEVEL = 1;
 var KEYS = 0;
 var SKEYS = 0;
@@ -81,7 +82,6 @@ function handleYscroll() {
 }
 
 function createMap(index) {
-    console.log(index);
     // Unlock next level of current map
     UnlockedLevels[currentMapIdx+1] = true;
 

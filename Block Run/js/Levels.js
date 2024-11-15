@@ -126,8 +126,8 @@ function loadImages()
     var playerBlink = new Image(); playerBlink.src = "imgs/player_blink.png";
     var Block = new Image(); Block.src = "imgs/block.png";
     // var MovingBlock = new Image(); MovingBlock.src = "imgs/moving_block.png"
-    var Coin = new Image(); Coin.src = "imgs/coin.png"
-    var Heart = new Image(); Heart.src = "imgs/heart.png"
+    var Coin = new Image(); Coin.src = "imgs/coin.png";
+    var Heart = new Image(); Heart.src = "imgs/heart.png";
     var Background = new Image(); Background.src = "imgs/clouds.jpg";
     var Enemies = new Image(); Enemies.src = "imgs/enemies.png";
     var Portal = new Image(); Portal.src = "imgs/portal-sheet.png";
@@ -137,9 +137,10 @@ function loadImages()
     var KeySilver = new Image(); KeySilver.src = "imgs/key_silver.png";
     var Spikes = new Image(); Spikes.src = "imgs/spikes.png";
     var Platform = new Image(); Platform.src = "imgs/platform.png";
-	var Enemy_Spike = new Image(); Enemy_Spike.src = "imgs/enemy_spike.png"
-    var ShopVendor = new Image(); ShopVendor.src = "imgs/shop_vendor.png"
-    var ShopDialogs = new Image(); ShopDialogs.src = "imgs/shop_dialogs.png"
+	var Enemy_Spike = new Image(); Enemy_Spike.src = "imgs/enemy_spike.png";
+    var ShopVendor = new Image(); ShopVendor.src = "imgs/shop_vendor.png";
+    var ShopDialogs = new Image(); ShopDialogs.src = "imgs/shop_dialogs.png";
+    var Armor = new Image(); Armor.src = "imgs/armor.png";
    
     images = {
         player_blink: playerBlink,
@@ -157,7 +158,8 @@ function loadImages()
         platform: Platform,
 		enemy_spike: Enemy_Spike,
         shop_vendor: ShopVendor,
-        shop_dialogs: ShopDialogs
+        shop_dialogs: ShopDialogs,
+        armor: Armor
     }
    
    return images;

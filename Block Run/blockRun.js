@@ -17,5 +17,6 @@ timer = setInterval(function()
    ctx.fillText(" x "+COINS, canvas.width-40-scrollX,20+scrollY);
    ctx.drawImage(images["heart"], 0,0, 32, 32, canvas.width-110-scrollX, scrollY, 32, 32);
    ctx.fillText(" x "+HEARTS, canvas.width-85-scrollX,20+scrollY);
+   if(ARMOR) ctx.drawImage(images["armor"], 0,0, 32, 32, canvas.width-155-scrollX, scrollY, 32, 32);
    ctx.globalAlpha = 1;
 }, delay);

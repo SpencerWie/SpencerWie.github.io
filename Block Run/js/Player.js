@@ -24,6 +24,7 @@ function Player() {
     this.frameY = 0; // Y frame on tilemap sprite
     this.image = images['player_blink'];
     this.jump = false;
+    this.canDoubleJump = false;
     this.ducked = false;
     this.timer = 0; // For animation
     this.step = 0; // For frame movement (animation)
