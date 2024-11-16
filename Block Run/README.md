@@ -21,13 +21,24 @@ The original game <em>Block Run</em>, was created as a simple platform game in P
 <h3>Future Planned Changes:</h3>
 <ul>
   <li>Bosses: Big Red, Spiker , and Ghost (planned) 0.7x-1.0x</li>
-  <li>Title Sreen with save and load screen (planned) 0.5x</li>
-  <li>Ice tiles. (planned) 0.6x</li>
-  <li>Falling tiles. (planned) 0.6x</li>
-  <li>Stage 5 (planned) 0.6x-0.8x</li>
+  <li>New Enemies</li>
+  <li>More Town NPCs and text chatting. (planned)</li>
+  <li>Diamond Store</li>
+  <li>New Town Area after beating the first few levels</li>
+  <li>Stage 6</li>
 </ul>  
 
-<h3>Current Version: <strong><em>v0.56</em></strong></h3>
+<h3>Current Version: <strong><em>v0.61</em></strong></h3>
+<ul>
+  <li>New Ability <em>Double Jump</em> can be brought in the shop</li>
+  <li>Bosses: Big Red (planned)</li>
+  <li>Ice tiles. (planned)</li>
+  <li>Falling tiles. (planned)</li>
+  <li>Stage 5 (planned)</li>
+  <li>Diamond Currency (planned)</li>
+</ul>  
+
+<h3><em>v0.60</em></h3>
 <ul>
   <li>Walking and Running movements now have acceleration, making the gameplay feel more fluid and smooth.</li>
   <li>Code Refacor.</li>
@@ -35,6 +46,7 @@ The original game <em>Block Run</em>, was created as a simple platform game in P
   <li>Silver Locks and Keys.</li>
   <li>Shop System for coins : Checkpoint unlocker, hearts, death protector</li>
   <li>Overworld with level select system</li>
+  <li>Auto save and load. Save happens when a level is completed or when the user buys an item from the shop.</li>
 </ul>
 
 <h3><em>v0.50</em></h3>
@@ -80,14 +92,6 @@ The original game <em>Block Run</em>, was created as a simple platform game in P
   <li>Added Animation</li>
   <li>Added basic enemy</li>
   <li>Stage 1 is complete</li>
-</ul>
-
-<h3>Planned Updates: <em>v0.4x</em></h3>
-<ul>
-	<li>New Enemies</li>
-	<li>More Levels</li>
-	<li>New Tiles</li>
-	<li>Menu System</li>
 </ul>
 
 <h5>Notice</h5>
