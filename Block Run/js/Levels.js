@@ -82,14 +82,14 @@ var level_1 = [
  ];
  
  var level_4 = [
-    'T                                         k     TT     TT        TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT        TT                     TTTT                T',
+    'T                                                     k           TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT        TT                     TTTT                T',
     'T                o o o o                                          T                                        >T<      >TTH  S    o o         TTTTT                T',
     'T                TTTTTTT                                          T                           o o           T       >TT_      _____       TTTTTT                T',
     'T                                                                 T                                         Lo      >TT                   TTTTTT                T',
     'T                             TTT                                 T K                                      _T__      TT              __   TTTTTT                T',
-    'T                                        o  o      E              TTTTTT    TT     TTT       TTTTT          T<       TT                   TTTTTT                T',
-    'T   oo                    o o                      TTTTT          T                         TTTTTTT      oooT<       TT                   TTTTTT                T',
-    'T   TT                    TTT            TTTT                     T                                      TTTTH       TTTTTTTTTTTTTTTTTTTT TTTTTT                T',
+    'T                                        o  o                     TTTTTT    TT     TTT       TTTTT          T<       TT                   TTTTTT                T',
+    'T   oo                    o o                      E              T                         TTTTTTT      oooT<       TT                   TTTTTT                T',
+    'T   TT                    TTT            TTTT      TTTTTT         T                                      TTTTH       TTTTTTTTTTTTTTTTTTTT TTTTTT                T',
     'T                                                                 T                                         T__    S                      TTTTTT        K       T',                    
     'TvvvvvvvvTTTTTTTTTvvvTTvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvT       TTTTTTTTTTTTTTTTTTTTTTTT             TvvvvvvTTTTT  TTTTTTTTTTT  TTTTTTTTT       TTT      T',
     'TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT H o o o o            TTvvvvvvvvvvvvTTTTTTTTTTTTTTT  L   o o o o o o o L    TTTTTTTTTT  T', 

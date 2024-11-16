@@ -1,4 +1,6 @@
 var delay = 27;
+loadGame();
+createMap(currentMapIdx);
 
 // Game loop
 timer = setInterval(function()

@@ -17,7 +17,6 @@ var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 var player = new Player();
 var currentMapIdx = 0;
-createMap(currentMapIdx);
 
 function collide(a, b) {
     return (
@@ -45,12 +44,31 @@ function action() {
                     createMap(level);
                 } else {
                     createMap(0);
+                    saveGame();
                 }
             }
             if(isItem(item,'shop_vendor') && collide(player,item)) {      
                 ShowShop = true;
             }
         }
+    }
+}
+
+function saveGame(){
+    let gameData = {"COINS": COINS, "HEARTS": HEARTS, "UnlockedLevels": UnlockedLevels, "UnlockedColors": player.unlockedColors, "DoubleJump": player.canDoubleJump};
+    localStorage.setItem("BlockRunData", JSON.stringify(gameData));
+    console.log("Game Saved");
+}
+
+function loadGame(){
+    let gameData = JSON.parse(localStorage.getItem("BlockRunData"));
+    if(gameData) {
+        COINS = gameData.COINS;
+        HEARTS = gameData.HEARTS;
+        UnlockedLevels = gameData.UnlockedLevels;
+        player.unlockedColors = gameData.UnlockedColors;
+        player.canDoubleJump = gameData.DoubleJump ? true : false;
+        console.log("Game Loaded");
     }
 }
 

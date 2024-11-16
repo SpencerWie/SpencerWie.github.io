@@ -11,6 +11,7 @@ function Button(x, y, w, h, cost, callback) {
         if(this.canBuy()) {
             callback();
             COINS -= this.cost;
+            saveGame();
         }
     }
 
