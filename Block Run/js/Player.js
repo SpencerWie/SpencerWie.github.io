@@ -37,6 +37,9 @@ function Player() {
 
     var duckLeft =  { x: 2, y: 2 };
     var duckRight = { x: 1, y: 2 };
+
+    var armorBreak = false;
+    var armorTimer = 1;
     
     this.draw = function() {
         ctx.drawImage(this.image, this.frameX*this.size, this.frameY*this.size, this.size, this.size, this.x, this.y, this.size, this.size);
@@ -56,6 +59,15 @@ function Player() {
                 if(this.ducked) ctx.fillRect(this.x + 1, this.y + 15, this.size - 2, this.size - 16);
                 else ctx.fillRect(this.x + 1, this.y + 1, this.size - 2, this.size - 2);
                 ctx.globalCompositeOperation="source-over";
+            }
+        }
+        if(armorBreak && ARMOR) {
+            ctx.globalAlpha = armorTimer;
+            ctx.drawImage(images["armor"], this.x, this.y - 40, 32, 32);
+            armorTimer -= 0.01;
+            if(armorTimer < 0) {
+                ARMOR = armorBreak = false;
+                armorTimer = 1;
             }
         }
     }
@@ -356,7 +368,10 @@ function Player() {
     // When the player dies, subtract a life and place back to start point. Translate camera back as well.
     this.die = function() {
        var self = this
-        if(!DEAD){
+        if(ARMOR) {
+            armorBreak = true;
+        } else if(!DEAD ){
+            DEAD = true;
             setTimeout(function(){
                 self.reset();
                 // If the player has hearts subtract, if the player is out of lives restart.
@@ -364,14 +379,12 @@ function Player() {
                 else location.reload();
          }, 3000);
        }
-       DEAD = true;
     }
 
     this.reset = function() {
         DEAD = false;
         this.frameX = this.frameY = 0;
         // Reset Camera
-        //ctx.moveTo(0, 0);
         ctx.translate( this.x - this.startX, 0  );
         scrollX = 0; 
         

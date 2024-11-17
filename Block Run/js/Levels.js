@@ -130,7 +130,7 @@ function loadImages()
     var Heart = new Image(); Heart.src = "imgs/heart.png";
     var Background = new Image(); Background.src = "imgs/clouds.jpg";
     var Enemies = new Image(); Enemies.src = "imgs/enemies.png";
-    var Portal = new Image(); Portal.src = "imgs/portal-sheet.png";
+    var Portal = new Image(); Portal.src = "imgs/portal.png";
     var Lock = new Image(); Lock.src = "imgs/lock.png";
     var LockSilver = new Image(); LockSilver.src = "imgs/lock_silver.png";
     var Key = new Image(); Key.src = "imgs/key.png";

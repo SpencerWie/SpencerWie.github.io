@@ -55,7 +55,7 @@ function action() {
 }
 
 function saveGame(){
-    let gameData = {"COINS": COINS, "HEARTS": HEARTS, "UnlockedLevels": UnlockedLevels, "UnlockedColors": player.unlockedColors, "DoubleJump": player.canDoubleJump};
+    let gameData = {"COINS": COINS, "HEARTS": HEARTS, "ARMOR": ARMOR, "UnlockedLevels": UnlockedLevels, "UnlockedColors": player.unlockedColors, "DoubleJump": player.canDoubleJump};
     localStorage.setItem("BlockRunData", JSON.stringify(gameData));
     console.log("Game Saved");
 }
@@ -65,6 +65,7 @@ function loadGame(){
     if(gameData) {
         COINS = gameData.COINS;
         HEARTS = gameData.HEARTS;
+        ARMOR = gameData.ARMOR;
         UnlockedLevels = gameData.UnlockedLevels;
         player.unlockedColors = gameData.UnlockedColors;
         player.canDoubleJump = gameData.DoubleJump ? true : false;
