@@ -11,7 +11,7 @@ var scrollX = 0;
 var scrollY = 0;
 var yLevel = 0;
 var yLevelMax = document.getElementById("canvas").height - 32;
-var UnlockedLevels = [true, true, false, false, false];
+var UnlockedLevels = [true, true, false, false, false, false];
 
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
@@ -36,7 +36,7 @@ function action() {
         for(i in items) {
             var item = items[i];
             if(!item) continue;
-            if(isItem(item,'portal') && collide(player,item)) {
+            if((isItem(item,'portal') || isItem(item,'boss_portal')) && collide(player,item)) {
                 if(!item.unlocked) return;
                 var level = Number.parseInt(item.map)
                 if(level) {

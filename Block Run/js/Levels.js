@@ -104,6 +104,20 @@ var level_1 = [
     'TvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvTTTTTTvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvT', 
     'TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT',   	
  ];
+
+ var boss_level_1 = [
+   '#                           ###########',
+   '#                          #          #',
+   '#                          #          #',
+   '#                   K      #          #',
+   '#      E                   #          #',
+   '#      ______     ####     #          #',
+   '#                 ####     #          #',
+   '#__               ####   __#          #',
+   '#                 ####     L    P     #',
+   '##################################################', 
+   '##################################################',    
+];
  
  var town = [
     '##################################################                                                                                                                 #',
@@ -114,12 +128,12 @@ var level_1 = [
     '#                                                #                                                                                                                 #',
     '#                                                #                                                                                                                 #',
     '#                                                #                                                                                                                 #',
-    '#       $      1      2       3       4          #                                                                                                                 #',
+    '#       $      1     2     3     4     5         #                                                                                                                 #',
     '##################################################                                          ########################################################################', 
     '##################################################                                          ########################################################################',    
  ];
 
- var levels = [town, level_1, level_2, level_3, level_4];
+ var levels = [town, level_1, level_2, level_3, level_4, boss_level_1];
 
 function loadImages() 
 {
@@ -131,13 +145,14 @@ function loadImages()
     var Background = new Image(); Background.src = "imgs/clouds.jpg";
     var Enemies = new Image(); Enemies.src = "imgs/enemies.png";
     var Portal = new Image(); Portal.src = "imgs/portal.png";
+    var BossPortal = new Image(); BossPortal.src = "imgs/boss_portal.png";
     var Lock = new Image(); Lock.src = "imgs/lock.png";
     var LockSilver = new Image(); LockSilver.src = "imgs/lock_silver.png";
     var Key = new Image(); Key.src = "imgs/key.png";
     var KeySilver = new Image(); KeySilver.src = "imgs/key_silver.png";
     var Spikes = new Image(); Spikes.src = "imgs/spikes.png";
     var Platform = new Image(); Platform.src = "imgs/platform.png";
-	var Enemy_Spike = new Image(); Enemy_Spike.src = "imgs/enemy_spike.png";
+	 var Enemy_Spike = new Image(); Enemy_Spike.src = "imgs/enemy_spike.png";
     var ShopVendor = new Image(); ShopVendor.src = "imgs/shop_vendor.png";
     var ShopDialogs = new Image(); ShopDialogs.src = "imgs/shop_dialogs.png";
     var Armor = new Image(); Armor.src = "imgs/armor.png";
@@ -150,13 +165,14 @@ function loadImages()
         background: Background,
         enemies: Enemies,
         portal: Portal,
+        boss_portal: BossPortal,
         lock: Lock,
         lock_silver: LockSilver,
         key: Key,
         key_silver: KeySilver,
         spikes: Spikes,
         platform: Platform,
-		enemy_spike: Enemy_Spike,
+		  enemy_spike: Enemy_Spike,
         shop_vendor: ShopVendor,
         shop_dialogs: ShopDialogs,
         armor: Armor

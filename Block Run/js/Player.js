@@ -335,7 +335,7 @@ function Player() {
                 else items[item].active = false;
             }
             // Portal: Toggle space to use text
-            if( isItem(items[item], 'portal') ) {
+            if( isItem(items[item], 'portal') || isItem(items[item], 'boss_portal') ) {
                 if (collide(items[item], this)) items[item].active = true;
                 else items[item].active = false;
             }

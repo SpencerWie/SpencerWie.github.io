@@ -143,9 +143,10 @@ function Key(x, y, type) {
     this.image = images["portal"];
     this.active = false;
     this.unlocked = this.map == 'P' || UnlockedLevels[Number.parseInt(this.map)] == true;
+
+    if(this.map == 5) this.image = images["boss_portal"];
     
     this.draw = function() {
-        
         if(this.unlocked) {
             ctx.drawImage(this.image, this.active ? this.width : 0, 0, this.width, this.height, this.x, this.y, this.width, this.height);
         } else {
