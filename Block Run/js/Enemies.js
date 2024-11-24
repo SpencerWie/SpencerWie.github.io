@@ -71,14 +71,19 @@ function BigRed(x, y)
 	this.attack_h = 145;
 	this.speed = -3;
 	this.stop = false;
+	this.hit = false;
 	this.hp = 8;
 	this.attackDelay = 0;
 	this.attackTimer = 0;
+	this.vulnerableTimer = 0;
+	this.energy = 2;
 
 	this.draw = function() {
 		this.update();
 		this.frameY = this.speed > 0 ? 1 : 0;
-		ctx.drawImage(this.image, this.frameX*this.width, this.frameY*this.height, this.width, this.height, this.x, this.y, this.width, this.height);
+		if(this.hit) ctx.globalAlpha = 0.5;
+		ctx.drawImage(this.image, this.frameX*this.width, this.frameY*this.height, this.width, this.height + 1, this.x, this.y, this.width, this.height + 1);
+		if(this.hit) ctx.globalAlpha = 1;
 		if(this.attackTimer) {
 			var attackFrame = Math.floor((110 - this.attackTimer)/10);
 			ctx.drawImage(this.attack_image, this.attack_w*this.frameY, attackFrame*this.attack_h, this.attack_w, this.attack_h, this.frameY ? this.x + this.width : this.x - this.attack_w, this.y, this.attack_w, this.attack_h);
@@ -94,7 +99,7 @@ function BigRed(x, y)
 				else 
 					this.x = items[item].x + 33;
 				this.speed *= -1;
-				this.attackDelay =  10 + Math.round(Math.random() * 100);
+				this.attackDelay =  Math.abs(this.speed) + Math.round(Math.random() * (100/Math.abs(this.speed)));
 				break;
 			}
 		}
@@ -112,6 +117,20 @@ function BigRed(x, y)
 			if(this.attackTimer == 0) {
 				this.stop = false;
 				this.frameX = 0;
+				this.energy--;
+				if(this.energy == 0) this.vulnerableTimer = Math.floor(300 / Math.abs(this.speed));
+			}
+		}
+
+		// If out of energy after doing an attack boss is vulnerable to taking damage
+		if(this.vulnerableTimer > 0) {
+			this.vulnerableTimer--;
+			this.stop = true;
+			this.frameX = this.hit ? 3 : 2;
+			if(this.vulnerableTimer == 0) {
+				this.stop = this.hit = false;
+				this.frameX = 0;
+				this.energy =  1 + Math.ceil(Math.random() * 2);
 			}
 		}
 	}
@@ -120,5 +139,11 @@ function BigRed(x, y)
 		this.frameX = 1;
 		this.stop = true;
 		this.attackTimer = 110;
+	}
+
+	this.takeDamage = function() {
+		this.hp--;
+		this.vulnerableTimer = 200;
+		this.hit = true;
 	}
 }

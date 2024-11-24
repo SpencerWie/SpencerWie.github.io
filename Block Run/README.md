@@ -28,7 +28,7 @@ The original game <em>Block Run</em>, was created as a simple platform game in P
   <li>Stage 6</li>
 </ul>  
 
-<h3>Current Version: <strong><em>v0.61</em></strong></h3>
+<h3>Current Version: <strong><em>v0.63</em></strong></h3>
 <ul>
   <li>New Ability <em>Double Jump</em> can be brought in the shop</li>
   <li>Armor: Protects you where you would of died. When triggered armor icon will appear above your character and fade out and you willbe unkillable for about 4 seconds.
