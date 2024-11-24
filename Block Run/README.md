@@ -20,7 +20,7 @@ The original game <em>Block Run</em>, was created as a simple platform game in P
 
 <h3>Future Planned Changes:</h3>
 <ul>
-  <li>Bosses: Big Red, Spiker , and Ghost (planned) 0.7x-1.0x</li>
+  <li>Bosses: Big Red, Spiker, and Ghost (planned) 0.7x-1.0x</li>
   <li>New Enemies</li>
   <li>More Town NPCs and text chatting. (planned)</li>
   <li>Diamond Store</li>
@@ -31,7 +31,7 @@ The original game <em>Block Run</em>, was created as a simple platform game in P
 <h3>Current Version: <strong><em>v0.63</em></strong></h3>
 <ul>
   <li>New Ability <em>Double Jump</em> can be brought in the shop</li>
-  <li>Armor: Protects you where you would of died. When triggered armor icon will appear above your character and fade out and you willbe unkillable for about 4 seconds.
+  <li>Armor: Protects you where you would of died. When triggered armor icon will appear above your character and fade out and you will be unkillable for about 4 seconds.
   <li>Bosses: Big Red (planned)</li>
   <li>Ice tiles. (planned)</li>
   <li>Falling tiles. (planned)</li>

@@ -136,7 +136,7 @@ function createMap(index) {
             else if(char == '>') items.push(new Spikes(x, y, "right"));  
             else if(char == '<') items.push(new Spikes(x, y, "left"));              
             else if(char == '$') { items.push(shop); shop.setPosition(x, y); }
-            else if(char == 'R') items.push(new BigRed(x, y));    
+            else if(char == 'R') items.push(new BigRed(x, y, items.length));    
        }
     }
 }

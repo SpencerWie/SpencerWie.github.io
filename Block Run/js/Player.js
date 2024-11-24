@@ -333,6 +333,7 @@ function Player() {
                         if( item.hp > 0 ) item.frameX++;
                         else items.splice(i, 1);
                     }
+                    // Boss takes damage if currently vulnerable and not already hit
                     if(hitBigRed && item.vulnerableTimer > 0 && item.frameX != 3) { 
                         item.takeDamage();
                         this.bounceOffEnemy(item);
