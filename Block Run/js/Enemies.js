@@ -57,6 +57,15 @@ function Enemy(x, y, width, height, image, speed ,walkSteps, hp, type)
    }
 }
 
+function BigRedAttack(x, y) 
+{
+	this.x = x;
+	this.y = y;
+	this.width = 755;
+	this.height = 145;
+	this.image = images['BigRed_Attack'];
+}
+
 function BigRed(x, y, index) 
 {
 	this.x = x;
@@ -67,13 +76,11 @@ function BigRed(x, y, index)
 	this.width = 128;
 	this.height = 127;
 	this.image = images['BigRed'];
-	this.attack_image = images['BigRed_Attack'];
-	this.attack_w = 755;
-	this.attack_h = 145;
+	this.atk = new BigRedAttack(this.x, this.y);
 	this.speed = -4;
 	this.stop = false;
 	this.hit = false;
-	this.hp = 5;
+	this.hp = 6;
 	this.attackDelay = 0;     // Timer to wait before attacking
 	this.attackTimer = 0;     // Timer it takes to do an attack
 	this.vulnerableTimer = 0; // Timer for how long boss is exposed to damage
@@ -82,13 +89,27 @@ function BigRed(x, y, index)
 
 	this.draw = function() {
 		this.update();
-		this.frameY = this.speed > 0 ? 1 : 0;
-		if(this.hit || this.deathTimer > 0) ctx.globalAlpha = 0.5;
+		this.frameY = this.speed > 0 ? 1 : 0; // Face left or right depending on what direction we are moving
+
+		// When vulnerable add transparency to draw
+		var vulnerable = this.hit || this.deathTimer > 0
+		if(vulnerable) ctx.globalAlpha = 0.5;
 		ctx.drawImage(this.image, this.frameX*this.width, this.frameY*this.height, this.width, this.height + 1 - this.deathTimer, this.x, this.y + this.deathTimer, this.width, this.height + 1 - this.deathTimer);
-		if(this.hit || this.deathTimer > 0) ctx.globalAlpha = 1;
+		if(vulnerable) ctx.globalAlpha = 1;
+
 		if(this.attackTimer) {
 			var attackFrame = Math.floor((110 - this.attackTimer)/10);
-			ctx.drawImage(this.attack_image, this.attack_w*this.frameY, attackFrame*this.attack_h, this.attack_w, this.attack_h, this.frameY ? this.x + this.width : this.x - this.attack_w, this.y, this.attack_w, this.attack_h);
+			this.atk.x = this.frameY ? this.x + this.width : this.x - this.atk.width;
+			this.atk.y = this.y + 20;
+			ctx.drawImage(
+				this.atk.image, 
+				this.atk.width*this.frameY, 
+				attackFrame*this.atk.height, 
+				this.atk.width, 
+				this.atk.height, 
+				this.atk.x, 
+				this.y, this.atk.width, this.atk.height
+			);
 		}
 	}
 
@@ -98,13 +119,19 @@ function BigRed(x, y, index)
 		if(this.hp <= 0) {
 			if(this.deathTimer > 128) {
 				items.splice(this.index, 1);
-				return;
+				KEYS++;
+				COINS+=40;
 			}
 			this.deathTimer++;
 			this.frameX = 3;
 			return;
 		}
 
+		this.handleMovementAndCollisions();
+		this.handleAttacks();
+	}
+
+	this.handleMovementAndCollisions = function() {
 		// The lower the boss hp the faster it moves
 		if(this.speed > 0) this.speed = 4 + (4 - this.hp);
 		else this.speed = -4 - (4 - this.hp);
@@ -112,17 +139,20 @@ function BigRed(x, y, index)
 		for(item in items) {
 			var isSolidBlock = (isItem(items[item],'block') || isItem(items[item],'lock'));  
 			if (isSolidBlock && collide(items[item], this)) {
-				if(this.speed > 0)
-					this.x = items[item].x - this.width - 1;
+				if(this.speed > 0) 
+					this.x = items[item].x - this.width - 1; // Turn around and be a pixel away from the wall to the right
 				else 
-					this.x = items[item].x + 33;
+					this.x = items[item].x + 33; // Turn around and be a pixel away from the block to the left
 				this.speed *= -1;
+				// Soon after turning around get ready to attack with some degree of randomness, attacks are faster the higher the speed is.
 				this.attackDelay =  Math.abs(this.speed) + Math.round(Math.random() * (100/Math.abs(this.speed)));
 				break;
 			}
 		}
 		if(!this.stop) this.x += this.speed;
+	}
 
+	this.handleAttacks = function() {
 		// If we are active to attack wait until the delay ends and then trigger attack animation
 		if(this.attackDelay > 0) {
 			this.attackDelay--;

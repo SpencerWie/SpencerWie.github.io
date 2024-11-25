@@ -16,6 +16,7 @@ var UnlockedLevels = [true, true, false, false, false, false];
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 var player = new Player();
+var boss = false;
 var currentMapIdx = 0;
 
 function collide(a, b) {
@@ -110,10 +111,13 @@ function createMap(index) {
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     
     items = [];
+    boss = false;
     
     scrollX = 0;
     scrollY = 0;
     yLevel = 0;
+    KEYS = 0;
+    SKEYS = 0;
     
     for(var Y = 0; Y < map.length; Y++ ) {
         for(var X = 0; X < map[0].length; X++ ) {
@@ -136,7 +140,7 @@ function createMap(index) {
             else if(char == '>') items.push(new Spikes(x, y, "right"));  
             else if(char == '<') items.push(new Spikes(x, y, "left"));              
             else if(char == '$') { items.push(shop); shop.setPosition(x, y); }
-            else if(char == 'R') items.push(new BigRed(x, y, items.length));    
+            else if(char == 'R') { boss = new BigRed(x, y, items.length); items.push(boss); }
        }
     }
 }

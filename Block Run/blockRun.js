@@ -7,11 +7,16 @@ timer = setInterval(function()
 {
    ctx.drawImage(images["background"],-scrollX, scrollY, canvas.width, canvas.height);
    ctx.fillStyle = player.color;
-   player.update();
+   //player.update();
    handleYscroll();
    for(item in items)
       items[item].draw();
+   player.update();
    player.draw();   
+   drawUI();
+}, delay);
+
+function drawUI() {
    ctx.fillStyle = "red";
    ctx.globalAlpha = 0.7;
    ctx.fillText("Beta: V 0.63", 10-scrollX, 10+scrollY);
@@ -21,4 +26,4 @@ timer = setInterval(function()
    ctx.fillText(" x "+HEARTS, canvas.width-85-scrollX,20+scrollY);
    if(ARMOR) ctx.drawImage(images["armor"], 0,0, 32, 32, canvas.width-155-scrollX, scrollY, 32, 32);
    ctx.globalAlpha = 1;
-}, delay);
+}

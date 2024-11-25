@@ -266,7 +266,7 @@ function Player() {
             var item = items[i]; 
             var isSolidBlock = isItem(item,'block') || isItem(item,'lock') || isItem(item,'lock_silver');
             var movingRight = this.dx <= 0; 
-            var movingLeft = this.dx > 0; 
+            var movingLeft = this.dx > 0;
             
             if( isItem(item,'key') && collide(this,item) ) {
                 items.splice(i, 1);
@@ -331,7 +331,7 @@ function Player() {
                             item.height -= 20; 
                         }
                         if( item.hp > 0 ) item.frameX++;
-                        else items.splice(i, 1);
+                        else { items.splice(i, 1); items.push(new Coin(item.x, item.y + 5)) }
                     }
                     // Boss takes damage if currently vulnerable and not already hit
                     if(hitBigRed && item.vulnerableTimer > 0 && item.frameX != 3) { 
@@ -340,8 +340,14 @@ function Player() {
                     }
                 } else { 
                     if(item.type == "red block") this.die(); 
-                    if(hitBigRed && item.vulnerableTimer <= 0) this.die(boss=true); 
+                    if(hitBigRed && item.vulnerableTimer <= 0) this.die(true); 
                 } 
+            }
+            // If hit by big red laser attack and the boss exist
+            if( boss && boss.attackTimer > 30 && boss.attackTimer < 50) {
+                if(collide(boss.atk, player)) {
+                    this.die(true);
+                }
             }
             // Spike Enemy: Player dies on hit
             if( isItem(item,'enemy_spike') && collide(item, this) ) this.die();
