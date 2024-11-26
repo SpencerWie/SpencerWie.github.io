@@ -21,6 +21,13 @@ function Button(x, y, w, h, cost, callback) {
     }
 
     this.canBuy = function() { return this.condition && COINS > this.cost; }
+
+    this.drawDisabled = function() {
+        if(!this.canBuy()) {
+            ctx.fillStyle = ctx.fillStyle = "rgba(232,232,232,0.5)";
+            ctx.fillRect(this.x - scrollX - 5, this.y - 5, this.w + 10, this.h + 5);
+        }
+    }
 }
 
 // Create Shop buttons
@@ -72,13 +79,21 @@ function Shop() {
             armorBtn.condition = !ARMOR;
             colorBtn.condition = player.colors.length - 1 > player.unlockedColors;
             doubleJumpBtn.condition = player.canDoubleJump == false;
+
+            // Determine which button our mouse is over and determine the frame to draw based on it.
             for (let i = 0; i < buttons.length; i++) {
                 if(buttons[i].mouseOver()) {
                     this.frameX = this.onButton = i;
                     break;
                 }
             }
+            // Draw Shop
             ctx.drawImage(images['shop_dialogs'], (this.onButton + 1)*this.shopW, this.frameY*this.shopH, this.shopW, this.shopH, canvas.width - scrollX - canvas.width/2 - this.shopW/2, this.y - this.shopH + 16 + scrollY, this.shopW, this.shopH);
+            
+            // Determine what the player cannot buy and show those items as disabled.
+            for (let i = 0; i < buttons.length; i++) {
+                buttons[i].drawDisabled();
+            }
         }
     }
 }
