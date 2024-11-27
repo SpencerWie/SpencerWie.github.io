@@ -42,6 +42,41 @@ function Key(x, y, type) {
     this.image = images['platform'];
     this.height = 5;
  }
+
+function FallingPlatform(x, y) {
+   Block.call(this, x, y);
+   this.image = images['falling_platform'];
+   this.width = 64
+   this.height = 5;
+   this.alpha = 1;
+   this.respawnTimer = 100;
+   this.falling = false;
+   this.startY = y;
+
+   this.startFalling = function() {
+      this.falling = true;
+      this.respawnTimer = this.alpha*50 + 50;
+   }
+
+   this.draw = function() {
+      // If the player is jumping or falling down, or the player is not in the range of the x location of the platform, then restore platform
+      if(Math.abs(player.dy) > 1 || player.x > this.x+this.width+10 || player.x < this.x-10) this.falling = false;
+      var oldAlpha = ctx.globalAlpha;
+      if(this.falling && this.alpha > 0.01) {
+         this.alpha -= 0.02;
+      } 
+      if (this.alpha <= 0.1 || !this.falling) {
+         this.respawnTimer--;
+      }
+      if(this.respawnTimer < 1 && this.alpha < 1) {
+         this.alpha += 0.01;
+      }
+      if(this.alpha < 0.05) this.falling = false;
+      ctx.globalAlpha = this.alpha;
+      ctx.drawImage(this.image, this.x - 0.5, this.y + 2.5 - (this.alpha*3), this.width+2.5, this.height+2.5);
+      ctx.globalAlpha = oldAlpha;
+  }
+}
  
  function GhostBlock(x, y) {
     Block.call(this, x, y);

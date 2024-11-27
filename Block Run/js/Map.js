@@ -10,7 +10,7 @@ var ShowShop = false;
 var scrollX = 0;
 var scrollY = 0;
 var yLevel = 0;
-var yLevelMax = document.getElementById("canvas").height - 32;
+var yLevelMax = document.getElementById("canvas").height - 32 + 1;
 var UnlockedLevels = [true, true, false, false, false, false];
 
 var canvas = document.getElementById("canvas");
@@ -127,6 +127,7 @@ function createMap(index) {
             if(char == ' ') continue;
             if(char == '#') items.push(new Block(x, y));
             else if(char == '_') items.push(new Platform(x, y)); 
+            else if(char == '~') items.push(new FallingPlatform(x, y)); 
             else if(char == 'o') items.push(new Coin(x, y));
             else if(char == 'H') items.push(new Heart(x, y));            
             else if(char == 'E') items.push(new Enemy(x, y, 40, 52, images["enemies"], 4, 5, 2, "red block"));

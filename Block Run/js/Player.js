@@ -153,20 +153,28 @@ function Player() {
         //TODO: We need to be able to drop from a plateform by just using DOWN instead of jump+DOWN
        
         // Vertical Block collisions. (needs to be seperate from horizonal for proper collisions)
-        for(item in items) {
+        for(i in items) {
+            var item = items[i];
             // If we touched the plateform and are not ducking.
-            var platformCollision = !DOWN && isItem(items[item],'platform') && this.y+this.height <= items[item].y+this.maxYSpeed;
+            var isPlatform = isItem(item,'platform') || (isItem(item,'falling_platform') && item.alpha > 0.1)
+            var platformCollision = !DOWN && isPlatform && this.y+(this.height/2) <= item.y;
             // For upwards collision check if we are moving up and hit a block, if so place player at the bottom of block and halt verticle motion.
-            if(this.dy < 0 && collide(this,items[item]) && isItem(items[item],'block')) {
+            if(this.dy < 0 && collide(this,item) && isItem(item,'block')) {
                 this.dy = 0;
                 this.ddy = 0;
-                this.y = items[item].y + this.size;
+                this.y = item.y + this.size;
             }// For downwards collision check if we are moving down and hit a block, if so place player at the top of block and halt verticle motion.
-            else if(this.dy > 0 && collide(this,items[item]) && (isItem(items[item],'block') || platformCollision)) {
-                 this.dy = 0;
-                 this.ddy = 0;
-                this.y = items[item].y - this.size;
+            else if(this.dy > 0 && collide(this,item) && (isItem(item,'block') || platformCollision)) {
+                this.dy = 0;
+                this.ddy = 0;
+                this.y = item.y - this.size + 1;
                 this.jump = this.doubleJump = true;
+                // If we are on a falling platform start falling and disappearing
+                if(isItem(item,'falling_platform') && item.alpha > 0) {
+                    this.y = item.y - this.size + 3;
+                    item.startFalling();
+                    this.dy = 0.04;
+                }
             }
         }
        
@@ -367,7 +375,7 @@ function Player() {
        
        // Handle Jump (only jump when player is on the ground)      
        for(item in items) {
-          var isSolidBlock = (isItem(items[item],'block') || isItem(items[item],'lock') || isItem(items[item],'platform'));  
+          var isSolidBlock = (isItem(items[item],'block') || isItem(items[item],'lock') || isItem(items[item],'platform') || isItem(items[item],'falling_platform'));  
           if(collide(groundPoint, items[item]) && isSolidBlock && this.dy >= 0) { 
              this.jump = true; // When we found a collision we stop looking
              break;

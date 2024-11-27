@@ -162,12 +162,13 @@ function BigRed(x, y, index)
 		// If we are currently attacking draw attack animation
 		if(this.attackTimer > 0) {
 			this.attackTimer--;
-			if(this.hp <= 2 && this.attackTimer > 1) this.attackTimer--; // If close to death attacks are twice as fast
+			// If close to death charge up part of the attack is twice as fast
+			if(this.hp <= 2 && this.attackTimer > 70) this.attackTimer--; 
 			if(this.attackTimer == 0) {
 				this.stop = false;
 				this.frameX = 0;
 				this.energy--;
-				if(this.energy == 0) this.vulnerableTimer = 75 + (this.hp*5); // Invulnerablity last slightly less as hp lowers
+				if(this.energy == 0) this.vulnerableTimer = 100 + (this.hp*5); // Invulnerablity last slightly less as hp lowers
 			}
 		}
 
