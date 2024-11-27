@@ -60,7 +60,7 @@ this.Event = function(){
 			Shop.image = shopStation;
 		}
 		//If user pressed LEFT then move left and make the image left.
-		if(LEFT && MapX<180){
+		if(LEFT && MapX<270){
 			DigCountR, DigCountD = 0;
 			if(this.xSpeed<11 && this.xSpeed>(-11)){
 				this.xSpeed++;//Move Left
@@ -104,8 +104,8 @@ this.Event = function(){
 			if(this.xSpeed>=0){canvas.drawImage(this.imgShipL, this.x, this.y);}
 			else if(this.xSpeed<0){canvas.drawImage(this.imgShipR, this.x, this.y);}
 		}
-		if(MapX>180){this.xSpeed=-1;}
-		if(MapX<-(SIZE*COLS-220)){this.xSpeed=1;}
+		if(MapX>270){this.xSpeed=-1;}
+		if(MapX<-(SIZE*COLS-250)){this.xSpeed=1;}
 	//}
 }
 

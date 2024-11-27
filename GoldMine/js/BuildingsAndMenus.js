@@ -105,31 +105,29 @@ function ShopMenu(x,y,image){
             }
         }
     }
-}
-
-//For the Shop Menu.
-document.onmouseup = function(e){
-	if(Menu.image == shopMenu_X){
-		Menu.active=false;
-	}
-	if(InfoMenu.image == infoMenu_X){
-		InfoMenu.active=false;
-		document.addEventListener('click', musicPlay);
-	}
-	if(infoIcon.image == info_icon_X){
-		if(InfoMenu.active==true){InfoMenu.active=false;}
-		else if(InfoMenu.active==false){InfoMenu.active=true;}
-	}
-	//Since these are IF/ELSE IF statements it can't be looped singely. All IF statements will keep buying until the you run out of money on a single click.
-	for(var i=0; i<UpgradeArray.length;i++){
-		if(Menu.image == shopMenuArray[i]){//console.log("1")//if hit Upgrade Drill
-			for(var j=0;j<PRICE.length;j++){
-				if(UpgradeArray[i]==j && Cash>=PRICE[j]){
-					UpgradeArray[i]++;Cash-=PRICE[j];UpgradeStats();break;
-				}
-			}
-		}
-	}
+    this.handleMouseEvents = function() {
+        if(Menu.image == shopMenu_X){
+            Menu.active=false;
+        }
+        if(InfoMenu.image == infoMenu_X){
+            InfoMenu.active=false;
+            document.addEventListener('click', musicPlay);
+        }
+        if(infoIcon.image == info_icon_X){
+            if(InfoMenu.active==true){InfoMenu.active=false;}
+            else if(InfoMenu.active==false){InfoMenu.active=true;}
+        }
+        //Since these are IF/ELSE IF statements it can't be looped singely. All IF statements will keep buying until the you run out of money on a single click.
+        for(var i=0; i<UpgradeArray.length;i++){
+            if(Menu.image == shopMenuArray[i]){//console.log("1")//if hit Upgrade Drill
+                for(var j=0;j<PRICE.length;j++){
+                    if(UpgradeArray[i]==j && Cash>=PRICE[j]){
+                        UpgradeArray[i]++;Cash-=PRICE[j];UpgradeStats();break;
+                    }
+                }
+            }
+        }
+    }
 }
 
 function Information(x,y,image){
@@ -183,6 +181,7 @@ function generateBuildings(){
 	Menu = new ShopMenu(50,-200,shopMenu);
 	InfoMenu = new Information(50,-200,infoMenu);
 	infoIcon = new  InfoIcon(50,-200,info_icon);
+    document.onmouseup = Menu.handleMouseEvents;
 }
 
 function UpgradeStats(){
