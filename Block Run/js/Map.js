@@ -1,6 +1,7 @@
 var GRAVITY = 1.1;
 var COINS = 0;
 var HEARTS = 3;
+var DIAMONDS = 0;
 var ARMOR = false;
 var LEVEL = 1;
 var KEYS = 0;
@@ -33,6 +34,10 @@ function distance(a, b) {
 }
 
 function action() {
+    if(chat.active) {
+        chat.active = false;
+        return;
+    }
     if(LEVEL < levels.length) {
         for(i in items) {
             var item = items[i];
@@ -50,6 +55,9 @@ function action() {
             }
             if(isItem(item,'shop_vendor') && collide(player,item)) {      
                 ShowShop = true;
+            }
+            if((isItem(item,'Miner') || isItem(item,'Mayor'))  && item.active && chat.active == false) {      
+                chat.active = true;
             }
         }
     }
@@ -129,7 +137,8 @@ function createMap(index) {
             else if(char == '_') items.push(new Platform(x, y)); 
             else if(char == '~') items.push(new FallingPlatform(x, y)); 
             else if(char == 'o') items.push(new Coin(x, y));
-            else if(char == 'H') items.push(new Heart(x, y));            
+            else if(char == 'H') items.push(new Heart(x, y));
+            else if(char == 'D') items.push(new Diamond(x, y)); 
             else if(char == 'E') items.push(new Enemy(x, y, 40, 52, images["enemies"], 4, 5, 2, "red block"));
             else if(char == 'S') items.push(new Enemy(x, y, 30, 30, images["enemy_spike"], 4, 5, 2, "spike"));
             else if(char == 'P' || Number.parseInt(char)) items.push(new Portal(x, y, char));
@@ -142,6 +151,8 @@ function createMap(index) {
             else if(char == '<') items.push(new Spikes(x, y, "left"));              
             else if(char == '$') { items.push(shop); shop.setPosition(x, y); }
             else if(char == 'R') { boss = new BigRed(x, y, items.length); items.push(boss); }
+            else if(char == 'M') items.push(new Npc(x, y, "Miner", index));
+            else if(char == 'Y') items.push(new Npc(x, y, "Mayor", index));    
        }
     }
 }

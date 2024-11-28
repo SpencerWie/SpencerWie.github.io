@@ -107,7 +107,7 @@ function FallingPlatform(x, y) {
     }
  }*/
  
- function Heart(x, y) {
+function Heart(x, y) {
     this.x = x + 10; 
     this.y = y + 10;
     this.image = images['heart'];
@@ -116,9 +116,20 @@ function FallingPlatform(x, y) {
     this.draw = function() {
        ctx.drawImage(this.image, this.x - 10, this.y - 10);
     }
- }
+}
+
+function Diamond(x, y) {
+   this.x = x + 10; 
+   this.y = y + 10;
+   this.image = images['diamond'];
+   this.width = 15; this.height = 15;
+   
+   this.draw = function() {
+      ctx.drawImage(this.image, this.x - 10, this.y - 10);
+   }
+}
  
- function Spikes(x, y, type) {
+function Spikes(x, y, type) {
     this.x = x; 
     this.y = y;
     this.image = images['spikes'];
@@ -142,8 +153,8 @@ function FallingPlatform(x, y) {
     }
  }
  
- var coin_timeframe = [[5, 1, 0], [10, 2, 0], [15, 1, 0], [20, 0, 0]];
- function Coin(x, y) {
+var coin_timeframe = [[5, 1, 0], [10, 2, 0], [15, 1, 0], [20, 0, 0]];
+function Coin(x, y) {
     this.timer = 0;
     this.x = x + 9;
     this.y = y + 9;
@@ -193,6 +204,6 @@ function FallingPlatform(x, y) {
  }
 
  // Check on what an item is based on it's image.
-function isItem(check, item) {
-    return check.image == images[item];
- }
+function isItem(check, item) {  
+   return check.image == images[item];
+}

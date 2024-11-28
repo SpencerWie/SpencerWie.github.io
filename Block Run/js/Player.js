@@ -321,7 +321,12 @@ function Player() {
             if( isItem(item,'heart') && collide(this,item) ) {
                 items.splice(i, 1);
                 HEARTS++;
-            }         
+            }
+            // Hearts
+            if( isItem(item,'diamond') && collide(this,item) ) {
+                items.splice(i, 1);
+                DIAMONDS++;
+            }       
             // Spikes
             if( isItem(item,'spikes') && collide(this,item) ) {
                 this.die();

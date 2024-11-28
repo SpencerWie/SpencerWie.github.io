@@ -20,23 +20,25 @@ The original game <em>Block Run</em>, was created as a simple platform game in P
 
 <h3>Future Planned Changes:</h3>
 <ul>
-  <li>Bosses: Big Red, Spiker, and Ghost (planned) 0.7x-1.0x</li>
+  <li>More Bosses (planned) 0.7x-1.0x</li>
   <li>New Enemies</li>
-  <li>More Town NPCs and text chatting. (planned)</li>
+  <li>More Town NPCs. (planned)</li>
   <li>Diamond Store</li>
-  <li>New Town Area after beating the first few levels</li>
+  <li>New Town Area after beating Big Red</li>
+  <li>Ice tiles. (planned)</li>
   <li>Stage 6</li>
 </ul>  
 
-<h3>Current Version: <strong><em>v0.64</em></strong></h3>
+<h3>Current Version: <strong><em>v0.70</em></strong></h3>
 <ul>
   <li>New Ability <em>Double Jump</em> can be brought in the shop</li>
   <li>Armor: Protects you where you would of died. When triggered armor icon will appear above your character and fade out and you will be unkillable for about 4 seconds.
-  <li>Bosses: Big Red </li>
-  <li>Ice tiles. (planned)</li>
-  <li>Falling tiles. (planned)</li>
-  <li>Stage 5 (planned)</li>
-  <li>Diamond Currency (planned)</li>
+  <li>Boss: Big Red </li>
+  <li>Falling tiles.</li>
+  <li>Boss Stage</li>
+  <li>Diamond Currency</li>
+  <li>Extra challenge sections of levels to get diamond</li>
+  <li>Town NPCs and Chat System</li>
 </ul>  
 
 <h3><em>v0.60</em></h3>

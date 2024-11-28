@@ -98,6 +98,65 @@ function Shop() {
     }
 }
 
+function Chat(){
+    this.x = 50;
+    this.y = 50;
+    this.width = 600;
+    this.height = 64;
+    this.image = images["chat"];
+    this.text = "";
+    this.active = false;
+    this.draw = function() { 
+        if(!this.active) return;
+        ctx.globalAlpha = 0.8;
+        ctx.font = "bold 18px monospace, cursive";
+        ctx.drawImage(this.image, 0, 0, this.width, this.height, 50-scrollX, canvas.height-this.height+scrollY, this.width, this.height);
+        ctx.fillStyle = "#222222";
+        ctx.globalAlpha = 1;
+        // If we have a new line draw split the text and draw the rest on the second line. (The chat box only supports room for a second line)
+        if(this.text.includes("\n")) {
+            var lines = this.text.split("\n");
+            ctx.fillText(lines[0], 70-scrollX, canvas.height-this.height+24+scrollY);
+            ctx.fillText(lines[1].trim(), 70-scrollX, canvas.height-this.height+46+scrollY);
+        } else {
+            ctx.fillText(this.text, 70-scrollX, canvas.height-this.height+24+scrollY);
+        }
+        ctx.font = "bold 10px monospace, cursive";
+        ctx.fillText("Hit Space to close", this.width-60-scrollX, canvas.height-this.height+58+scrollY);
+    }
+}
+
+function Npc(x, y, type, index) {
+    this.x = x;
+    this.y = y;
+    this.width = 32;
+    this.height = 32;
+    this.type = type;
+    this.image = images[type];
+    this.talk = images["talk"];
+    this.frameX = 0;
+    this.active = false;
+    this.index = index;
+    this.text = "I'm a diamond miner. If you happen to find any you can \n bring them to me to unlock rare items!";
+
+    if(this.type == "Miner" && this.index == 1) this.text = "If you had Double Jump and Armor you might be able to get \n to the diamond up there somehow."
+    if(this.type == "Miner" && this.index == 4) this.text = "There must be a silver key around somewhere. Such a \n shinny diamond so close to us!"
+    if(this.type == "Miner" && this.index == 5) this.text = "Congratulations on beating Big Red! I hear if you can \n kill him without double jump you get another key."
+    if(this.type == "Mayor") this.text = "That Big Red has blocked the way to to rest of our town! \n If someone could defeat him maybe the way will open up."
+
+    this.draw = function() { 
+        this.active = false;
+        if(distance(this, player) < 60 && !chat.active) {
+            this.active = true;
+            chat.text = this.text;
+            ctx.drawImage(this.talk, 0, 0, this.width, this.height/2, this.x, this.y - 32, this.width, this.height/2);
+        }
+        if(player.x < this.x) this.frameX = 1;
+        else this.frameX = 0;
+        ctx.drawImage(this.image, this.frameX*this.width, 0, this.width, this.height, this.x, this.y, this.width, this.height);
+    }
+}
+
 document.onmousemove = function(e){
     MouseX = e.clientX - canvas.offsetLeft;
     MouseY = e.clientY - canvas.offsetTop;
@@ -110,3 +169,4 @@ document.onmouseup = function(e) {
 };
 
 var shop = new Shop();
+var chat = new Chat();
