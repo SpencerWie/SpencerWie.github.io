@@ -8,7 +8,7 @@ timer = setInterval(function()
    ctx.drawImage(images["background"],-scrollX, scrollY, canvas.width, canvas.height);
    ctx.fillStyle = player.color;
    //player.update();
-   handleYscroll();
+   handleYscroll(false);
    for(item in items)
       items[item].draw();
    player.update();

@@ -82,7 +82,7 @@ function loadGame(){
     }
 }
 
-function handleYscroll(reset = false) {
+function handleYscroll(reset) {
    if(player.y > yLevelMax*2 && yLevel == 1){
       scrollY+= yLevelMax;
       ctx.translate(0, -yLevelMax);
@@ -95,7 +95,7 @@ function handleYscroll(reset = false) {
       yLevel = 1;
       images["background"].src = "imgs/ground.jpg";
    }
-   else if((player.y <= yLevelMax && yLevel == 1) || reset){
+   else if((player.y <= yLevelMax && yLevel == 1)){
       scrollY-= yLevelMax;
       ctx.translate(0, yLevelMax);
       yLevel = 0;
@@ -107,6 +107,7 @@ function handleYscroll(reset = false) {
       yLevel = 1;
       images["background"].src = "imgs/ground.jpg";
    }      
+   if(reset) images["background"].src = "imgs/clouds.jpg";
 }
 
 function createMap(index) {

@@ -405,7 +405,7 @@ function Player() {
        var self = this
         if(ARMOR) {
             armorBreak = true;
-        } else if(!DEAD ){
+        } else if(!DEAD){
             DEAD = true;
             setTimeout(function(){
                 // Death on normal resets to start, death on boss resets to town
@@ -432,7 +432,7 @@ function Player() {
         this.x = this.startX;
         this.y = this.startY;
         this.dy = 0; this.dx = 0;
-        handleYscroll(reset = true); // Handle yScroll based on new position.
+        handleYscroll(true); // Handle yScroll based on new position.
     }
  }
 
