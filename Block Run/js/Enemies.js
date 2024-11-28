@@ -80,7 +80,8 @@ function BigRed(x, y, index)
 	this.speed = -4;
 	this.stop = false;
 	this.hit = false;
-	this.hp = 6;
+	this.hp = currentMapIdx == 2 ? 10 : 6; // If on Level 2 this is the diamond unlock BigRed so more hp.
+	this.maxHp = this.hp;
 	this.attackDelay = 0;     // Timer to wait before attacking
 	this.attackTimer = 0;     // Timer it takes to do an attack
 	this.vulnerableTimer = 0; // Timer for how long boss is exposed to damage
@@ -93,9 +94,11 @@ function BigRed(x, y, index)
 
 		// When vulnerable add transparency to draw
 		var vulnerable = this.hit || this.deathTimer > 0
+		if(currentMapIdx == 2) ctx.globalCompositeOperation="multiply"; // Challenge BigRed is darker in color
 		if(vulnerable) ctx.globalAlpha = 0.5;
 		ctx.drawImage(this.image, this.frameX*this.width, this.frameY*this.height, this.width, this.height + 1 - this.deathTimer, this.x, this.y + this.deathTimer, this.width, this.height + 1 - this.deathTimer);
 		if(vulnerable) ctx.globalAlpha = 1;
+		if(currentMapIdx == 2) ctx.globalCompositeOperation="source-over";
 
 		if(this.attackTimer) {
 			var attackFrame = Math.floor((110 - this.attackTimer)/10);
@@ -111,6 +114,7 @@ function BigRed(x, y, index)
 				this.y, this.atk.width, this.atk.height
 			);
 		}
+		
 	}
 
 	this.update = function() {
@@ -118,9 +122,27 @@ function BigRed(x, y, index)
 		// On death remove from item list
 		if(this.hp <= 0) {
 			if(this.deathTimer > 128) {
-				items.splice(this.index, 1);
-				KEYS++;
-				COINS+=40;
+				if(isItem(items[this.index], "BigRed")) {
+					items.splice(this.index, 1);
+					if(currentMapIdx == 2) SKEYS++;
+					else KEYS++;
+					COINS+=40;
+					boss = false;
+					delete this;
+				} else {
+					// If for some reason the index is wrong find boss directly and remove
+					console.log("Boss index was incorrect");
+					var bigRedIndex = -1;
+					for(var i in items) {
+						if(isItem(items[i], "BigRed")) bigRedIndex = i;
+					}
+					if(bigRedIndex >= 0) items.splice(bigRedIndex, 1);
+					if(currentMapIdx == 2) SKEYS++;
+					else KEYS++;
+					COINS+=40;
+					boss = false;
+					delete this;
+				}
 			}
 			this.deathTimer++;
 			this.frameX = 3;
@@ -133,8 +155,8 @@ function BigRed(x, y, index)
 
 	this.handleMovementAndCollisions = function() {
 		// The lower the boss hp the faster it moves
-		if(this.speed > 0) this.speed = 4 + (4 - this.hp);
-		else this.speed = -4 - (4 - this.hp);
+		if(this.speed > 0) this.speed = 3 + ((this.maxHp - this.hp)/2);
+		else this.speed = -3 - ((this.maxHp - this.hp)/2);
 
 		for(item in items) {
 			var isSolidBlock = (isItem(items[item],'block') || isItem(items[item],'lock'));  

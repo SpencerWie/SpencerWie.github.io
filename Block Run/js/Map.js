@@ -82,7 +82,7 @@ function loadGame(){
     }
 }
 
-function handleYscroll() {
+function handleYscroll(reset = false) {
    if(player.y > yLevelMax*2 && yLevel == 1){
       scrollY+= yLevelMax;
       ctx.translate(0, -yLevelMax);
@@ -95,7 +95,7 @@ function handleYscroll() {
       yLevel = 1;
       images["background"].src = "imgs/ground.jpg";
    }
-   else if(player.y <= yLevelMax && yLevel == 1){
+   else if((player.y <= yLevelMax && yLevel == 1) || reset){
       scrollY-= yLevelMax;
       ctx.translate(0, yLevelMax);
       yLevel = 0;

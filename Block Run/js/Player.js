@@ -432,7 +432,7 @@ function Player() {
         this.x = this.startX;
         this.y = this.startY;
         this.dy = 0; this.dx = 0;
-        handleYscroll(); // Handle yScroll based on new position.
+        handleYscroll(reset = true); // Handle yScroll based on new position.
     }
  }
 
