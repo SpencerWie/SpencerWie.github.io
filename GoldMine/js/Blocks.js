@@ -108,8 +108,6 @@ shopMenu = new Image();
 shopMenu.src = "imgs/ShopMenu.png";
 shopMenu_X = new Image();
 shopMenu_X.src = "imgs/ShopMenu_X.png";
-shopMenu_Audio = new Image();
-shopMenu_Audio.src = "imgs/shopMenu_Audio.png";
 shopMenu_1 = new Image();
 shopMenu_1.src = "imgs/ShopMenu_1.png";
 shopMenu_2 = new Image();
@@ -121,6 +119,8 @@ infoMenu = new Image();
 infoMenu.src = "imgs/Information.png";
 infoMenu_X = new Image();
 infoMenu_X.src = "imgs/Information_X.png";
+infoMenu_Audio = new Image();
+infoMenu_Audio.src = "imgs/Information_Audio.png";
 //Load Icons.
 fuel_icon = new Image();
 fuel_icon.src = "imgs/fuel_icon.png"

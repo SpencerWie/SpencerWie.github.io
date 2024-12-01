@@ -16,7 +16,7 @@ function Player() {
     this.minSpeed = 2; this.walk = 7; this.run = 10;
     this.accelerateRun = 0; // Speed modifier for acceleration when runnning
     this.accelerateWalk = 0; // Speed modifier for acceleration when walking
-    this.accelerateBump = 0.2; // Speed bump per frame until run speed is hit
+    this.accelerateBump = 0.3; // Speed bump per frame until run speed is hit
     this.speed = 7;
     this.minYSpeed = -15; this.maxYSpeed = 12;
     this.jumpPower = 17; // 10

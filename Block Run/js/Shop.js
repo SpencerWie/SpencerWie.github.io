@@ -140,7 +140,7 @@ function Npc(x, y, type, index) {
     this.text = "I'm a diamond miner. If you happen to find any you can \n bring them to me to unlock rare items!";
 
     if(this.type == "Miner" && this.index == 1) this.text = "If you had Double Jump and Armor you might be able to get \n to the diamond up there somehow."
-    if(this.type == "Miner" && this.index == 2) this.text = "Maybe there is another way to get over there. Do you feel rumbling below? I wonder what it is."
+    if(this.type == "Miner" && this.index == 2) this.text = "Maybe there is another way to get over there. \n Looks like there is a path from underground."
     if(this.type == "Miner" && this.index == 4) this.text = "There must be a silver key around somewhere. Such a \n shinny diamond so close to us!"
     if(this.type == "Miner" && this.index == 5) this.text = "Congratulations on beating Big Red! I hear if you can \n kill him without double jump you get another key."
     if(this.type == "Mayor" && this.index == 0) this.text = "That Big Red has blocked the way to to rest of our town! \n If someone could defeat him maybe the way will open up."

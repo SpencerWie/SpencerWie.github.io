@@ -3,11 +3,11 @@ function GasStation(x,y,image){
 	this.x = x;
 	this.y = y;
 	this.image = image;
-this.Draw = function(){
-	canvas = getCanvas();
-	this.x = MapX+190;
-	this.y = MapY+40;
-	canvas.drawImage(this.image, this.x, this.y);		
+    this.Draw = function(){
+        canvas = getCanvas();
+        this.x = MapX+190;
+        this.y = MapY+40;
+        canvas.drawImage(this.image, this.x, this.y);		
 	}
 }
 
@@ -15,11 +15,11 @@ function TradeStation(x,y,image){
 	this.x = x;
 	this.y = y;
 	this.image = image;
-this.Draw = function(){
-	canvas = getCanvas();
-	this.x = MapX+450;
-	this.y = MapY+40;
-	canvas.drawImage(this.image, this.x, this.y);		
+    this.Draw = function(){
+        canvas = getCanvas();
+        this.x = MapX+450;
+        this.y = MapY+40;
+        canvas.drawImage(this.image, this.x, this.y);		
 	}
 }
 
@@ -27,20 +27,20 @@ function ShopStation(x,y,image){
 	this.x = x;
 	this.y = y;
 	this.image = image;
-this.Draw = function(){
-	canvas = getCanvas();
-	this.x = MapX+650;
-	this.y = MapY+40;
-	canvas.drawImage(this.image, this.x, this.y);		
+    this.Draw = function(){
+        canvas = getCanvas();
+        this.x = MapX+650;
+        this.y = MapY+40;
+        canvas.drawImage(this.image, this.x, this.y);		
 	}
 }
 
+var PRICE = new Array(100,150,200,300,500,800,1500,"MAX");
 function ShopMenu(x,y,image){
 	this.x = 190;
 	this.y = -200;
 	this.active = false;
 	this.image = image;
-    var PRICE = new Array(100,150,200,300,500,800,1500,"MAX");
     var TextPos = [[270,80],[287,130],[270,175]];
 
     this.Draw = function() {
@@ -72,7 +72,8 @@ function ShopMenu(x,y,image){
             }
             else if(MouseX>372 && MouseX<397 && MouseY<202 && MouseY>172){
                 this.image = shopMenuArray[2];
-            }else{
+            }
+            else {
                 this.image = shopMenu;
             }
             //Based on the users upgrades. Draw a red square over the current item the user has.
@@ -105,55 +106,34 @@ function ShopMenu(x,y,image){
             }
         }
     }
-    this.handleMouseEvents = function() {
-        if(Menu.image == shopMenu_X){
-            Menu.active=false;
-        }
-        if(InfoMenu.image == infoMenu_X){
-            InfoMenu.active=false;
-            document.addEventListener('click', musicPlay);
-        }
-        if(infoIcon.image == info_icon_X){
-            if(InfoMenu.active==true){InfoMenu.active=false;}
-            else if(InfoMenu.active==false){InfoMenu.active=true;}
-        }
-        //Since these are IF/ELSE IF statements it can't be looped singely. All IF statements will keep buying until the you run out of money on a single click.
-        for(var i=0; i<UpgradeArray.length;i++){
-            if(Menu.image == shopMenuArray[i]){//console.log("1")//if hit Upgrade Drill
-                for(var j=0;j<PRICE.length;j++){
-                    if(UpgradeArray[i]==j && Cash>=PRICE[j]){
-                        UpgradeArray[i]++;Cash-=PRICE[j];UpgradeStats();break;
-                    }
-                }
-            }
-        }
-    }
 }
 
 function Information(x,y,image){
-	this.x = 185;//90
-	this.y = -200;//-200
+	this.x = x;
+	this.y = y;
 	this.image = image;
 	this.active = true;
 	this.Draw = function(){
-		canvas = getCanvas();		
-
-		if(this.active){
-			this.y=50;
+		if(this.active) {
+            canvas = getCanvas();	
+            var music = document.getElementById('music');
 			Fuel+=dropRate;
 			ship.xSpeed=0;ship.ySpeed=0;
-		}
-		if(!this.active){
-			this.y=-200;
-		}
-		if(this.active){
 			if(MouseX>380 && MouseX<405 && MouseY<72 && MouseY>52){
 				this.image = infoMenu_X;
-			}else{
+            } else if(MouseX>185 && MouseX<210 && MouseY<72 && MouseY>52){
+                this.image = infoMenu_Audio;
+			} else {
 				this.image = infoMenu;
 			}
+            canvas.drawImage(this.image, this.x, this.y);
+            if(music.volume == 0) {
+                canvas.beginPath();
+                canvas.moveTo(this.x + 20, this.y + 7);
+                canvas.lineTo(this.x + 8,  this.y + 17);
+                canvas.stroke();
+            }
 		}
-		canvas.drawImage(this.image, this.x, this.y);
 	}
 }
 
@@ -168,8 +148,8 @@ function InfoIcon(x,y,image){
 		if(MouseX>canvasWidth - 25 && MouseX< canvasWidth-2 && MouseY<22 && MouseY>2) {
 			this.image = info_icon_X;
 		} else {
-			this.image = info_icon;
-		}
+            this.image = info_icon;
+        }
 		canvas.drawImage(this.image, this.x, this.y);
 	}
 }
@@ -179,9 +159,9 @@ function generateBuildings(){
 	Trade = new TradeStation(MapX,MapY,tradeStation);
 	Shop = new ShopStation(MapX,MapY,shopStation);
 	Menu = new ShopMenu(50,-200,shopMenu);
-	InfoMenu = new Information(50,-200,infoMenu);
+	InfoMenu = new Information(185,50,infoMenu);
 	infoIcon = new  InfoIcon(50,-200,info_icon);
-    document.onmouseup = Menu.handleMouseEvents;
+    document.onmouseup = handleMouseEvents;
 }
 
 function UpgradeStats(){
@@ -191,4 +171,33 @@ function UpgradeStats(){
 			if(UpgradeArray[i]==j+1){UpgradePowers[i]=UpgradeIncrements[i][j];}
 		}
 	}
+}
+
+this.handleMouseEvents = function() {
+    var music = document.getElementById('music');
+    if(Menu.image == shopMenu_X){
+        Menu.active=false;
+    }
+    if(InfoMenu.image == infoMenu_X){
+        InfoMenu.active=false;
+        document.addEventListener('click', musicPlay);
+    }
+    if(InfoMenu.image == infoMenu_Audio){
+        if(music.volume == 0) music.volume = 0.01;
+        else music.volume = 0;
+    }
+    if(infoIcon.image == info_icon_X){
+        if(InfoMenu.active==true){InfoMenu.active=false;}
+        else if(InfoMenu.active==false){InfoMenu.active=true;}
+    }
+    //Since these are IF/ELSE IF statements it can't be looped singely. All IF statements will keep buying until the you run out of money on a single click.
+    for(var i=0; i<UpgradeArray.length;i++){
+        if(Menu.image == shopMenuArray[i]){
+            for(var j=0;j<PRICE.length;j++){
+                if(UpgradeArray[i]==j && Cash>=PRICE[j]){
+                    UpgradeArray[i]++;Cash-=PRICE[j];UpgradeStats();break;
+                }
+            }
+        }
+    }
 }

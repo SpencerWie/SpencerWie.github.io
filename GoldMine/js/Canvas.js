@@ -106,7 +106,6 @@ function getCanvas(){
 
 function musicPlay() {
     document.getElementById('music').play();
-	document.getElementById('music').volume = 0.01;
     document.removeEventListener('click', musicPlay);
 }
 
