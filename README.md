@@ -19,11 +19,11 @@
 
 <p>Computer Science Related:</p>
 <ul>
-<li><a href=https://spencerwie.github.io/k-means/kMeans.html>Normal k-means</a></li>
-<li><a href=https://spencerwie.github.io/k-means/kMeans_prob.html>Probabilistic k-means</a></li>
-<li><a href=https://spencerwie.github.io/sortingGraphs/sortingGraphs.html>Visual Sorting</a></li>
-<li><a href=https://spencerwie.github.io/Physics/Ball.html>Physics Ball-line collisions</a></li>
-<li><a href=https://spencerwie.github.io/Large_Map_Memory/memOut.html>Distance Based Memory-Map Management</a></li>
+<li><a href="https://spencerwie.github.io/k-means/kMeans.html">Normal k-means</a></li>
+<li><a href="https://spencerwie.github.io/k-means/kMeans_prob.html">Probabilistic k-means</a></li>
+<li><a href="https://spencerwie.github.io/sortingGraphs/sortingGraphs.html">Visual Sorting</a></li>
+<li><a href="https://spencerwie.github.io/Physics/Ball.html">Physics Ball-line collisions</a></li>
+<li><a href="https://spencerwie.github.io/Large_Map_Memory/memOut.html">Distance Based Memory-Map Management</a></li>
 </ul>
 
 <p>Artificial Intelligence</p>
