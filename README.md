@@ -16,24 +16,19 @@
 <li><a href="http://jsfiddle.net/nDtLK/6/">Pong</a></li>
 <li><a href="http://jsfiddle.net/8uVEh/">Snake</a></li>
 </ul>
-<h3>Computer Science Related:</h3>
+
+<p>Computer Science Related:</p>
 <ul>
-<li>K-means Algorthim
-  <ul>
-  <li><a href=https://spencerwie.github.io/k-means/kMeans.html>Normal k-means</a></li>
-  <li><a href=https://spencerwie.github.io/k-means/kMeans_prob.html>Probabilistic k-means</a></li>
-  </ul>
-</li>
+<li><a href=https://spencerwie.github.io/k-means/kMeans.html>Normal k-means</a></li>
+<li><a href=https://spencerwie.github.io/k-means/kMeans_prob.html>Probabilistic k-means</a></li>
 <li><a href=https://spencerwie.github.io/sortingGraphs/sortingGraphs.html>Visual Sorting</a></li>
 <li><a href=https://spencerwie.github.io/Physics/Ball.html>Physics Ball-line collisions</a></li>
 <li><a href=https://spencerwie.github.io/Large_Map_Memory/memOut.html>Distance Based Memory-Map Management</a></li>
-<li>Artificial Intelligence
-  <ul>
-  <li><a href="https://spencerwie.github.io/8Puzzle/projAI.html">8 Puzzle Solver</a></li>
-  <li><a href="https://spencerwie.github.io/checkers/checkers.html">Checkers AI</a></li>
-  </ul>
-</li>
 </ul>
 
-<h6>Notice: IUPUI Links including my JavaScript Tutorial no longer exist, I will be working on restoring these to a new server. The JS Tutorial will also be updated and extended to be new and improved!</h6>
+<p>Artificial Intelligence</p>
+<ul>
+<li><a href="https://spencerwie.github.io/8Puzzle/projAI.html">8 Puzzle Solver</a></li>
+<li><a href="https://spencerwie.github.io/checkers/checkers.html">Checkers AI</a></li>
+</ul>
 
