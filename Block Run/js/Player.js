@@ -323,9 +323,10 @@ function Player() {
                 HEARTS++;
             }
             // Hearts
-            if( isItem(item,'diamond') && collide(this,item) ) {
+            if( isItem(item,'diamond') && collide(this,item) && item.collected == false ) {
                 items.splice(i, 1);
                 DIAMONDS++;
+                DiamondsCollected[item.index] = true;
             }       
             // Spikes
             if( isItem(item,'spikes') && collide(this,item) ) {
@@ -357,7 +358,7 @@ function Player() {
                 } 
             }
             // If hit by big red laser attack and the boss exist
-            if( boss && boss.attackTimer > 30 && boss.attackTimer < 50) {
+            if( boss && boss.attackTimer > 35 && boss.attackTimer < 50) {
                 if(collide(boss.atk, player)) {
                     this.die(true);
                 }

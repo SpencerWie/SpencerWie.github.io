@@ -11,6 +11,7 @@ function Button(x, y, w, h, cost, callback) {
         if(this.canBuy()) {
             callback();
             COINS -= this.cost;
+            if(this.cost == 100) DIAMONDS--; // Double Jump cost a diamond.
             saveGame();
         }
     }
@@ -20,7 +21,7 @@ function Button(x, y, w, h, cost, callback) {
         return MouseX > this.x && MouseY > this.y && MouseX < this.x + this.w && MouseY < this.y + this.h;
     }
 
-    this.canBuy = function() { return this.condition && COINS > this.cost; }
+    this.canBuy = function() { return this.condition && COINS >= this.cost; }
 
     this.drawDisabled = function() {
         if(!this.canBuy()) {
@@ -78,7 +79,7 @@ function Shop() {
             this.onButton = -1;
             armorBtn.condition = !ARMOR;
             colorBtn.condition = player.colors.length - 1 > player.unlockedColors;
-            doubleJumpBtn.condition = player.canDoubleJump == false;
+            doubleJumpBtn.condition = player.canDoubleJump == false && DIAMONDS > 0;
 
             // Determine which button our mouse is over and determine the frame to draw based on it.
             for (let i = 0; i < buttons.length; i++) {
@@ -137,12 +138,12 @@ function Npc(x, y, type, index) {
     this.frameX = 0;
     this.active = false;
     this.index = index;
-    this.text = "I'm a diamond miner. If you happen to find any you can \n bring them to me to unlock rare items!";
+    this.text = "I'm a diamond miner. You can use them to purchase \n rare items and abilities!";
 
     if(this.type == "Miner" && this.index == 1) this.text = "If you had Double Jump and Armor you might be able to get \n to the diamond up there somehow."
     if(this.type == "Miner" && this.index == 2) this.text = "Maybe there is another way to get over there. \n Looks like there is a path from underground."
     if(this.type == "Miner" && this.index == 4) this.text = "There must be a silver key around somewhere. Such a \n shinny diamond so close to us!"
-    if(this.type == "Miner" && this.index == 5) this.text = "Congratulations on beating Big Red! I hear if you can \n kill him without double jump you get another key."
+    if(this.type == "Miner" && this.index == 5) this.text = "Congratulations on beating Big Red and he had a diamond! \nThat may allow you to find more them in pervious levels."
     if(this.type == "Mayor" && this.index == 0) this.text = "That Big Red has blocked the way to to rest of our town! \n If someone could defeat him maybe the way will open up."
     if(this.type == "Mayor" && this.index == 2) this.text = "Seems like Big Red's older brother Dark Red has been \n locked away down here. Be carefull!"
 

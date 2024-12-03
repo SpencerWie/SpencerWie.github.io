@@ -118,14 +118,18 @@ function Heart(x, y) {
     }
 }
 
-function Diamond(x, y) {
+function Diamond(x, y, index) {
    this.x = x + 10; 
    this.y = y + 10;
+   this.index = index;
    this.image = images['diamond'];
    this.width = 15; this.height = 15;
+   this.collected = DiamondsCollected[index] == true;
    
    this.draw = function() {
+      if(this.collected) ctx.globalAlpha = 0.20;
       ctx.drawImage(this.image, this.x - 10, this.y - 10);
+      if(this.collected) ctx.globalAlpha = 1;
    }
 }
  

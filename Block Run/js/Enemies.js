@@ -104,6 +104,8 @@ function BigRed(x, y, index)
 			var attackFrame = Math.floor((110 - this.attackTimer)/10);
 			this.atk.x = this.frameY ? this.x + this.width : this.x - this.atk.width;
 			this.atk.y = this.y + 20;
+			if( this.attackTimer > 35 && this.attackTimer < 50) ctx.globalAlpha = 1;
+			else ctx.globalAlpha = 0.8;
 			ctx.drawImage(
 				this.atk.image, 
 				this.atk.width*this.frameY, 
@@ -113,6 +115,7 @@ function BigRed(x, y, index)
 				this.atk.x, 
 				this.y, this.atk.width, this.atk.height
 			);
+			ctx.globalAlpha = 1;
 		}
 		
 	}

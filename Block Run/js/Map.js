@@ -13,6 +13,7 @@ var scrollY = 0;
 var yLevel = 0;
 var yLevelMax = document.getElementById("canvas").height - 32 + 1;
 var UnlockedLevels = [true, true, false, false, false, false];
+var DiamondsCollected = [false, false, false, false, false, false];
 
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
@@ -64,7 +65,7 @@ function action() {
 }
 
 function saveGame(){
-    let gameData = {"COINS": COINS, "HEARTS": HEARTS, "ARMOR": ARMOR, "UnlockedLevels": UnlockedLevels, "UnlockedColors": player.unlockedColors, "DoubleJump": player.canDoubleJump};
+    let gameData = {"COINS": COINS, "HEARTS": HEARTS, "ARMOR": ARMOR, "DIAMONDS": DIAMONDS, "UnlockedLevels": UnlockedLevels, "DiamondsCollected": DiamondsCollected, "UnlockedColors": player.unlockedColors, "DoubleJump": player.canDoubleJump};
     localStorage.setItem("BlockRunData", JSON.stringify(gameData));
     console.log("Game Saved");
 }
@@ -75,7 +76,9 @@ function loadGame(){
         COINS = gameData.COINS;
         HEARTS = gameData.HEARTS;
         ARMOR = gameData.ARMOR;
+        DIAMONDS = gameData.DIAMONDS;
         UnlockedLevels = gameData.UnlockedLevels;
+        DiamondsCollected = gameData.DiamondsCollected || DiamondsCollected;
         player.unlockedColors = gameData.UnlockedColors;
         player.canDoubleJump = gameData.DoubleJump ? true : false;
         console.log("Game Loaded");
@@ -139,7 +142,7 @@ function createMap(index) {
             else if(char == '~') items.push(new FallingPlatform(x, y)); 
             else if(char == 'o') items.push(new Coin(x, y));
             else if(char == 'H') items.push(new Heart(x, y));
-            else if(char == 'D') items.push(new Diamond(x, y)); 
+            else if(char == 'D') items.push(new Diamond(x, y, index)); 
             else if(char == 'E') items.push(new Enemy(x, y, 40, 52, images["enemies"], 4, 5, 2, "red block"));
             else if(char == 'S') items.push(new Enemy(x, y, 30, 30, images["enemy_spike"], 4, 5, 2, "spike"));
             else if(char == 'P' || Number.parseInt(char)) items.push(new Portal(x, y, char));
