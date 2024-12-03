@@ -38,7 +38,7 @@ function ShopStation(x,y,image){
 var PRICE = new Array(100,150,200,300,500,800,1500,"MAX");
 function ShopMenu(x,y,image){
 	this.x = 190;
-	this.y = -200;
+	this.y = 50;
 	this.active = false;
 	this.image = image;
     var TextPos = [[270,80],[287,130],[270,175]];
@@ -47,19 +47,16 @@ function ShopMenu(x,y,image){
         var canvas = getCanvas();
         canvas.drawImage(this.image, this.x, this.y);		
     }
+
     this.Event = function() {
-        if(Key==88 && this.active){//If space or clicked on "X". Hide this an make it in-active
-            this.active=false;
-        }
+        //If space or clicked on "X". Hide this an make it in-active
+        if(Key==88 && this.active) this.active=false;
+
         if(this.active){
-            this.y=50;
+            // Stop fuel drain and stop ship.
             Fuel+=dropRate;
-            ship.xSpeed=0;ship.ySpeed=0;
-        }
-        if(!this.active){
-            this.y=-200;
-        }
-        if(this.active){
+            ship.xSpeed=0;
+            ship.ySpeed=0;
             //If mouse is over the X, change the image to shopMenu_X
             if(MouseX>382 && MouseX<410 && MouseY<72 && MouseY>52){
                 this.image = shopMenu_X;
@@ -76,6 +73,7 @@ function ShopMenu(x,y,image){
             else {
                 this.image = shopMenu;
             }
+            this.Draw();
             //Based on the users upgrades. Draw a red square over the current item the user has.
             //Drill
             tempCanvas.beginPath();

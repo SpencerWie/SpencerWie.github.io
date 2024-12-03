@@ -12,7 +12,7 @@
 </style>
 </head>
 <body>
-	<CENTER><div id="loader">Loading...</div></CENTER>
+	<div id="loader">Loading...</div>
 	<!--Credits to Szymon Matuszewski for the music-->
 	<audio id="music" autoplay loop>
 		<source src="Szymon_Matuszewski_Art.mp3" type="audio/mpeg">
@@ -28,20 +28,19 @@
 			BlockCollision();
 			DrawMap();
 			ship.Event();
-			Menu.Draw();
 			Menu.Event();
 			InfoMenu.Draw();
 		}
 
-		function main(){
+		function main() {
 			document.getElementById('music').volume = 0.01;
 			GenerateMap();
-			DigPaths(0.4);//0.5
+			DigPaths(0.4);
 			GenerateOre();
 			generateGroundandAir();
 			generateBuildings();
 			DrawMap();
-			var timer = setInterval(function(){update()},50);
+			var timer = setInterval(update,50);
 		}
 
 		main();

@@ -28,7 +28,7 @@
 
 <p>Artificial Intelligence</p>
 <ul>
-<li><a href="https://spencerwie.github.io/8Puzzle/projAI.html">8 Puzzle Solver</a></li>
+<li><a href="https://spencerwie.github.io/AI/8Puzzle/projAI.htmll">8 Puzzle Solver</a></li>
 <li><a href="https://spencerwie.github.io/AI/checkers/checkers.html">Checkers AI</a></li>
 </ul>
 
