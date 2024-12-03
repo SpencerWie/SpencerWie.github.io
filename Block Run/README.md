@@ -20,16 +20,16 @@ The original game <em>Block Run</em>, was created as a simple platform game in P
 
 <h3>Future Planned Changes:</h3>
 <ul>
-  <li>More Bosses (planned) 0.7x-1.0x</li>
+  <li>More Bosses (planned) 0.8x-1.0x</li>
   <li>New Enemies</li>
-  <li>More Town NPCs. (planned)</li>
   <li>Diamond Store</li>
   <li>New Town Area after beating Big Red</li>
   <li>Ice tiles. (planned)</li>
   <li>Stage 6</li>
+  <li>Title Screen + Intro Tutorial</li>
 </ul>  
 
-<h3>Current Version: <strong><em>v0.70</em></strong></h3>
+<h3>Current Version: <strong><em>v0.76</em></strong></h3>
 <ul>
   <li>New Ability <em>Double Jump</em> can be brought in the shop</li>
   <li>Armor: Protects you where you would of died. When triggered armor icon will appear above your character and fade out and you will be unkillable for about 4 seconds.
@@ -37,8 +37,9 @@ The original game <em>Block Run</em>, was created as a simple platform game in P
   <li>Falling tiles.</li>
   <li>Boss Stage</li>
   <li>Diamond Currency</li>
-  <li>Extra challenge sections of levels to get diamond</li>
+  <li>Extra challenge sections of all levels to get diamonds</li>
   <li>Town NPCs and Chat System</li>
+  <li>More Town NPCs.</li>
 </ul>  
 
 <h3><em>v0.60</em></h3>
@@ -48,7 +49,7 @@ The original game <em>Block Run</em>, was created as a simple platform game in P
   <li>Level Resign and slightly bigger map (one block taller and wider)</li>
   <li>Silver Locks and Keys.</li>
   <li>Shop System for coins and items: Hearts, Colors, Armor</li>
-  <li>Overworld with level select system</li>
+  <li>Town with level select system</li>
   <li>Auto save and load. Save happens when a level is completed or when the user buys an item from the shop.</li>
 </ul>
 

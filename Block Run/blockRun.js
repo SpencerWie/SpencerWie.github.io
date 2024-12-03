@@ -17,10 +17,11 @@ timer = setInterval(function()
 }, delay);
 
 function drawUI() {
-   ctx.fillStyle = "darkgrey";
+   if(yLevel < 2) ctx.fillStyle = "darkgrey";
+   else ctx.fillStyle = "#666666";
    ctx.globalAlpha = 0.7;
-   ctx.font = "10px sans-serif";
-   ctx.fillText("Beta: V 0.70", 5-scrollX, canvas.height+scrollY-5);
+   ctx.font = "bold 10px sans-serif";
+   ctx.fillText("Beta: V 0.76", 5-scrollX, canvas.height+scrollY-5);
    ctx.drawImage(images["coin"], 0,0, 32, 32, canvas.width-65-scrollX, scrollY, 32, 32);
    ctx.fillText(" x "+COINS, canvas.width-40-scrollX,20+scrollY);
    ctx.drawImage(images["heart"], 0,0, 32, 32, canvas.width-110-scrollX, scrollY, 32, 32);
