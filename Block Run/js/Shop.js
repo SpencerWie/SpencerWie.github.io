@@ -115,7 +115,7 @@ function Chat(){
         ctx.fillStyle = "#222222";
         ctx.globalAlpha = 1;
         // If we have a new line draw split the text and draw the rest on the second line. (The chat box only supports room for a second line)
-        if(this.text.includes("\n")) {
+        if(this.text && this.text.includes("\n")) {
             var lines = this.text.split("\n");
             ctx.fillText(lines[0], 70-scrollX, canvas.height-this.height+24+scrollY);
             ctx.fillText(lines[1].trim(), 70-scrollX, canvas.height-this.height+46+scrollY);
@@ -137,21 +137,25 @@ function Npc(x, y, type, index) {
     this.talk = images["talk"];
     this.frameX = 0;
     this.active = false;
+    this.active2 = false;
     this.index = index;
-    this.text = "I'm a diamond miner. You can use them to purchase \n rare items and abilities!";
-
-    if(this.type == "Miner" && this.index == 1) this.text = "If you had Double Jump and Armor you might be able to get \n to the diamond up there somehow."
-    if(this.type == "Miner" && this.index == 2) this.text = "Maybe there is another way to get over there. \n Looks like there is a path from underground."
-    if(this.type == "Miner" && this.index == 4) this.text = "There must be a silver key around somewhere. Such a \n shinny diamond so close to us!"
-    if(this.type == "Miner" && this.index == 5) this.text = "Congratulations on beating Big Red and he had a diamond! \nThat may allow you to find more them in pervious levels."
-    if(this.type == "Mayor" && this.index == 0) this.text = "That Big Red has blocked the way to to rest of our town! \n If someone could defeat him maybe the way will open up."
-    if(this.type == "Mayor" && this.index == 2) this.text = "Seems like Big Red's older brother Dark Red has been \n locked away down here. Be carefull!"
+    this.text1 = "I'm a diamond miner. You can use them to purchase \n rare items and abilities!";
+    this.text2 = "";
+    
+    if(this.type == "Miner" && this.index == 0) this.text2 = "Normal levels have secret paths and often require Double\n Jump to get to their diamond. But I hear the boss has one."
+    if(this.type == "Miner" && this.index == 1) this.text1 = "If you had Double Jump and Armor you might be able to get \n to the diamond up there somehow.";
+    if(this.type == "Miner" && this.index == 2) this.text1 = "Maybe there is another way to get over there. \n Looks like there is a path from underground.";
+    if(this.type == "Miner" && this.index == 3) this.text1 = "Looks like there is another underground path. \n There must be some way to get down there.";
+    if(this.type == "Miner" && this.index == 4) this.text1 = "There must be a silver key around somewhere. Such a \n shinny diamond so close to us!";
+    if(this.type == "Miner" && this.index == 5) this.text1 = "Congratulations on beating Big Red and he had a diamond! \nThat may allow you to find more them in pervious levels.";
+    if(this.type == "Mayor" && this.index == 0) this.text1 = "That Big Red has blocked the way to to rest of our town! \n If someone could defeat him maybe the way will open up.";
+    if(this.type == "Mayor" && this.index == 2) this.text1 = "Seems like Big Red's older brother Dark Red has been \n locked away down here. Be carefull!";
+    this.text = this.text1;
 
     this.draw = function() { 
         this.active = false;
         if(distance(this, player) < 60 && !chat.active) {
             this.active = true;
-            chat.text = this.text;
             ctx.drawImage(this.talk, 0, 0, this.width, this.height/2, this.x, this.y - 32, this.width, this.height/2);
         }
         if(player.x < this.x) this.frameX = 1;

@@ -57,8 +57,10 @@ function action() {
             if(isItem(item,'shop_vendor') && collide(player,item)) {      
                 ShowShop = true;
             }
-            if((isItem(item,'Miner') || isItem(item,'Mayor'))  && item.active && chat.active == false) {      
-                chat.active = true;
+            if((isItem(item,'Miner') || isItem(item,'Mayor'))  && item.active && chat.active == false) {
+                // Determine what the npc says if they have other text items
+                chat.text = item.text2 != "" && chat.text == item.text1 ? item.text2 : item.text1;
+                chat.active = true; 
             }
         }
     }
