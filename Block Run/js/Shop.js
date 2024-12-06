@@ -111,7 +111,7 @@ function Chat(){
         if(!this.active) return;
         ctx.globalAlpha = 0.8;
         ctx.font = "bold 18px monospace, cursive";
-        ctx.drawImage(this.image, 0, 0, this.width, this.height, 50-scrollX, canvas.height-this.height+scrollY, this.width, this.height);
+        ctx.drawImage(this.image, 0, 0, this.width, this.height, 58-scrollX, canvas.height-this.height+scrollY, this.width, this.height);
         ctx.fillStyle = "#222222";
         ctx.globalAlpha = 1;
         // If we have a new line draw split the text and draw the rest on the second line. (The chat box only supports room for a second line)
@@ -139,10 +139,10 @@ function Npc(x, y, type, index) {
     this.active = false;
     this.active2 = false;
     this.index = index;
-    this.text1 = "I'm a diamond miner. You can use them to purchase \n rare items and abilities!";
+    this.text1 = "I'm a diamond miner. Collecting diamonds lets you purchase \n rare items and abilities!";
     this.text2 = "";
     
-    if(this.type == "Miner" && this.index == 0) this.text2 = "Normal levels have secret paths and often require Double\n Jump to get to their diamond. But I hear the boss has one."
+    if(this.type == "Miner" && this.index == 0) this.text2 = "Normal levels have secret paths and often require Double\n Jump for their diamond. Defeating a boss gives you one too!"
     if(this.type == "Miner" && this.index == 1) this.text1 = "If you had Double Jump and Armor you might be able to get \n to the diamond up there somehow.";
     if(this.type == "Miner" && this.index == 2) this.text1 = "Maybe there is another way to get over there. \n Looks like there is a path from underground.";
     if(this.type == "Miner" && this.index == 3) this.text1 = "Looks like there is another underground path. \n There must be some way to get down there.";
