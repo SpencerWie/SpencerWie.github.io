@@ -99,6 +99,7 @@ function Shop() {
     }
 }
 
+var isMac = navigator.platform.indexOf('Mac') > -1;
 function Chat(){
     this.x = 50;
     this.y = 50;
@@ -122,7 +123,7 @@ function Chat(){
         } else {
             ctx.fillText(this.text, 70-scrollX, canvas.height-this.height+24+scrollY);
         }
-        ctx.font = "bold 10px monospace";
+        ctx.font = isMac ? "bold 9px monospace" : "bold 10px monospace";
         ctx.fillText("Hit Space to close", this.width-60-scrollX, canvas.height-this.height+58+scrollY);
     }
 }
