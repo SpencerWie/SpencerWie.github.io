@@ -122,7 +122,7 @@ function Chat(){
         } else {
             ctx.fillText(this.text, 70-scrollX, canvas.height-this.height+24+scrollY);
         }
-        ctx.font = "bold 10px monospace, cursive";
+        ctx.font = "bold 10px monospace";
         ctx.fillText("Hit Space to close", this.width-60-scrollX, canvas.height-this.height+58+scrollY);
     }
 }
