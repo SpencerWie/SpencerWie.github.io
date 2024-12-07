@@ -77,8 +77,8 @@ function loadGame(){
     if(gameData) {
         COINS = gameData.COINS;
         HEARTS = gameData.HEARTS;
-        ARMOR = gameData.ARMOR;
-        DIAMONDS = gameData.DIAMONDS;
+        ARMOR = gameData.ARMOR || ARMOR;
+        DIAMONDS = gameData.DIAMONDS || DIAMONDS;
         UnlockedLevels = gameData.UnlockedLevels;
         DiamondsCollected = gameData.DiamondsCollected || DiamondsCollected;
         player.unlockedColors = gameData.UnlockedColors;

@@ -111,7 +111,7 @@ function Chat(){
     this.draw = function() { 
         if(!this.active) return;
         ctx.globalAlpha = 0.8;
-        ctx.font = "bold 18px monospace, cursive";
+        ctx.font = isMac ? "bold 16px monospace" : "bold 18px monospace"; // Macs seem to draw text a bit bigger so making it smaller to fit
         ctx.drawImage(this.image, 0, 0, this.width, this.height, 58-scrollX, canvas.height-this.height+scrollY, this.width, this.height);
         ctx.fillStyle = "#222222";
         ctx.globalAlpha = 1;
@@ -123,7 +123,7 @@ function Chat(){
         } else {
             ctx.fillText(this.text, 70-scrollX, canvas.height-this.height+24+scrollY);
         }
-        ctx.font = isMac ? "bold 9px monospace" : "bold 10px monospace";
+        ctx.font = "bold 10px monospace";
         ctx.fillText("Hit Space to close", this.width-60-scrollX, canvas.height-this.height+58+scrollY);
     }
 }
