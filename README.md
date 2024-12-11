@@ -32,3 +32,5 @@
 <li><a href="https://spencerwie.github.io/AI/checkers/checkers.html">Checkers AI</a></li>
 </ul>
 
+<p>Notice: I'll be working on a sort of portfolio website to display current active projects and possibly artworks too!</p>
+
