@@ -13,7 +13,7 @@ var Key=0;//For storing the keycode on press.
 var ship; // Your Ship.
 //Large Amount of memory needed. An array of 8000 simple objects(Blocks) are created on a 200x40 sheet. *This was too much for my computer per update, the array changed to 180x22 so around 4000 simple objects instead, which the computer does not have a problem with.
 //*Feel free to change ROWS and COLS, the game will adjust accordingly. Remember it makes at most ROWS*COLS blocks, too high of values will slow down the game.
-var ROWS = 180;//180
+var ROWS = 220;//180
 var COLS = 24;//22
 var SIZE = 40;//Don't change this. 
 var WIDTH = SIZE*COLS;
@@ -82,16 +82,16 @@ function clearCanvas(){
     tempCanvas.fillStyle = "#111111";
     tempCanvas.fillRect(0,0,infoCanvas.width,infoCanvas.height)
 	//Fill Map Lighting.
-	var my_gradient=tempCanvas.createLinearGradient(MapX,MapY-1600,MapX,MapY+SIZE*ROWS);
+	var my_gradient=tempCanvas.createLinearGradient(MapX,MapY-2000,MapX,MapY+SIZE*ROWS);
 	my_gradient.addColorStop(0.07,"#111111");//Black (Space)
 	my_gradient.addColorStop(0.10,"#FFFFFF");//White (Light Sky)
 	my_gradient.addColorStop(0.15,"#3790E8");//Blue (Sky)
 	my_gradient.addColorStop(0.26,"#443322");//Brown (UnderGround)
 	my_gradient.addColorStop(0.60,"#000000");//Black (Deep UnderGround)
-	my_gradient.addColorStop(0.80,"#330000");//Dark Red (Very Deep UnderGround)
+	my_gradient.addColorStop(0.8,"#330000");//Dark Red (Very Deep UnderGround)
 	my_gradient.addColorStop(1,"#b00000");//Dark Red (Very Deep UnderGround)
 	tempCanvas.fillStyle=my_gradient;
-	tempCanvas.fillRect(MapX,MapY-800,COLS*SIZE,SIZE*ROWS+1000);
+	tempCanvas.fillRect(MapX,MapY-1000,COLS*SIZE,SIZE*ROWS+1000);
 	//Adjust value of Fuel.
 	Fuel-=dropRate;
 	if(Fuel<0){Fuel=0;Reset();}

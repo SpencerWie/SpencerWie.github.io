@@ -368,7 +368,7 @@ function GenerateOre(){
 			if(tileMap[i][j]!=0){
 				//Copper is generated only in the first third of the map. It is more common the futher down.
 				if(choice<0.13+((i/ROWS)/3) && i<(ROWS/3)){
-					tileMap[i][j].image = copperOre; 
+					tileMap[i][j].image = copperOre;
 					}
 				//Iron is generated only after the first 1/6 of the map and until 3/4 of the map. It is more common futher down and more rare than copper.
 				if(choice<0.08+(((i-(ROWS/6))/ROWS)/5) && i>(ROWS/6) && i<(3*ROWS/4)){
@@ -383,19 +383,30 @@ function GenerateOre(){
 					tileMap[i][j].image = goldOre; 
 					}
 				//Rock is generated only after the first 1/2 of the map until the end. It is more common futher down and a bit more common than lava.
-				if(choice<0.02+(((i-(ROWS/2))/ROWS)/10) && i>(ROWS/2.3)){
+				if(choice<0.10+(((i-(ROWS/2))/ROWS)/10) && i>(ROWS/2.5)){
 					//Since this is rare it's hard for a single random generated number to differ from small percentiles. So it will 55/45 lava or rocks.
 					choice = Math.random()
+					if((tileMap[i][j].image == goldOre || tileMap[i][j].image == silverOre) && choice>0.5) continue; // 50% that rare ore not replaced
 					if(choice>0.45){
 						tileMap[i][j].image = rockBlock; 
 					}else{
 						tileMap[i][j].image = lavaBlock; 
 					}
-				//Lava is generated only after the first 1/2 of the map until the end. It is more common futher down and very rare.
+				}
+				// More Rock and lava spawning in the last 25% part of the map
+				if(choice<0.20 + ((i-(ROWS/1.5))/ROWS)/10 && i > ROWS/1.5){
+					// Lava becomes more common further down over rocks
+					choice = Math.random()
+					if((tileMap[i][j].image == goldOre || tileMap[i][j].image == silverOre) && choice>0.5) continue; // 50% that rare ore not replaced
+					if(choice>0.35 && tileMap[i][j].image != goldOre){
+						tileMap[i][j].image = rockBlock; 
+					}else{
+						tileMap[i][j].image = lavaBlock; 
+					}
+				}
 			}
 		}
 	}
-}
 }
 
 //Generate Map Randomly.
