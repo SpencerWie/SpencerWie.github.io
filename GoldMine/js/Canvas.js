@@ -82,13 +82,14 @@ function clearCanvas(){
     tempCanvas.fillStyle = "#111111";
     tempCanvas.fillRect(0,0,infoCanvas.width,infoCanvas.height)
 	//Fill Map Lighting.
-	var my_gradient=tempCanvas.createLinearGradient(MapX,MapY-1300,MapX,MapY+SIZE*ROWS);
+	var my_gradient=tempCanvas.createLinearGradient(MapX,MapY-1600,MapX,MapY+SIZE*ROWS);
 	my_gradient.addColorStop(0.07,"#111111");//Black (Space)
 	my_gradient.addColorStop(0.10,"#FFFFFF");//White (Light Sky)
 	my_gradient.addColorStop(0.15,"#3790E8");//Blue (Sky)
 	my_gradient.addColorStop(0.26,"#443322");//Brown (UnderGround)
-	my_gradient.addColorStop(0.76,"#000000");//Black (Deep UnderGround)
-	my_gradient.addColorStop(1,"#330000");//Dark Red (Very Deep UnderGround)
+	my_gradient.addColorStop(0.60,"#000000");//Black (Deep UnderGround)
+	my_gradient.addColorStop(0.80,"#330000");//Dark Red (Very Deep UnderGround)
+	my_gradient.addColorStop(1,"#b00000");//Dark Red (Very Deep UnderGround)
 	tempCanvas.fillStyle=my_gradient;
 	tempCanvas.fillRect(MapX,MapY-800,COLS*SIZE,SIZE*ROWS+1000);
 	//Adjust value of Fuel.
