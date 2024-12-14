@@ -244,7 +244,7 @@ function BlockCollision(){
 					if(tileMap[i][j].image!=rockBlock){
 						if(DOWN){DigCountD+=UpgradePowers[0];}
 						tileMap[i][j].image = animate(tileMap[i][j], DigCountD);
-						if(DigCountD>20){//20 will be changed to a global (drill speed) variable.
+						if(DigCountD > 20 + i/10){ // As you go down it gets harder to dig.
 							//If it was lava you die.
 							if(tileMap[i][j].image == lavaBlock){Reset();}
 							//If it was diamond you win.
