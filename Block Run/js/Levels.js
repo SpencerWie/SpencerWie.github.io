@@ -123,8 +123,8 @@ var level_1 = [
     'T P       M              ___          >#<            ______                                                      TTS    K                ooS         oo         T',  
     'TTTTTTTTTTTTTTTTTTTS           ____    ^    ___                ___                                              TTT _________     __     __          __      ___T',  
     'T                                                                    TTTTTTTTTTTTTTTTS    ______      __       TTTT          _                                  T',  
-    'TvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvTTTTTTvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvT', 
-    'TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT',   	
+    'TvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvTTTTTTvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvT',
+    'TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT',
  ];
 
  var boss_level_1 = [
@@ -137,8 +137,8 @@ var level_1 = [
    '#     ~     ~     ~      #                #',
    '#                        #                #',
    '#                        L   D    M    P  #',
-   '##########################################', 
-   '##########################################',    
+   '###########################################',
+   '###########################################',
 ];
  
  var town = [
