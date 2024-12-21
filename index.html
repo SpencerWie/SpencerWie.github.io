@@ -2,7 +2,7 @@
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
   <head>
-    <script src="https://getbootstrap.com/docs/5.3/assets/js/color-modes.js"></script>
+    <script src="index.js"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Spencer's Games</title>    
@@ -19,35 +19,6 @@
     <meta name="theme-color" content="#712cf9">
 
     <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-
-      .b-example-divider {
-        width: 100%;
-        height: 3rem;
-        background-color: rgba(0, 0, 0, .1);
-        border: solid rgba(0, 0, 0, .15);
-        border-width: 1px 0;
-        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-      }
-
-      .b-example-vr {
-        flex-shrink: 0;
-        width: 1.5rem;
-        height: 100vh;
-      }
-
       .bi {
         vertical-align: -.125em;
         fill: currentColor;
@@ -71,23 +42,6 @@
         -webkit-overflow-scrolling: touch;
       }
 
-      .btn-bd-primary {
-        --bd-violet-bg: #712cf9;
-        --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
-
-        --bs-btn-font-weight: 600;
-        --bs-btn-color: var(--bs-white);
-        --bs-btn-bg: var(--bd-violet-bg);
-        --bs-btn-border-color: var(--bd-violet-bg);
-        --bs-btn-hover-color: var(--bs-white);
-        --bs-btn-hover-bg: #6528e0;
-        --bs-btn-hover-border-color: #6528e0;
-        --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
-        --bs-btn-active-color: var(--bs-btn-hover-color);
-        --bs-btn-active-bg: #5a23c8;
-        --bs-btn-active-border-color: #5a23c8;
-      }
-
       .bd-mode-toggle {
         z-index: 1500;
       }
@@ -99,144 +53,101 @@
 
   </head>
   <body>
-    <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
-      <symbol id="check2" viewBox="0 0 16 16">
-        <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
-      </symbol>
-      <symbol id="circle-half" viewBox="0 0 16 16">
-        <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
-      </symbol>
-      <symbol id="moon-stars-fill" viewBox="0 0 16 16">
-        <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
-        <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"/>
-      </symbol>
-      <symbol id="sun-fill" viewBox="0 0 16 16">
-        <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
-      </symbol>
-    </svg>
 
-    <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
-      <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center"
-              id="bd-theme"
-              type="button"
-              aria-expanded="false"
-              data-bs-toggle="dropdown"
-              aria-label="Toggle theme (auto)">
-        <svg class="bi my-1 theme-icon-active" width="1em" height="1em"><use href="#circle-half"></use></svg>
-        <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
+    <div id="theme-selector" class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
+      <button class="btn btn-outline-secondary rounded-circle p-3 lh-1 border-0" data-bs-theme-value="dark">
+        <i class="bi bi-cloud-moon-fill" style="font-size: 1.3rem; opacity: 0.5;"></i>
       </button>
-      <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
-        <li>
-          <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="false">
-            <svg class="bi me-2 opacity-50" width="1em" height="1em"><use href="#sun-fill"></use></svg>
-            Light
-            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
-          </button>
-        </li>
-        <li>
-          <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false">
-            <svg class="bi me-2 opacity-50" width="1em" height="1em"><use href="#moon-stars-fill"></use></svg>
-            Dark
-            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
-          </button>
-        </li>
-        <li>
-          <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto" aria-pressed="true">
-            <svg class="bi me-2 opacity-50" width="1em" height="1em"><use href="#circle-half"></use></svg>
-            Auto
-            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
-          </button>
-        </li>
-      </ul>
+      <button class="btn btn-outline-secondary rounded-circle p-3 lh-1 border-0 d-none" data-bs-theme-value="light">
+        <i class="bi bi-cloud-sun-fill" style="font-size: 1.3rem; opacity: 0.5;"></i>
+      </button>
     </div>
 
-    
     <header data-bs-theme="dark">
-    <div class="navbar navbar-dark bg-dark shadow-sm fixed-top">
+      <div class="navbar navbar-dark bg-dark shadow-sm fixed-top">
         <div class="container">
-        <a href="#" class="navbar-brand d-flex align-items-center">
+          <a href="#" class="navbar-brand d-flex align-items-center">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
             <strong>Spencer Wieczorek</strong>
-        </a>
-        <div>
+          </a>
+          <div>
             <a href="https://github.com/SpencerWie" target="_blank"><i class="bi bi-github"></i></a> &nbsp;
             <a href="https://stackoverflow.com/users/3149020/spencer-wieczorek" target="_blank" ><i class="bi bi-stack-overflow"></i></a> &nbsp;
             <a href="https://www.linkedin.com/in/spencer-wieczorek-723a11104/" ><i class="bi bi-linkedin"></i></a>
+          </div>
         </div>
-        </div>
-    </div>
+      </div>
     </header>
 
     <main>
 
     <section class="py-5 text-center container">
-        <div class="row py-lg-5">
+      <div class="row py-lg-5">
         <div class="col-lg-6 col-md-8 mx-auto">
-            <h1 class="fw-light">Creation Album</h1>
-            <p class="lead text-body-secondary">Welcome to my creation portfolio. I'm a Software Engineer and enjoy making games and art in my free time. I've been busy for the last few years but I'm making a commitment to get back to working on my personal projects so stay tuned for more!</p>
+          <h1 class="fw-light">Creation Album</h1>
+          <p class="lead text-body-secondary">Welcome to my creation portfolio. I'm a Software Engineer and enjoy making games and art in my free time. I've been busy for the last few years but I'm making a commitment to get back to working on my personal projects so stay tuned for more!</p>
         </div>
-        </div>
+      </div>
     </section>
 
     <div class="album py-5 bg-body-tertiary">
-        <div class="container">
+      <div class="container">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             <div class="col">
             <div class="card shadow-sm">
-                <image class="bd-placeholder-img card-img-top" width="100%" height="100%" src="Block Run/imgs/screenshot.PNG"></image>
-                <div class="card-body">
-                <p class="card-text">Platformer where you play through difficult levels and defeat bosses to save Block Town. Enjoy a challenging platformer, purchase items and abilities, and beat secret challenges and bosses for rare diamonds.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                    <a href="https://spencerwie.github.io/Block%20Run/blockRun.html"><button type="button" class="btn btn-sm btn-outline-secondary">Play</button></a>
-                    </div>
-                    <small class="text-body-secondary">A few hours</small>
-                </div>
-                </div>
-            </div>
-            </div>
-            <div class="col">
-            <div class="card shadow-sm">
-                <image class="bd-placeholder-img card-img-top" width="100%" height="100%" src="GoldMine/imgs/screenshot.PNG"></image>
-                <div class="card-body">
-                <p class="card-text">A mining game where you collect and sell ore to upgrade your ship. Your goal is to find a large diamond far below the surface. Inspired by Motherload, one of my first games I made.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                    <a href="https://spencerwie.github.io/GoldMine/goldMine.html"><button type="button" class="btn btn-sm btn-outline-secondary">Play</button></a>
-                    </div>
-                    <small class="text-body-secondary">Around One Hour</small>
-                </div>
-                </div>
-            </div>
+                  <image class="card-img-top" width="100%" height="100%" src="Block Run/imgs/screenshot.PNG"></image>
+                  <div class="card-body">
+                  <p class="card-text">Platformer where you play through difficult levels and defeat bosses to save Block Town. Enjoy a challenging platformer, purchase items and abilities, and beat secret challenges and bosses for rare diamonds.</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                      <a href="https://spencerwie.github.io/Block%20Run/blockRun.html"><button type="button" class="btn btn-sm btn-outline-secondary">Play</button></a>
+                      </div>
+                      <small class="text-body-secondary">A few hours</small>
+                  </div>
+                  </div>
+              </div>
             </div>
             <div class="col">
-            <div class="card shadow-sm">
-                <image class="bd-placeholder-img card-img-top" width="100%" height="100%" src="Shoot/screenshot.png"></image>
-                <div class="card-body">
-                <p class="card-text">A more simple Asteroids-like shooter. Collect power ups as they spawn and last as long as you can, the game gets more difficult over time but you get more powerfull as well! Try and beat my beat score of 1000.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                    <a href="https://spencerwie.github.io/Shoot/Shoot.html"><button type="button" class="btn btn-sm btn-outline-secondary">Play</button></a>
-                    </div>
-                    <small class="text-body-secondary">A few minutes</small>
-                </div>
-                </div>
+              <div class="card shadow-sm">
+                  <image class="card-img-top" width="100%" height="100%" src="GoldMine/imgs/screenshot.PNG"></image>
+                  <div class="card-body">
+                  <p class="card-text">A mining game where you collect and sell ore to upgrade your ship. Your goal is to find a large diamond far below the surface. Inspired by Motherload, one of my first games I made.</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                      <a href="https://spencerwie.github.io/GoldMine/goldMine.html"><button type="button" class="btn btn-sm btn-outline-secondary">Play</button></a>
+                      </div>
+                      <small class="text-body-secondary">Around One Hour</small>
+                  </div>
+                  </div>
+              </div>
             </div>
+            <div class="col">
+              <div class="card shadow-sm">
+                  <image class="card-img-top" width="100%" height="100%" src="Shoot/screenshot.png"></image>
+                  <div class="card-body">
+                  <p class="card-text">A more simple Asteroids-like shooter. Collect power ups as they spawn and last as long as you can, the game gets more difficult over time but you get more powerfull as well! Try and beat my beat score of 1000.</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                      <a href="https://spencerwie.github.io/Shoot/Shoot.html"><button type="button" class="btn btn-sm btn-outline-secondary">Play</button></a>
+                      </div>
+                      <small class="text-body-secondary">A few minutes</small>
+                  </div>
+                  </div>
+              </div>
             </div>
-
         </div>
-        </div>
+      </div>
     </div>
     </main>
 
     <footer class="text-body-secondary py-5">
     <div class="container">
         <p class="float-end mb-1">
-
+            spencerwie@gmail.com
         </p>
         <p class="mb-1">&copy; Spencer Wieczorek 2024</p>
     </div>
     </footer>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
 </html>
