@@ -94,7 +94,7 @@
 	if(Right){ player.TurnRight(); }
 	if(Up){ player.Move(); }
 	
-	if(keysDown[K_A]){
+	if(keysDown[K_A] || keysDown[K_SPACE]){
 		if(playerTimer.getTimeElapsed() >= player.FireRate){
 			shootBullet();
 			playerTimer.reset();
