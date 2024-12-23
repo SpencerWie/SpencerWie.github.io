@@ -85,7 +85,63 @@
                 </div>
               </div>
             </div>
-            <div class="tab-pane fade" id="v-pills-skills" role="tabpanel" aria-labelledby="v-pills-skills-tab" tabindex="0">Skills page comming soon!</div>
+            <div class="tab-pane fade" id="v-pills-skills" role="tabpanel" aria-labelledby="v-pills-skills-tab" tabindex="0">
+              <h4>Skills</h4>
+              <br>
+              <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                  <button class="nav-link active" id="nav-lang-tab" data-bs-toggle="tab" data-bs-target="#nav-lang" type="button" role="tab" aria-controls="nav-lang" aria-selected="true">Languages</button>
+                  <button class="nav-link" id="nav-front-tab" data-bs-toggle="tab" data-bs-target="#nav-front" type="button" role="tab" aria-controls="nav-front" aria-selected="false">Front-End</button>
+                  <button class="nav-link" id="nav-back-tab" data-bs-toggle="tab" data-bs-target="#nav-back" type="button" role="tab" aria-controls="nav-back" aria-selected="false">Back-End</button>
+                  <button class="nav-link" id="nav-infra-tab" data-bs-toggle="tab" data-bs-target="#nav-infra" type="button" role="tab" aria-controls="nav-infra" aria-selected="false">Infrastructure</button>
+                </div>
+              </nav>
+              <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-lang" role="tabpanel" aria-labelledby="nav-lang-tab">
+                  <br>
+                  <!--
+                  <button type="button" class="btn btn-primary">C# .NET</button>
+                  <button type="button" class="btn btn-primary">C/C++</button>
+                  <button type="button" class="btn btn-primary">Java</button>
+                  <button type="button" class="btn btn-primary">Javascript (Typescript)</button>
+                  <button type="button" class="btn btn-primary">Python</button>
+                  <button type="button" class="btn btn-primary">PHP</button>
+                  <button type="button" class="btn btn-primary">HTML</button>
+                  <button type="button" class="btn btn-primary">XML / JSON</button>
+                  <button type="button" class="btn btn-primary">CSS (Sass)</button>
+                  <button type="button" class="btn btn-primary">SQL</button>
+                  -->
+                  <div class="d-flex align-items-start">
+                    <div class="nav flex-column nav-pills me-3" id="lang-pills-tab" role="tablist" aria-orientation="vertical">
+                      <button class="nav-link active" id="lang-pills-csharp-tab" data-bs-toggle="pill" data-bs-target="#lang-pills-csharp" type="button" role="tab" aria-controls="lang-pills-csharp" aria-selected="true">C# .NET</button>
+                      <button class="nav-link" id="lang-pills-c-tab" data-bs-toggle="pill" data-bs-target="#lang-pills-c" type="button" role="tab" aria-controls="lang-pills-c" aria-selected="false">C/C++</button>
+                      <button class="nav-link" id="lang-pills-js-tab" data-bs-toggle="pill" data-bs-target="#lang-pills-js" type="button" role="tab" aria-controls="lang-pills-js" aria-selected="false">JavaScript</button>
+                      <button class="nav-link" id="lang-pills-java-tab" data-bs-toggle="pill" data-bs-target="#lang-pills-java" type="button" role="tab" aria-controls="lang-pills-java" aria-selected="false">Java</button>
+                      <button class="nav-link" id="lang-pills-python-tab" data-bs-toggle="pill" data-bs-target="#lang-pills-python" type="button" role="tab" aria-controls="lang-pills-python" aria-selected="false">Python</button>
+                    </div>
+                    <div class="tab-content" id="lang-pills-tabContent">
+                      <div class="tab-pane fade show active" id="lang-pills-csharp" role="tabpanel" aria-labelledby="lang-pills-csharp-tab">
+                        <p>C# is one of my most commonly used languages in my carrer. With Dataxstream the XstreamConnector upgrade from 2.0 to 3.0 was built in C# .NET. When I worked with Navient we used ASP.NET Webforms and WPF and where in the proccess of transitioning over to Razor for the CARES Application. In my current job the Vault Service is built in C# .Net Framework 4. I've used C# consistently throughout my carrer since I was an intern in college. Below are some notable work projects using C#:</p>
+                        <ul class="list-group list-group-flush">
+                          <li class="list-group-item"><div class="fw-bold">Vault Service | Cox Automotive</div> API that connects between UniFI and eOrigional to manage authorative contracts bewteen lenders and users.</li>
+                          <li class="list-group-item"><div class="fw-bold">Vault Web Utility | Cox Automotive</div> Web App for proforming administrative operations with Vault APIs and vault task scheduling. Uses Material UI and ASP.NET Core with C# on the backend and JS/Typescript on the front.</li>
+                          <li class="list-group-item"><div class="fw-bold">Intelligent Capture | Cox Automotive</div> Data field extration software portion of this project pulls key field data from OCR'd contract data, written orginally in Java and then migrated to C# .NET Core.</li>
+                          <li class="list-group-item"><div class="fw-bold">CARES | Navient</div> I worked on the main CARES Application and was the creator of the Dynamic Flow Questionare to help optimize and train customer service representatives. This was a C# .Net Desktop Application with a mainly WPF front end.</li>
+                          <li class="list-group-item"><div class="fw-bold">XstreamConnector 3.0 | DataXstream</div> Worked on the upgrade from 2.0 involving major rewrites and upgrades of this service. </li>
+                        </ul>
+                      </div>
+                      <div class="tab-pane fade" id="lang-pills-c" role="tabpanel" aria-labelledby="lang-pills-c-tab">C / C++ Things here</div>
+                      <div class="tab-pane fade" id="lang-pills-js" role="tabpanel" aria-labelledby="lang-pills-js-tab">Javascript stuff here</div>
+                      <div class="tab-pane fade" id="lang-pills-java" role="tabpanel" aria-labelledby="lang-pills-java-tab">Java stuff here</div>
+                      <div class="tab-pane fade" id="lang-pills-python" role="tabpanel" aria-labelledby="lang-pills-python-tab">Python stuff here</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="nav-front" role="tabpanel" aria-labelledby="nav-front-tab">...</div>
+                <div class="tab-pane fade" id="nav-back" role="tabpanel" aria-labelledby="nav-back-tab">...</div>
+                <div class="tab-pane fade" id="nav-infra" role="tabpanel" aria-labelledby="nav-infra-tab">...</div>
+              </div>
+            </div>
             <div class="tab-pane fade" id="v-pills-career" role="tabpanel" aria-labelledby="v-pills-career-tab" tabindex="0">Career page comming soon!</div>
           </div>
         </div>
