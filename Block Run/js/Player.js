@@ -438,22 +438,22 @@ function Player() {
  }
 
  document.addEventListener("keydown", function(e) { 
-    if( e.keyCode == 37 ) LEFT = true;
-    if( e.keyCode == 38 ) UP = true;
-    if( e.keyCode == 39 ) RIGHT = true;
-    if( e.keyCode == 40 ) DOWN = true;
-    if( e.keyCode == 16 ) SHIFT = true;
+    if( e.keyCode == 37 || e.code == "KeyA" ) LEFT = true;
+    if( e.keyCode == 38 || e.code == "KeyW" ) UP = true;
+    if( e.keyCode == 39 || e.code == "KeyD" ) RIGHT = true;
+    if( e.keyCode == 40 || e.code == "KeyS" ) DOWN = true;
+    if( e.keyCode == 16 || e.code == "ShiftLeft" ) SHIFT = true;
 });
                           
 document.addEventListener("keyup", function(e) { 
-    if( e.keyCode == 37 ) LEFT = false;
-    if( e.keyCode == 38 ) UP = false;
-    if( e.keyCode == 39 ) RIGHT = false;
-    if( e.keyCode == 40 ) DOWN = false;  
-    if( e.keyCode == 16 ) SHIFT = false;
-    if( e.keyCode == 67 ) { // C For Color Change
+    if( e.keyCode == 37 || e.code == "KeyA" ) LEFT = false;
+    if( e.keyCode == 38 || e.code == "KeyW" ) UP = false;
+    if( e.keyCode == 39 || e.code == "KeyD" ) RIGHT = false;
+    if( e.keyCode == 40 || e.code == "KeyS" ) DOWN = false;  
+    if( e.keyCode == 16 || e.code == "ShiftLeft" ) SHIFT = false;
+    if( e.keyCode == 67 || e.code == "KeysC") { // C For Color Change
         if(player.unlockedColors > player.selectedColor) player.selectedColor++;
         else player.selectedColor = 0;
     } 
-    if( e.keyCode == 32 ) action(); // SPACE
+    if( e.keyCode == 32|| e.code == "Space" ) action(); // SPACE
 });
