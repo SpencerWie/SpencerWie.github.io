@@ -28,3 +28,14 @@
 .bd-mode-toggle .dropdown-menu .active .bi {
   display: block !important;
 }
+
+#art-carousel {
+  background-color: rgba(150, 150, 150, 0.5) !important;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+#art-carousel > .carousel-item > img {
+  max-height: 80%;
+  max-width: 80%;
+}
