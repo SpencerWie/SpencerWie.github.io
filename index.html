@@ -57,7 +57,7 @@
           <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
             <button class="nav-link active" id="v-pills-about-tab" data-bs-toggle="pill" data-bs-target="#v-pills-about" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true"><i class="bi bi-person-circle"></i></button>
             <button class="nav-link" id="v-pills-skills-tab" data-bs-toggle="pill" data-bs-target="#v-pills-skills" type="button" role="tab" aria-controls="v-pills-skills" aria-selected="false"><i class="bi bi-boxes"></i></button>
-            <button class="nav-link" id="v-pills-career-tab" data-bs-toggle="pill" data-bs-target="#v-pills-career" type="button" role="tab" aria-controls="v-pills-career" aria-selected="false"><i class="bi bi-building"></i></button>
+            <button class="nav-link" id="v-pills-career-tab" data-bs-toggle="pill" data-bs-target="#v-pills-career" type="button" role="tab" aria-controls="v-pills-career" aria-selected="false"><i class="bi bi-newspaper"></i></button>
           </div>
           <div class="tab-content" id="v-pills-tabContent">
             <div class="tab-pane fade show active" id="v-pills-about" role="tabpanel" aria-labelledby="v-pills-home-tab" tabindex="0">
@@ -212,11 +212,31 @@
               </div>
             </div>
           </div>
-          <div class="tab-pane fade" id="v-pills-career" role="tabpanel" aria-labelledby="v-pills-career-tab" tabindex="0">
-            <h4>Career</h4>  
+            <div class="tab-pane fade" id="v-pills-career" role="tabpanel" aria-labelledby="v-pills-career-tab" tabindex="0">
+            <h4>News and Development Updates</h4>  
             <br>
-            <p>Welcome the the carrer page for now please see my <a href="https://www.linkedin.com/in/spencer-wieczorek-723a11104/">LinkedIn Page</a> while I update this, for the most part it will contain the same information.</p>
-          </div>
+            <div class="accordion" id="blogAccordion">
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne"></h2>
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="collapseOne">
+                    <strong>January 2024 - New Year and Big Plans</strong>
+                  </button>
+                </h2>
+                <div class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#blogAccordion">
+                  <div class="accordion-body">
+                  <p>As we enter the new year, I have several exciting development plans lined up:</p>
+                  <ul>
+                    <li>Complete and release Block Run v1.0, this will focus on part two of the game after beating Big Red.</li>
+                    <li>Refactor/Enhance Gold Mine</li>
+                    <li>A new 3D JavaScript FPS Game - A remake of my Zombie Shoot Blender Game</li>
+                    <li>A professional closed source game (Town RPG - Working Title)</li>
+                  </ul>
+                  <p>Stay tuned for more updates and progress on these projects! This news blog will give monthly updates during the year.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
         </div>
       </div>
     </div>
