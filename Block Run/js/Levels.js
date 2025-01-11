@@ -8,7 +8,7 @@ var level_1 = [
     '#                         E             #####            ~     ~                #          #oooo#             #',
     '#___                      ######       ## o ##                                  #          #ooooo##    ~      #',
     '#                #       ## o         ### o ###           E                   o #           oooooo###<     S  #',
-    '#               ##E     ### o        ####   ####       ############             #          ###########<   ~  >#',
+    '#       P       ##E     ### o        ####   ####       ############             #          ###########<   ~  >#',
     '########################################__   ###########         H###########   #                     #      >#',
     '#                                                              ####             #                      #    oo#',
     '#                                         ~ ####################                #                      #    ~ #',
@@ -40,7 +40,7 @@ var level_1 = [
     '#           o         o                          #########                         #               K #                   ',
     '#                                      o        #        #            #            #          o    ###                   ',
     '#    o   #######     ###     ###       o      ##         #         #######       o # o       ___     #                  #',
-    '#           #         #       #       ###     #          #           >#<           L       vvvvvvvvvv#                  #',
+    '#    P      #         #       #       ###     #          #           >#<           L       vvvvvvvvvv#                  #',
     '#   ###     #         #       #vvvvvvvvvvvvvvv#   o o o  #           >#<        ___#___    ###########                  #',
     '#    #      #         #      ##################          ######   o  >#<  o        #                                    #',
     '#vvvv#vvvvvv#vvvvvvvvv#vvvvvv#                                L      >#<           #                                    #',
@@ -77,7 +77,7 @@ var level_1 = [
     '#                  ##      ##       ##     o  o    #                                                 #           o     o     o                               #     #                                                ',
     '#         ####                             ####    #vvvvvvvvvvvvvvvvvv   ##                          #    ##<   >#<    o    >#<   ##         o               #     #                                                ',
     '#        #####                                     ###################   ##                          #   ###<   >#<   >#<   >#<   ###        v               #     #                                                ',
-    '#       ######vvvvvvvvvvvvvvvvvvvvv vvvvvvvvvvvvvvv#             #   L  ####                         L  ####vvvvv#vvvvv#vvvvv#vvvv####E     >#<E             L  P  #                                                ',
+    '#    P  ######vvvvvvvvvvvvvvvvvvvvv vvvvvvvvvvvvvvv#             #   L  ####                         L  ####vvvvv#vvvvv#vvvvv#vvvv####E     >#<E             L  P  #                                                ',
     '################################### ##############################  ###################################################################################o  ##########                                                ', 
     '###################################  K o   o   o   o   o   o   o H  #                                                                                 #   #        #                                                ',
     '#                                  _________________________________                                                                                  #   #        #                                                ',   
@@ -112,7 +112,7 @@ var level_1 = [
     'T                                        o  o                     TTTTTT    TT     TTT       TTTTT          T<       TT                   TTTTTT                T',
     'T   oo                    o o                      E              T                         TTTTTTT      oooT<       TT                   TTTTTT                T',
     'T   TT                    TTT            TTTT      TTTTTT         T                                      TTTTH       TTTTTTTTTTTTTTTTTTTT TTTTTT                T',
-    'T                                                                 T                                         T__    S                      TTTTTT        K       T',                    
+    'T               P                                                 T                                         T__    S                      TTTTTT        K       T',                    
     'TvvvvvvvvTTTTTTTTTvvvTTvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvT       TTTTTTTTTTTTTTTTTTTTTTTT             TvvvvvvTTTTT  TTTTTTTTTTT  TTTTTTTTT       TTT      T',
     'TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT H o o o o            TTvvvvvvvvvvvvTTTTTTTTTTTTTTT  L  o  o    o  o   L    TTTTTTTTTT  T', 
     'T  T    T                                                               TTTTTTTTTTTTTTTTTTTT  TTTTTTTTTTTTTTTTTTTTTTTTTTTT   TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT_ T',  
@@ -136,21 +136,21 @@ var level_1 = [
    '#                  R     #               # ',
    '#     ~     ~     ~      #                #',
    '#                        #                #',
-   '#                        L   D    M    P  #',
+   '#   P                    L   D    M    P  #',
    '###########################################',
    '###########################################',
 ];
  
  var town = [
-    '#                                                #                                                                       #',
-    '#                                                #                                                                       #',
-    '#                                                #                                                                       #',
-    '#                                                #                                                                       #',
-    '#                                                #                                                                       #',
-    '#                                                #                                                                       #',
-    '#                                                #                                                                       #',
-    '#                                     5          #                                                                       #',
-    '#  M      $         1   2   3   4   #####     Y  #                                                                       #',
+    '#                                                  r                                                                     #',
+    '#                                                  r                                                                     #',
+    '#                                                  r                                                                     #',
+    '#                                                  r                                                                     #',
+    '#                                                  r                                                                     #',
+    '#                                                  r                                                                     #',
+    '#                                                  r                                                                     #',
+    '#                                     5            r                                                                     #',
+    '#  M      $         1   2   3   4   #####     Y    r                                                                     #',
     '##########################################################################################################################', 
     '##########################################################################################################################',    
  ];
@@ -163,7 +163,7 @@ function loadImages()
    images = {};
    var imgs = [
       "player_blink", "block", "coin", "diamond", "heart", "background", "enemies", "portal", "boss_portal", "lock", "lock_silver", "key", "key_silver", "spikes", "platform", "falling_platform" , "enemy_spike", "shop_vendor", "shop_dialogs", "armor",
-      "BigRed", "BigRed_Attack", "Miner", "Mayor", "talk", "chat"
+      "BigRed", "BigRed_Attack", "block_bigred", "Miner", "Mayor", "talk", "chat"
    ];
 
    for(var img in imgs) {

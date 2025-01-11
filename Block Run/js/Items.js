@@ -12,10 +12,10 @@ var items = [];
 var MouseX = 0;
 var MouseY = 0;
 
-function Block(x, y) {
+function Block(x, y, img="") {
     this.x = x; 
     this.y = y;
-    this.image = images['block'];
+    this.image = img ? images[img] : images['block'];
     this.width = 30; this.height = 30;
     
     this.draw = function() {
@@ -169,7 +169,7 @@ function Coin(x, y) {
     
     this.draw = function() {
        this.timer++;
-       for(var i = 0; i <coin_timeframe.length; i++ ) {
+       for(var i = 0; i < coin_timeframe.length; i++ ) {
           if(this.step == i && this.timer > coin_timeframe[i][0]) {
              this.frameX = coin_timeframe[i][1];
              this.step = i + 1;

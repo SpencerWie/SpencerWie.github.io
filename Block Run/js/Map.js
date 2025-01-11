@@ -116,8 +116,14 @@ function handleYscroll(reset) {
 }
 
 function createMap(index) {
-    // Unlock next level of current map
-    UnlockedLevels[currentMapIdx+1] = true;
+    // Unlock next level of current map if we beat that level and returned to town not (not from boss death)
+    if(index == 0) {
+        UnlockedLevels[currentMapIdx+1] = true;
+        if(UnlockedLevels.length <= currentMapIdx) UnlockedLevels.push(true);
+    } else if(index == -1) {
+        // Happens on boss death loads town as normal just doesn't unlock the next leve via the code above.
+        index = 0;
+    }
 
     var map = levels[index];
     var SIZE = 32;
@@ -132,6 +138,9 @@ function createMap(index) {
     yLevel = 0;
     KEYS = 0;
     SKEYS = 0;
+
+    let bigReadBeaten = false;
+    if(UnlockedLevels.length >= 7 && UnlockedLevels[6] == true) bigReadBeaten = true;
     
     for(var Y = 0; Y < map.length; Y++ ) {
         for(var X = 0; X < map[0].length; X++ ) {
@@ -157,6 +166,7 @@ function createMap(index) {
             else if(char == '<') items.push(new Spikes(x, y, "left"));              
             else if(char == '$') { items.push(shop); shop.setPosition(x, y); }
             else if(char == 'R') { boss = new BigRed(x, y, items.length); items.push(boss); }
+            else if(char == 'r' && !bigReadBeaten) items.push(new Block(x, y, "block_bigred"));
             else if(char == 'M') items.push(new Npc(x, y, "Miner", index));
             else if(char == 'Y') items.push(new Npc(x, y, "Mayor", index));    
        }

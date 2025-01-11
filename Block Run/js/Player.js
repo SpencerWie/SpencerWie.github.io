@@ -272,7 +272,7 @@ function Player() {
     {
         for(i in items) {
             var item = items[i]; 
-            var isSolidBlock = isItem(item,'block') || isItem(item,'lock') || isItem(item,'lock_silver');
+            var isSolidBlock = isItem(item,'block') || isItem(item,'lock') || isItem(item,'lock_silver') || isItem(item,'block_bigred');
             var movingRight = this.dx <= 0; 
             var movingLeft = this.dx > 0;
             
@@ -412,7 +412,7 @@ function Player() {
                 // Death on normal resets to start, death on boss resets to town
                 if(!boss) self.reset();
                 else {
-                    createMap(0);
+                    createMap(-1);
                     saveGame();
                 }
                 // If the player has hearts subtract, if the player is out of lives restart.
