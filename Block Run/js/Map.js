@@ -168,7 +168,7 @@ function createMap(index) {
             else if(char == 'R') { boss = new BigRed(x, y, items.length); items.push(boss); }
             else if(char == 'r' && !bigReadBeaten) items.push(new Block(x, y, "block_bigred"));
             else if(char == 'M') items.push(new Npc(x, y, "Miner", index));
-            else if(char == 'Y') items.push(new Npc(x, y, "Mayor", index));    
+            else if(char == 'Y') items.push(new Npc(x, y, "Mayor", index, bigReadBeaten));    
        }
     }
 }
