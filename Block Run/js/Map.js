@@ -149,6 +149,7 @@ function createMap(index) {
             var y = Y*SIZE;
             if(char == ' ') continue;
             if(char == '#') items.push(new Block(x, y));
+            if(char == 'W') items.push(new Water(x, y));
             else if(char == '_') items.push(new Platform(x, y)); 
             else if(char == '~') items.push(new FallingPlatform(x, y)); 
             else if(char == 'o') items.push(new Coin(x, y));

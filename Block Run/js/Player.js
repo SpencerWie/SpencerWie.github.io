@@ -34,6 +34,7 @@ function Player() {
     this.selectedColor = 0; // Color of running animation
     this.unlockedColors = 0; // Unlocked color indexes
     this.colors = [{r: 0, g: 0, b: 0}, {r: 255, g: 249, b: 128}, {r: 255, g: 255, b: 255}];
+    this.inWater = false;
 
     var duckLeft =  { x: 2, y: 2 };
     var duckRight = { x: 1, y: 2 };
@@ -42,7 +43,9 @@ function Player() {
     var armorTimer = 1;
     
     this.draw = function() {
+        if(this.inWater) ctx.globalAlpha = 0.5;
         ctx.drawImage(this.image, this.frameX*this.size, this.frameY*this.size, this.size, this.size, this.x, this.y, this.size, this.size);
+        ctx.globalAlpha = 1;
         if(this.unlockedColors > 0) {
             // Draw a gold alpha around the player
             if(this.selectedColor == 1) {
@@ -91,7 +94,7 @@ function Player() {
     }
     
     this.RunAnimation = function(){
-         if(this.ducked) return;
+         if(this.ducked || this.inWater) return;
          var length = this.lastPositionsMax;
          for(var i=0; i < this.lastPositions.length; i++)
          {
@@ -134,24 +137,22 @@ function Player() {
 
        // Arrow Key detection, if we jumped from the ground.
        if(UP && this.jump && !DOWN){  
-          this.dy = -this.jumpPower; 
-          this.ddy = -1;
-          this.jump = false;
-       }
-       // If unlocked you can do a second jump once you start falling
-       else if(UP && !this.jump && this.canDoubleJump && this.doubleJump && this.dy > 9) {
-          this.dy = -this.jumpPower/1.7; 
-          this.ddy = -1;
-          this.doubleJump = false;
-       }
+            this.dy = -this.jumpPower; 
+            this.ddy = -1;
+            this.jump = false;
+        }
+        // If unlocked you can do a second jump once you start falling
+        else if(UP && !this.jump && this.canDoubleJump && this.doubleJump && this.dy > 9) {
+            this.dy = -this.jumpPower/1.7; 
+            this.ddy = -1;
+            this.doubleJump = false;
+        }
        
-       if(this.dy < 10 && !this.jump) this.ddy = GRAVITY; // Apply Gravity
+        if(this.dy < 10 && !this.jump) this.ddy = GRAVITY; // Apply Gravity
        
-       this.dy += this.ddy; // Update variables
-       this.y += this.dy;
-         
-        //TODO: We need to be able to drop from a plateform by just using DOWN instead of jump+DOWN
-       
+        this.dy += this.inWater ? this.ddy/4 : this.ddy; // Update variables
+        this.y += this.inWater ? this.dy/4 : this.dy;
+                
         // Vertical Block collisions. (needs to be seperate from horizonal for proper collisions)
         for(i in items) {
             var item = items[i];
@@ -194,19 +195,20 @@ function Player() {
     {
        if(DEAD) return;
  
+       bump = this.inWater ? 1 : 5;
        if(!SHIFT && (LEFT || RIGHT)) {
-          this.accelerateWalk += this.accelerateBump*5;
-          if(this.accelerateWalk > this.walk) this.accelerateWalk = this.walk;
-          this.speed = this.accelerateWalk;
+            this.accelerateWalk += this.accelerateBump*bump;
+            if(this.accelerateWalk > this.walk) this.accelerateWalk = this.walk;
+            this.speed = this.accelerateWalk;
        } else {
-          this.accelerateWalk -= this.accelerateBump*5;
-          if(this.accelerateWalk < 0) this.accelerateWalk = 0;
-          this.speed = this.accelerateWalk;
+            this.accelerateWalk -= this.accelerateBump*bump;
+            if(this.accelerateWalk < 0) this.accelerateWalk = 0;
+            this.speed = this.accelerateWalk;
        } 
  
        // Handle Running (Shift)
        var speedDiff = this.run - this.walk;
-       if(SHIFT) {
+       if(SHIFT && !this.inWater) {
           this.accelerateRun += this.accelerateBump;
           if(this.accelerateRun > speedDiff) this.accelerateRun = speedDiff;
           this.speed = this.walk + this.accelerateRun;
@@ -237,6 +239,7 @@ function Player() {
        } 
        this.handleDucking();
        // Update position and move camra.
+       this.dx = Math.round(this.inWater ? this.dx/1.5 : this.dx); // Normalize dx
        player.x -= this.dx;
        scrollX += this.dx;
        ctx.translate(this.dx, 0);   
@@ -270,12 +273,16 @@ function Player() {
     
     this.handleCollisions = function() 
     {
+        this.inWater = false;
         for(i in items) {
             var item = items[i]; 
             var isSolidBlock = isItem(item,'block') || isItem(item,'lock') || isItem(item,'lock_silver') || isItem(item,'block_bigred');
             var movingRight = this.dx <= 0; 
             var movingLeft = this.dx > 0;
             
+            if( item.image == 'water' && collide(this,item) ) {
+                this.inWater = true;
+            }      
             if( isItem(item,'key') && collide(this,item) ) {
                 items.splice(i, 1);
                 KEYS++;

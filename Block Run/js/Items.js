@@ -23,6 +23,21 @@ function Block(x, y, img="") {
     }
  }
 
+ function Water(x, y) {
+   this.x = x; 
+   this.y = y;
+   this.image = "water";
+   this.width = 32; this.height = 32;
+   
+   this.draw = function() {
+      ctx.globalAlpha = 0.5
+      //ctx.drawImage(this.image, this.x, this.y, this.width+2, this.height+2);
+      ctx.fillStyle = "blue";
+      ctx.fillRect(this.x, this.y, this.width, this.height);
+      ctx.globalAlpha = 1.0;
+  }
+}
+
 function Lock(x, y, type) {
     Block.call(this, x, y);
     var lockType = "lock";
