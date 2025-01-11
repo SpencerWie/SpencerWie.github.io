@@ -51,8 +51,8 @@ function Player() {
             if(this.selectedColor == 1) {
                 ctx.fillStyle = '#fff980';
                 ctx.globalAlpha = 0.5;
-                if(this.ducked) ctx.fillRect(this.x + 4, this.y + 20, this.size - 8, this.size - 24);
-                else ctx.fillRect(this.x + 4, this.y + 4, this.size - 8, this.size - 8);
+                if(this.ducked) ctx.fillRect(this.x + 3, this.y + 17, this.size - 6, this.size - 20);
+                else ctx.fillRect(this.x + 3, this.y + 3, this.size - 6, this.size - 6);
                 ctx.globalAlpha = 1;
             }
             // Draw the player in an inverse color
