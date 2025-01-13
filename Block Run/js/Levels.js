@@ -34,11 +34,11 @@ var level_1 = [
  ];
  
  var level_2 = [
-    '#                                                                                  ###################                   ',
-    '#                                                                                  #                 #                   ',
-    '#                                                   o o                            #                 #                   ',
-    '#           o         o                          #########                         #               K #                   ',
-    '#                                      o        #        #            #            #          o    ###                   ',
+    '#                                                                                  ###################                  #',
+    '#                                                                                  #                 #                  #',
+    '#                                                   o o                            #                 #                  #',
+    '#           o         o                          #########                         #               K #                  #',
+    '#                                      o        #        #            #            #          o    ###                  #',
     '#    o   #######     ###     ###       o      ##         #         #######       o # o       ___     #                  #',
     '#           #         #       #       ###     #          #           >#<           L       vvvvvvvvvv#                  #',
     '#   ###     #         #       #vvvvvvvvvvvvvvv#   o o o  #           >#<        ___#___    ###########                  #',
@@ -159,7 +159,7 @@ var level_1 = [
     '#                                                          WW            #WWWWWWWW# WW                                   #', 
     '#                                                          WW            ###WWWWWW# WW  __                               #', 
     '#                                                        WWWWWW          #WWWWWWWW# WW                                   #', 
-    '#                                                WWWWWWWWWWWWWWWWWWWWWW  #WWWWWW### WW                                  #', 
+    '#                                                WWWWWWWWWWWWWWWWWWWWWW  #WWWWWW### WW                                   #', 
     '#                                      #WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW#WWWWWWW##                             #', 
     '#                                     ##WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW#WWWWWWW###                            #', 
     '##########################################################################################################################',

@@ -46,24 +46,9 @@ function Player() {
         if(this.inWater) ctx.globalAlpha = 0.5;
         ctx.drawImage(this.image, this.frameX*this.size, this.frameY*this.size, this.size, this.size, this.x, this.y, this.size, this.size);
         ctx.globalAlpha = 1;
-        if(this.unlockedColors > 0) {
-            // Draw a gold alpha around the player
-            if(this.selectedColor == 1) {
-                ctx.fillStyle = '#fff980';
-                ctx.globalAlpha = 0.5;
-                if(this.ducked) ctx.fillRect(this.x + 3, this.y + 17, this.size - 6, this.size - 20);
-                else ctx.fillRect(this.x + 3, this.y + 3, this.size - 6, this.size - 6);
-                ctx.globalAlpha = 1;
-            }
-            // Draw the player in an inverse color
-            else if (this.selectedColor == 2) {
-                ctx.globalCompositeOperation="difference";
-                ctx.fillStyle="white";
-                if(this.ducked) ctx.fillRect(this.x + 1, this.y + 15, this.size - 2, this.size - 16);
-                else ctx.fillRect(this.x + 1, this.y + 1, this.size - 2, this.size - 2);
-                ctx.globalCompositeOperation="source-over";
-            }
-        }
+        this.drawPlayerSelectedColors();
+
+        // If we have armor on hit draw the armor icon above while the player is invulnerable
         if(armorBreak && ARMOR) {
             ctx.globalAlpha = armorTimer;
             ctx.drawImage(images["armor"], this.x, this.y - 40, 32, 32);
@@ -92,6 +77,28 @@ function Player() {
          if(!SHIFT || this.ducked ) {this.lastPositions.pop(); this.lastPositions.pop()}
          this.RunAnimation();
     }
+
+    this.drawPlayerSelectedColors = function() { 
+        if(this.unlockedColors > 0) {
+            // Draw a gold alpha around the player
+            if(this.selectedColor == 1) {
+                ctx.fillStyle = '#fff980';
+                ctx.globalAlpha = 0.5;
+                if(this.ducked) ctx.fillRect(this.x + 3, this.y + 17, this.size - 6, this.size - 20);
+                else ctx.fillRect(this.x + 3, this.y + 3, this.size - 6, this.size - 6);
+                ctx.globalAlpha = 1;
+            }
+            // Draw the player in an inverse color
+            else if (this.selectedColor == 2) {
+                ctx.globalCompositeOperation="difference";
+                ctx.fillStyle="white";
+                if(this.ducked) ctx.fillRect(this.x + 1, this.y + 15, this.size - 2, this.size - 16);
+                else ctx.fillRect(this.x + 1, this.y + 1, this.size - 2, this.size - 2);
+                ctx.globalCompositeOperation="source-over";
+            }
+        }
+    }
+
     
     this.RunAnimation = function(){
          if(this.ducked || this.inWater) return;
@@ -143,7 +150,7 @@ function Player() {
         }
         // If unlocked you can do a second jump once you start falling
         else if(UP && !this.jump && this.canDoubleJump && this.doubleJump && this.dy > 9) {
-            this.dy = -this.jumpPower/1.7; 
+            this.dy = -this.jumpPower/1.4
             this.ddy = -1;
             this.doubleJump = false;
         }
@@ -185,7 +192,7 @@ function Player() {
     }
 
     this.bounceOffEnemy = function(enemy) {
-        this.dy = -this.jumpPower/1.3;
+        this.dy = -this.jumpPower/1.4;
         this.ddy = -1;
         this.jump = true; 
         this.y = enemy.y - 25;
@@ -274,94 +281,161 @@ function Player() {
     this.handleCollisions = function() 
     {
         this.inWater = false;
-        for(i in items) {
-            var item = items[i]; 
-            var isSolidBlock = isItem(item,'block') || isItem(item,'lock') || isItem(item,'lock_silver') || isItem(item,'block_bigred');
-            var movingRight = this.dx <= 0; 
-            var movingLeft = this.dx > 0;
-            
-            if( item.image == 'water' && collide(this,item) ) {
-                this.inWater = true;
-            }      
-            if( isItem(item,'key') && collide(this,item) ) {
-                items.splice(i, 1);
-                KEYS++;
-            }                         
-            // Locks [ breaks lock if you have a key, otherwise it's treated as a normal block ]
-            if( isItem(item,'lock') && collide(this,item) && KEYS > 0 ) {
-                items.splice(i, 1);
-                KEYS--;
+        this.handleStaticCollisions();
+        this.handleDynamicCollisions();
+    }
+
+    this.handleStaticCollisions = function() {
+        // Get static items around the player
+        const space = 3; 
+        var playerX = Math.ceil(player.x/32);
+        var playerY = Math.ceil(player.y/32);
+        var PlayersLeft = playerX - space;
+        var PlayersRight = playerX + space;
+        var PlayersAbove = playerY - space;
+        var PlayersBelow = playerY + space;
+        var count = 0;
+        if(PlayersLeft < 0) PlayersLeft = 0;
+        if(PlayersAbove < 0) PlayersAbove = 0;
+        if(PlayersRight > MapItems[0].length) PlayersRight = MapItems[0].length;
+        if(PlayersBelow > MapItems.length) PlayersBelow = MapItems.length;
+        for(var Y = PlayersAbove; Y < PlayersBelow; Y++ ) {
+           for(var X = PlayersLeft; X < PlayersRight; X++ ) {
+                count++;
+                if(!MapItems[Y][X]) continue;
+
+                var item = MapItems[Y][X];
+                var isSolidBlock = isItem(item,'block') || isItem(item,'lock') || isItem(item,'lock_silver') || isItem(item,'block_bigred');
+                var movingRight = this.dx <= 0; 
+                var movingLeft = this.dx > 0;
+
+                if( item.image == 'water' && collide(this,item) ) {
+                    this.inWater = true;
+                }      
+                if( isItem(item,'key') && collide(this,item) ) {
+                    //items.splice(i, 1);
+                    MapItems[Y][X] = null;
+                    KEYS++;
+                }                         
+                // Locks [ breaks lock if you have a key, otherwise it's treated as a normal block ]
+                if( isItem(item,'lock') && collide(this,item) && KEYS > 0 ) {
+                    //items.splice(i, 1);
+                    MapItems[Y][X] = null;
+                    KEYS--;
+                }
+                if( isItem(item,'key_silver') && collide(this,item) ) {
+                    //items.splice(i, 1);
+                    MapItems[Y][X] = null;
+                    SKEYS++;
+                }                         
+                // Locks [ breaks lock if you have a key, otherwise it's treated as a normal block ]
+                if( isItem(item,'lock_silver') && collide(this,item) && SKEYS > 0 ) {
+                    //items.splice(i, 1);
+                    MapItems[Y][X] = null;
+                    SKEYS--;
+                }                    
+                // Blocks
+                if(movingRight && collide(this,item) && (isSolidBlock)) {
+                    // Reposition player to be place right next to block, then get the difference and apply that to scrolling of canvas.
+                    var oldX = this.x;
+                    this.x = item.x - this.size;
+                    var diff = oldX - this.x
+                    ctx.translate(diff, 0);
+                    scrollX += diff;
+                    this.speed = this.accelerateRun = this.accelerateWalk = 0;
+                }
+                else if(movingLeft && collide(this,item) && (isSolidBlock)) {
+                    var oldX = this.x;
+                    this.x = item.x + this.size;
+                    var diff = oldX - this.x
+                    ctx.translate(diff, 0);
+                    scrollX += diff;
+                    this.speed = this.accelerateRun = this.accelerateWalk = 0;
+                }
+                // Coins
+                if( isItem(item,'coin') && collide(this,item) ) {
+                    //items.splice(i, 1);
+                    MapItems[Y][X] = null;
+                    COINS++;
+                }
+                // Hearts
+                if( isItem(item,'heart') && collide(this,item) ) {
+                    //items.splice(i, 1);
+                    MapItems[Y][X] = null;
+                    HEARTS++;
+                }
+                // Hearts
+                if( isItem(item,'diamond') && collide(this,item) && item.collected == false ) {
+                    //items.splice(i, 1);
+                    MapItems[Y][X] = null;
+                    DIAMONDS++;
+                    DiamondsCollected[item.index] = true;
+                }       
+                // Spikes
+                if( isItem(item,'spikes') && collide(this,item) ) {
+                    this.die();
+                }         
+                // Shop: Toggle space to open text
+                if( isItem(item, 'shop_vendor') ) {
+                    if (collide(item, this)) item.active = true;
+                    else item.active = false;
+                }
+                // Portal: Toggle space to use text
+                if( isItem(item, 'portal') || isItem(item, 'boss_portal') ) {
+                    if (collide(item, this)) item.active = true;
+                    else item.active = false;
+                }
+           }
+        }
+        
+        // Handle Ground detection for jumping
+        groundPoint.x = this.x;
+        groundPoint.y = this.y + this.size + 1;
+        var foundGround = false;  
+        for(var Y = PlayersAbove; Y < PlayersBelow; Y++ ) {
+            for(var X = PlayersLeft; X < PlayersRight; X++ ) {
+                if(!MapItems[Y][X]) continue;
+                var item = MapItems[Y][X];
+                var isPlatformBlock = (isItem(item,'block') || isItem(item,'lock') || isItem(item,'platform') || isItem(item,'falling_platform'));  
+
+                if(collide(groundPoint, item) && isPlatformBlock && this.dy >= 0) { 
+                    this.jump = true; // When we found a collision we stop looking
+                    foundGround = true;
+                    break;
+                 } else {
+                    this.jump = false; // Otherwise we keep looking   
+                 }
             }
-            if( isItem(item,'key_silver') && collide(this,item) ) {
-                items.splice(i, 1);
-                SKEYS++;
-            }                         
-            // Locks [ breaks lock if you have a key, otherwise it's treated as a normal block ]
-            if( isItem(item,'lock_silver') && collide(this,item) && SKEYS > 0 ) {
-                items.splice(i, 1);
-                SKEYS--;
-            }                    
-            // Blocks
-            if(movingRight && collide(this,item) && (isSolidBlock)) {
-                // Reposition player to be place right next to block, then get the difference and apply that to scrolling of canvas.
-                var oldX = this.x;
-                this.x = item.x - this.size;
-                var diff = oldX - this.x
-                ctx.translate(diff, 0);
-                scrollX += diff;
-                this.speed = this.accelerateRun = this.accelerateWalk = 0;
-            }
-            else if(movingLeft && collide(this,item) && (isSolidBlock)) {
-                var oldX = this.x;
-                this.x = item.x + this.size;
-                var diff = oldX - this.x
-                ctx.translate(diff, 0);
-                scrollX += diff;
-                this.speed = this.accelerateRun = this.accelerateWalk = 0;
-            }
-            // Coins
-            if( isItem(item,'coin') && collide(this,item) ) {
-                items.splice(i, 1);
-                COINS++;
-            }
-            // Hearts
-            if( isItem(item,'heart') && collide(this,item) ) {
-                items.splice(i, 1);
-                HEARTS++;
-            }
-            // Hearts
-            if( isItem(item,'diamond') && collide(this,item) && item.collected == false ) {
-                items.splice(i, 1);
-                DIAMONDS++;
-                DiamondsCollected[item.index] = true;
-            }       
-            // Spikes
-            if( isItem(item,'spikes') && collide(this,item) ) {
-                this.die();
-            }         
+            if(foundGround) break;
+        }
+    }
+
+    this.handleDynamicCollisions = function() {
+        for(e in Enemies) { 
+            var enemy = Enemies[e];
             // Monsters
-            if( (isItem(item,'enemies') || isItem(item,'BigRed')) && collide(item, this) ) {
-                var hitBigRed = isItem(item,'BigRed');
+            if( (isItem(enemy,'enemies') || isItem(enemy,'BigRed')) && collide(enemy, this) ) {
+                var hitBigRed = isItem(enemy,'BigRed');
                 //Red Block Enemy:Player land on head, enemey is damaged (shift XFrame or die if out of hp)
-                if( this.y + this.height < item.y + this.dy + 5  && this.dy > 0 ) {
-                    if(item.type == "red block") {
-                        this.bounceOffEnemy(item);
-                        item.hp--;
-                        if(item.hp == 1){ 
-                            item.y += 20;
-                            item.height -= 20; 
+                if( this.y + this.height < enemy.y + this.dy + 5  && this.dy > 0 ) {
+                    if(enemy.type == "red block") {
+                        this.bounceOffEnemy(enemy);
+                        enemy.hp--;
+                        if(enemy.hp == 1){ 
+                            enemy.y += 20;
+                            enemy.height -= 20; 
                         }
-                        if( item.hp > 0 ) item.frameX++;
-                        else { items.splice(i, 1); items.push(new Coin(item.x, item.y + 5)) }
+                        if( enemy.hp > 0 ) enemy.frameX++;
+                        else { Enemies.splice(e, 1); items.push(new Coin(enemy.x, enemy.y + 5)) }
                     }
                     // Boss takes damage if currently vulnerable and not already hit
-                    if(hitBigRed && item.vulnerableTimer > 0 && item.frameX != 3) { 
-                        item.takeDamage();
-                        this.bounceOffEnemy(item);
+                    if(hitBigRed && enemy.vulnerableTimer > 0 && enemy.frameX != 3) { 
+                        enemy.takeDamage();
+                        this.bounceOffEnemy(enemy);
                     }
                 } else { 
-                    if(item.type == "red block") this.die(); 
-                    if(hitBigRed && item.vulnerableTimer <= 0) this.die(true); 
+                    if(enemy.type == "red block") this.die(); 
+                    if(hitBigRed && enemy.vulnerableTimer <= 0) this.die(true); 
                 } 
             }
             // If hit by big red laser attack and the boss exist
@@ -371,43 +445,15 @@ function Player() {
                 }
             }
             // Spike Enemy: Player dies on hit
-            if( isItem(item,'enemy_spike') && collide(item, this) ) this.die();
+            if( isItem(enemy,'enemy_spike') && collide(enemy, this) ) this.die();
             // Shop: Toggle space to open text
-            if( isItem(item, 'shop_vendor') ) {
-                if (collide(item, this)) item.active = true;
-                else item.active = false;
+            if( isItem(enemy, 'shop_vendor') ) {
+                if (collide(enemy, this)) enemy.active = true;
+                else enemy.active = false;
             }
-            // Portal: Toggle space to use text
-            if( isItem(item, 'portal') || isItem(item, 'boss_portal') ) {
-                if (collide(item, this)) item.active = true;
-                else item.active = false;
-            }
-       }     
-       groundPoint.x = this.x;
-       groundPoint.y = this.y + this.size + 1;  
-       
-       // Handle Jump (only jump when player is on the ground)      
-       for(item in items) {
-          var isSolidBlock = (isItem(items[item],'block') || isItem(items[item],'lock') || isItem(items[item],'platform') || isItem(items[item],'falling_platform'));  
-          if(collide(groundPoint, items[item]) && isSolidBlock && this.dy >= 0) { 
-             this.jump = true; // When we found a collision we stop looking
-             break;
-          } else {
-             this.jump = false; // Otherwise we keep looking   
-          }
-             //Moving Block (only handle top collisions)
-             if( collide(groundPoint,items[item]) &&  isItem(items[item],'moving_block') && this.dy >= 0) {
-             this.jump = true; // When we found a collision move the player with the item
-             var diff = -items[item].speed;
-             this.x -= diff;
-             ctx.translate(diff, 0);
-             scrollX += diff;
-             break;
-          } else {
-             this.jump = false; // Otherwise we keep looking   
-          }
-       }
+        }
     }
+
     // When the player dies, subtract a life and place back to start point. Translate camera back as well.
     this.die = function(boss=false) {
        var self = this
@@ -433,10 +479,11 @@ function Player() {
         DEAD = false;
         this.frameX = this.frameY = 0;
         // Reset Camera
-        ctx.translate( this.x - this.startX, 0  );
+        ctx.translate( this.x - this.startX, 0 );
         scrollX = 0; 
         
         // Reset Player position.
+        this.jump = false;
         this.x = this.startX;
         this.y = this.startY;
         this.dy = 0; this.dx = 0;

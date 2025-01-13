@@ -31,7 +31,6 @@ function Block(x, y, img="") {
    
    this.draw = function() {
       ctx.globalAlpha = 0.5
-      //ctx.drawImage(this.image, this.x, this.y, this.width+2, this.height+2);
       ctx.fillStyle = "blue";
       ctx.fillRect(this.x, this.y, this.width, this.height);
       ctx.globalAlpha = 1.0;

@@ -21,6 +21,10 @@ var player = new Player();
 var boss = false;
 var currentMapIdx = 0;
 
+// A More efficient items as a2D Array called MapItems which will base the position of the player to determine what to draw and check for collisions instead of everything every time.
+var MapItems = [];
+var Enemies = [];
+
 function collide(a, b) {
     return (
         ((a.y + a.height) >= (b.y)) &&
@@ -131,8 +135,11 @@ function createMap(index) {
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     
     items = [];
+    Enemies = [];
+    MapItems = new Array(map.length);
+    for (var i = 0; i < MapItems.length; i++) MapItems[i] = new Array(map[0].length);
+
     boss = false;
-    
     scrollX = 0;
     scrollY = 0;
     yLevel = 0;
@@ -148,28 +155,37 @@ function createMap(index) {
             var x = X*SIZE;
             var y = Y*SIZE;
             if(char == ' ') continue;
-            if(char == '#') items.push(new Block(x, y));
-            if(char == 'W') items.push(new Water(x, y));
-            else if(char == '_') items.push(new Platform(x, y)); 
-            else if(char == '~') items.push(new FallingPlatform(x, y)); 
-            else if(char == 'o') items.push(new Coin(x, y));
-            else if(char == 'H') items.push(new Heart(x, y));
-            else if(char == 'D') items.push(new Diamond(x, y, index)); 
-            else if(char == 'E') items.push(new Enemy(x, y, 40, 52, images["enemies"], 4, 5, 2, "red block"));
-            else if(char == 'S') items.push(new Enemy(x, y, 30, 30, images["enemy_spike"], 4, 5, 2, "spike"));
-            else if(char == 'P' || Number.parseInt(char)) items.push(new Portal(x, y, char));
-            else if(char == 'T') items.push(new GhostBlock(x, y));
-            else if(char.toUpperCase() == 'L') items.push(new Lock(x, y, char));
-            else if(char.toUpperCase() == 'K') items.push(new Key(x, y, char));
-            else if(char == 'v') items.push(new Spikes(x, y, "bottom"));     
-            else if(char == '^') items.push(new Spikes(x, y, "top"));  
-            else if(char == '>') items.push(new Spikes(x, y, "right"));  
-            else if(char == '<') items.push(new Spikes(x, y, "left"));              
-            else if(char == '$') { items.push(shop); shop.setPosition(x, y); }
-            else if(char == 'R') { boss = new BigRed(x, y, items.length); items.push(boss); }
-            else if(char == 'r' && !bigReadBeaten) items.push(new Block(x, y, "block_bigred"));
-            else if(char == 'M') items.push(new Npc(x, y, "Miner", index));
-            else if(char == 'Y') items.push(new Npc(x, y, "Mayor", index, bigReadBeaten));    
+            if(char == '#') addToMap(new Block(x, y), X, Y);
+            if(char == 'W') addToMap(new Water(x, y), X, Y);
+            else if(char == '_') addToMap(new Platform(x, y), X, Y); 
+            else if(char == '~') addToMap(new FallingPlatform(x, y), X, Y); 
+            else if(char == 'o') addToMap(new Coin(x, y), X, Y);
+            else if(char == 'H') addToMap(new Heart(x, y), X, Y);
+            else if(char == 'D') addToMap(new Diamond(x, y, index), X, Y); 
+            else if(char == 'E') addToMap(new Enemy(x, y, 40, 52, images["enemies"], 4, 5, 2, "red block"), X, Y);
+            else if(char == 'S') addToMap(new Enemy(x, y, 30, 30, images["enemy_spike"], 4, 5, 2, "spike"), X, Y);
+            else if(char == 'P' || Number.parseInt(char)) addToMap(new Portal(x, y, char), X, Y);
+            else if(char == 'T') addToMap(new GhostBlock(x, y), X, Y);
+            else if(char.toUpperCase() == 'L') addToMap(new Lock(x, y, char), X, Y);
+            else if(char.toUpperCase() == 'K') addToMap(new Key(x, y, char), X, Y);
+            else if(char == 'v') addToMap(new Spikes(x, y, "bottom"), X, Y);     
+            else if(char == '^') addToMap(new Spikes(x, y, "top"), X, Y);  
+            else if(char == '>') addToMap(new Spikes(x, y, "right"), X, Y);  
+            else if(char == '<') addToMap(new Spikes(x, y, "left"), X, Y);              
+            else if(char == '$') { addToMap(shop, X, Y); shop.setPosition(x, y); }
+            else if(char == 'R') { boss = new BigRed(x, y, items.length); addToMap(boss, X, Y); }
+            else if(char == 'r' && !bigReadBeaten) addToMap(new Block(x, y, "block_bigred"), X, Y);
+            else if(char == 'M') addToMap(new Npc(x, y, "Miner", index), X, Y);
+            else if(char == 'Y') addToMap(new Npc(x, y, "Mayor", index, bigReadBeaten), X, Y);
        }
+    }
+}
+
+function addToMap(item, X, Y) {
+    if (item instanceof Enemy) {
+        Enemies.push(item);
+    } else {
+        items.push(item);
+        MapItems[Y][X] = item;
     }
 }

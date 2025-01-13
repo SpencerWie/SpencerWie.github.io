@@ -29,7 +29,12 @@ The original game <em>Block Run</em>, was created as a simple platform game in P
   <li>Title Screen + Intro Tutorial</li>
 </ul>  
 
-<h3>Current Version: <strong><em>v0.76</em></strong></h3>
+<h3>Current Version: <strong><em>v0.80</em></strong></h3>
+<ul>
+  <li>More Town NPCs.</li>
+</ul>
+
+<h3>Current Version: <strong><em>v0.70</em></strong></h3>
 <ul>
   <li>New Ability <em>Double Jump</em> can be brought in the shop</li>
   <li>Armor: Protects you where you would of died. When triggered armor icon will appear above your character and fade out and you will be unkillable for about 4 seconds.
@@ -40,6 +45,8 @@ The original game <em>Block Run</em>, was created as a simple platform game in P
   <li>Extra challenge sections of all levels to get diamonds</li>
   <li>Town NPCs and Chat System</li>
   <li>More Town NPCs.</li>
+  <li>Water Blocks</li>
+  <li>Optimized map collisions and block drawings - Instead of just drawing and checking every item that exist on a level (1000+ object checks per frame) it's refactored to use a 2D array and checks for static blocks around the player (36 per frame) and enemies per floor level.</li>
 </ul>  
 
 <h3><em>v0.60</em></h3>

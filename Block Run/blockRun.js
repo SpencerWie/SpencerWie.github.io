@@ -7,10 +7,9 @@ timer = setInterval(function()
 {
    ctx.drawImage(images["background"],-scrollX, scrollY, canvas.width, canvas.height);
    ctx.fillStyle = player.color;
-   //player.update();
    handleYscroll(false);
-   for(item in items)
-      items[item].draw();
+   DrawBlocksAroundPlayer();
+   for(e in Enemies) Enemies[e].draw();
    player.update();
    player.draw();   
    drawUI();
@@ -21,7 +20,7 @@ function drawUI() {
    else ctx.fillStyle = "#666666";
    ctx.globalAlpha = 0.7;
    ctx.font = "bold 10px sans-serif";
-   ctx.fillText("Beta: V 0.78", 5-scrollX, canvas.height+scrollY-5);
+   ctx.fillText("Beta: V 0.80", 5-scrollX, canvas.height+scrollY-5);
    ctx.drawImage(images["coin"], 0,0, 32, 32, canvas.width-65-scrollX, scrollY, 32, 32);
    ctx.fillText(" x "+COINS, canvas.width-40-scrollX,20+scrollY);
    ctx.drawImage(images["heart"], 0,0, 32, 32, canvas.width-110-scrollX, scrollY, 32, 32);
@@ -33,4 +32,17 @@ function drawUI() {
    }
    chat.draw();
    ctx.globalAlpha = 1;
+}
+
+function DrawBlocksAroundPlayer(spaceX = 15, SpaceY = 11) {
+   var playerX = Math.floor(player.x/32);
+   var RangeY = Math.floor(scrollY/32);
+   var PlayersLeft = playerX - spaceX;
+   var PlayersRight = playerX + spaceX;
+   if(PlayersLeft < 0) PlayersLeft = 0;
+   if(PlayersRight > MapItems[0].length) PlayersRight = MapItems[0].length;
+   if(RangeY + SpaceY > MapItems.length) RangeY = MapItems.length - SpaceY;
+   for(var Y = RangeY; Y < RangeY + SpaceY; Y++ ) 
+      for(var X = PlayersLeft; X < PlayersRight; X++ ) 
+         if(MapItems[Y][X]) MapItems[Y][X].draw();
 }
