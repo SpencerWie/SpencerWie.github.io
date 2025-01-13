@@ -31,10 +31,17 @@ The original game <em>Block Run</em>, was created as a simple platform game in P
 
 <h3>Current Version: <strong><em>v0.80</em></strong></h3>
 <ul>
-  <li>More Town NPCs.</li>
+  <li>Diamond Store - Planned</li>
+  <li>Breath Meter - Planned</li>
+  <li>New unlockable ability: Swim (2 Diamonds + 200 coins): Can swim in water (double jump unlimited while in water). This also allows sprinting while in water. - Planned</li>
+  <li>New unlockable ability: Gills (2 Diamonds + 300 coins): Removes breath meter, can stay in water without drowning. - Planned</li>
+  <li>New unlockable ability: Dash (2 Diamonds + 400): While in the air SPACE allows you to dash forward. - Planned</li>
+  <li>Levels 6 and 7 - Planned</li>
+  <li>New Enemy: Piranha - Follows the player while they are in water. - Planned</li>
+  <li>New Enemy: Jelly Fish - Moves diagonally across the water and bounce off walls. - Planned</li>
 </ul>
 
-<h3>Current Version: <strong><em>v0.70</em></strong></h3>
+<h3><em>v0.7</em></h3>
 <ul>
   <li>New Ability <em>Double Jump</em> can be brought in the shop</li>
   <li>Armor: Protects you where you would of died. When triggered armor icon will appear above your character and fade out and you will be unkillable for about 4 seconds.
@@ -49,7 +56,7 @@ The original game <em>Block Run</em>, was created as a simple platform game in P
   <li>Optimized map collisions and block drawings - Instead of just drawing and checking every item that exist on a level (1000+ object checks per frame) it's refactored to use a 2D array and checks for static blocks around the player (36 per frame) and enemies per floor level.</li>
 </ul>  
 
-<h3><em>v0.60</em></h3>
+<h3><em>v0.6</em></h3>
 <ul>
   <li>Walking and Running movements now have acceleration, making the gameplay feel more fluid and smooth.</li>
   <li>Code Refacor.</li>
@@ -60,7 +67,7 @@ The original game <em>Block Run</em>, was created as a simple platform game in P
   <li>Auto save and load. Save happens when a level is completed or when the user buys an item from the shop.</li>
 </ul>
 
-<h3><em>v0.50</em></h3>
+<h3><em>v0.5</em></h3>
 <ul>
   <li>Added Platforms</li>
   <li>Added Ghost Block (<em>Gets more transpart with distance</em>)</li>
@@ -69,7 +76,7 @@ The original game <em>Block Run</em>, was created as a simple platform game in P
   <li>Fixed Bugs: <em>Ducking casuing a blinking animation stall has been fixed</em></li>
 </ul>
 
-<h3><em>v0.40</em></h3>
+<h3><em>v0.4</em></h3>
 <ul>
   <li>Added Locks and Keys.</li>
   <li>Portal functionality implemented</li>
@@ -82,7 +89,7 @@ The original game <em>Block Run</em>, was created as a simple platform game in P
   <li>Stage 2 and 3 is complete</li>
 </ul>
 
-<h3><em>v0.30</em></h3>
+<h3><em>v0.3</em></h3>
 <ul>
   <li>Improved Performance</li>
   <li>Added coins</li>
@@ -94,7 +101,7 @@ The original game <em>Block Run</em>, was created as a simple platform game in P
   <li>Player now dies when hit by an enemy (basic death system).</li>
 </ul>
 
-<h3><em>v0.20</em></h3>
+<h3><em>v0.2</em></h3>
 <ul>
   <li>Tilemap System added</li>
   <li>Platform collision added/fixed</li>
