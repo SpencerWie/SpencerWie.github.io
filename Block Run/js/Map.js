@@ -24,6 +24,7 @@ var currentMapIdx = 0;
 // A More efficient items as a2D Array called MapItems which will base the position of the player to determine what to draw and check for collisions instead of everything every time.
 var MapItems = [];
 var Enemies = [];
+var Bosses = [];
 
 function collide(a, b) {
     return (
@@ -136,6 +137,7 @@ function createMap(index) {
     
     items = [];
     Enemies = [];
+    Bosses = [];
     MapItems = new Array(map.length);
     for (var i = 0; i < MapItems.length; i++) MapItems[i] = new Array(map[0].length);
 
@@ -182,10 +184,25 @@ function createMap(index) {
 }
 
 function addToMap(item, X, Y) {
-    if (item instanceof Enemy) {
+    if (item instanceof Enemy || item instanceof BigRed) {
         Enemies.push(item);
     } else {
         items.push(item);
         MapItems[Y][X] = item;
     }
+}
+
+// Get static items around the player
+function getBlocksNearItem (item = player, space = 3) {
+    var playerX = Math.ceil(item.x / 32);
+    var playerY = Math.ceil(item.y / 32);
+    var left = playerX - space;
+    var right = playerX + space;
+    var above = playerY - space;
+    var below = playerY + space;
+    if (left < 0) left = 0;
+    if (above < 0) above = 0;
+    if (right > MapItems[0].length) right = MapItems[0].length;
+    if (below > MapItems.length) below = MapItems.length;
+    return { above, below, left, right };
 }

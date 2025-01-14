@@ -41,20 +41,25 @@ function Enemy(x, y, width, height, image, speed ,walkSteps, hp, type)
 		}
 		else if(type == "spike")
 		{
-			for(item in items) {
-				var isSolidBlock = (isItem(items[item],'block') || isItem(items[item],'lock'));  
-				if (isSolidBlock && collide(items[item], this)) {
-					if(this.speed > 0)
-						this.x = items[item].x - this.width;
-					else 
-						this.x = items[item].x + this.width;
-					this.speed *= -1;
-					break;
+			var blocks = getBlocksNearItem(this);
+			for(var Y = blocks.above; Y < blocks.below; Y++ ) {
+				 for(var X = blocks.left; X < blocks.right; X++ ) {
+					var item = MapItems[Y][X];
+					if(!item) continue;
+					var isSolidBlock = (isItem(item,'block') || isItem(item,'lock'));  
+					if (isSolidBlock && collide(item, this)) {
+						if(this.speed > 0)
+							this.x = item.x - this.width;
+						else 
+							this.x = item.x + this.width;
+						this.speed *= -1;
+						break;
+					}
 				}
 			}
 			this.x += this.speed;
-		}
-   }
+   	}
+	}
 }
 
 function BigRedAttack(x, y) 
@@ -80,7 +85,7 @@ function BigRed(x, y, index)
 	this.speed = -4;
 	this.stop = false;
 	this.hit = false;
-	this.hp = currentMapIdx == 2 ? 10 : 6; // If on Level 2 this is the diamond unlock BigRed so more hp.
+	this.hp = currentMapIdx == 2 ? 10 : 1; // If on Level 2 this is the diamond unlock BigRed so more hp.
 	this.maxHp = this.hp;
 	this.attackDelay = 0;     // Timer to wait before attacking
 	this.attackTimer = 0;     // Timer it takes to do an attack
@@ -122,15 +127,16 @@ function BigRed(x, y, index)
 
 	this.update = function() {
 
+		var foundBoss = Enemies.find(item => isItem(item, "BigRed"));
 		// On death remove from item list
 		if(this.hp <= 0) {
 			if(this.deathTimer > 128) {
-				if(isItem(items[this.index], "BigRed")) {
-					items.splice(this.index, 1);
+				if(foundBoss) {
 					if(currentMapIdx == 2) SKEYS++;
 					else KEYS++;
 					COINS+=40;
 					boss = false;
+					Enemies = [];
 					delete this;
 				} else {
 					// If for some reason the index is wrong find boss directly and remove
@@ -144,6 +150,7 @@ function BigRed(x, y, index)
 					else KEYS++;
 					COINS+=40;
 					boss = false;
+					Enemies = [];
 					delete this;
 				}
 			}
@@ -161,17 +168,22 @@ function BigRed(x, y, index)
 		if(this.speed > 0) this.speed = 3 + ((this.maxHp - this.hp)/2);
 		else this.speed = -3 - ((this.maxHp - this.hp)/2);
 
-		for(item in items) {
-			var isSolidBlock = (isItem(items[item],'block') || isItem(items[item],'lock'));  
-			if (isSolidBlock && collide(items[item], this)) {
-				if(this.speed > 0) 
-					this.x = items[item].x - this.width - 1; // Turn around and be a pixel away from the wall to the right
-				else 
-					this.x = items[item].x + 33; // Turn around and be a pixel away from the block to the left
-				this.speed *= -1;
-				// Soon after turning around get ready to attack with some degree of randomness, attacks are faster the higher the speed is.
-				this.attackDelay =  Math.abs(this.speed) + Math.round(Math.random() * (100/Math.abs(this.speed)));
-				break;
+		var blocks = getBlocksNearItem(this, 5);
+		for(var Y = blocks.above; Y < blocks.below; Y++ ) {
+			 for(var X = blocks.left; X < blocks.right; X++ ) {
+				var item = MapItems[Y][X];
+				if(!item) continue;
+				var isSolidBlock = (isItem(item,'block') || isItem(item,'lock'));  
+				if (isSolidBlock && collide(item, this)) {
+					if(this.speed > 0) 
+						this.x = item.x - this.width - 1; // Turn around and be a pixel away from the wall to the right
+					else 
+						this.x = item.x + 33; // Turn around and be a pixel away from the block to the left
+					this.speed *= -1;
+					// Soon after turning around get ready to attack with some degree of randomness, attacks are faster the higher the speed is.
+					this.attackDelay =  Math.abs(this.speed) + Math.round(Math.random() * (100/Math.abs(this.speed)));
+					break;
+				}
 			}
 		}
 		if(!this.stop) this.x += this.speed;

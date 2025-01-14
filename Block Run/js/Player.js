@@ -150,7 +150,7 @@ function Player() {
         }
         // If unlocked you can do a second jump once you start falling
         else if(UP && !this.jump && this.canDoubleJump && this.doubleJump && this.dy > 9) {
-            this.dy = -this.jumpPower/1.4
+            this.dy = -this.jumpPower/1.7
             this.ddy = -1;
             this.doubleJump = false;
         }
@@ -192,7 +192,7 @@ function Player() {
     }
 
     this.bounceOffEnemy = function(enemy) {
-        this.dy = -this.jumpPower/1.4;
+        this.dy = -this.jumpPower/1.45;
         this.ddy = -1;
         this.jump = true; 
         this.y = enemy.y - 25;
@@ -285,23 +285,11 @@ function Player() {
         this.handleDynamicCollisions();
     }
 
+
     this.handleStaticCollisions = function() {
-        // Get static items around the player
-        const space = 3; 
-        var playerX = Math.ceil(player.x/32);
-        var playerY = Math.ceil(player.y/32);
-        var PlayersLeft = playerX - space;
-        var PlayersRight = playerX + space;
-        var PlayersAbove = playerY - space;
-        var PlayersBelow = playerY + space;
-        var count = 0;
-        if(PlayersLeft < 0) PlayersLeft = 0;
-        if(PlayersAbove < 0) PlayersAbove = 0;
-        if(PlayersRight > MapItems[0].length) PlayersRight = MapItems[0].length;
-        if(PlayersBelow > MapItems.length) PlayersBelow = MapItems.length;
-        for(var Y = PlayersAbove; Y < PlayersBelow; Y++ ) {
-           for(var X = PlayersLeft; X < PlayersRight; X++ ) {
-                count++;
+        var blocks = getBlocksNearItem(player);
+        for(var Y = blocks.above; Y < blocks.below; Y++ ) {
+           for(var X = blocks.left; X < blocks.right; X++ ) {
                 if(!MapItems[Y][X]) continue;
 
                 var item = MapItems[Y][X];
@@ -392,8 +380,8 @@ function Player() {
         groundPoint.x = this.x;
         groundPoint.y = this.y + this.size + 1;
         var foundGround = false;  
-        for(var Y = PlayersAbove; Y < PlayersBelow; Y++ ) {
-            for(var X = PlayersLeft; X < PlayersRight; X++ ) {
+        for(var Y = blocks.above; Y < blocks.below; Y++ ) {
+            for(var X = blocks.left; X < blocks.right; X++ ) {
                 if(!MapItems[Y][X]) continue;
                 var item = MapItems[Y][X];
                 var isPlatformBlock = (isItem(item,'block') || isItem(item,'lock') || isItem(item,'platform') || isItem(item,'falling_platform'));  
@@ -438,18 +426,19 @@ function Player() {
                     if(hitBigRed && enemy.vulnerableTimer <= 0) this.die(true); 
                 } 
             }
-            // If hit by big red laser attack and the boss exist
-            if( boss && boss.attackTimer > 35 && boss.attackTimer < 50) {
-                if(collide(boss.atk, player)) {
-                    this.die(true);
-                }
-            }
             // Spike Enemy: Player dies on hit
             if( isItem(enemy,'enemy_spike') && collide(enemy, this) ) this.die();
             // Shop: Toggle space to open text
             if( isItem(enemy, 'shop_vendor') ) {
                 if (collide(enemy, this)) enemy.active = true;
                 else enemy.active = false;
+            }
+        }
+        
+        // If hit by big red laser attack and the boss exist
+        if( boss && boss.attackTimer > 35 && boss.attackTimer < 50) {
+            if(collide(boss.atk, player)) {
+                this.die(true);
             }
         }
     }
