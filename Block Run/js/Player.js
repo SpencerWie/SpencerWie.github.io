@@ -154,6 +154,9 @@ function Player() {
             this.ddy = -1;
             this.doubleJump = false;
         }
+
+        //Swim if your allowed to
+        //if(this.inWater && UP && this.dy > 3) this.dy = -this.jumpPower/1.5;
        
         if(this.dy < 10 && !this.jump) this.ddy = GRAVITY; // Apply Gravity
        
