@@ -192,6 +192,14 @@ function addToMap(item, X, Y) {
     }
 }
 
+// Look for an empty space near the enemy location and spawn the item there.
+function spawnOnMap(enemy, item) {
+    var spawnY = Math.floor(enemy.y/32)
+    var spawnX = Math.ceil(enemy.x/32)
+    if(!MapItems[spawnY][spawnX]) MapItems[spawnY][spawnX] = item;
+    items.push(item);
+}
+
 // Get static items around the player
 function getBlocksNearItem (item = player, space = 3) {
     var playerX = Math.ceil(item.x / 32);

@@ -414,7 +414,10 @@ function Player() {
                             enemy.height -= 20; 
                         }
                         if( enemy.hp > 0 ) enemy.frameX++;
-                        else { Enemies.splice(e, 1); items.push(new Coin(enemy.x, enemy.y + 5)) }
+                        else { 
+                            Enemies.splice(e, 1); 
+                            spawnOnMap(enemy, new Coin(enemy.x, enemy.y + 5));
+                        }
                     }
                     // Boss takes damage if currently vulnerable and not already hit
                     if(hitBigRed && enemy.vulnerableTimer > 0 && enemy.frameX != 3) { 
@@ -434,7 +437,7 @@ function Player() {
                 else enemy.active = false;
             }
         }
-        
+
         // If hit by big red laser attack and the boss exist
         if( boss && boss.attackTimer > 35 && boss.attackTimer < 50) {
             if(collide(boss.atk, player)) {
