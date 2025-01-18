@@ -85,7 +85,7 @@ function BigRed(x, y, index)
 	this.speed = -4;
 	this.stop = false;
 	this.hit = false;
-	this.hp = currentMapIdx == 2 ? 10 : 1; // If on Level 2 this is the diamond unlock BigRed so more hp.
+	this.hp = currentMapIdx == 2 ? 10 : 6; // If on Level 2 this is the diamond unlock BigRed so more hp.
 	this.maxHp = this.hp;
 	this.attackDelay = 0;     // Timer to wait before attacking
 	this.attackTimer = 0;     // Timer it takes to do an attack

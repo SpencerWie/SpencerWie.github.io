@@ -175,7 +175,7 @@ function Player() {
                 this.ddy = 0;
                 this.y = item.y + this.size;
             }// For downwards collision check if we are moving down and hit a block, if so place player at the top of block and halt verticle motion.
-            else if(this.dy > 0 && collide(this,item) && (isItem(item,'block') || platformCollision)) {
+            else if(this.dy >= 0 && collide(this,item) && (isItem(item,'block') || platformCollision)) {
                 this.dy = 0;
                 this.ddy = 0;
                 this.y = item.y - this.size + 1;
@@ -195,9 +195,8 @@ function Player() {
     }
 
     this.bounceOffEnemy = function(enemy) {
-        this.dy = -this.jumpPower/1.45;
+        this.dy = -this.jumpPower/1.25;
         this.ddy = -1;
-        this.jump = true; 
         this.y = enemy.y - 25;
     }
     
