@@ -34,7 +34,7 @@ function drawUI() {
    ctx.globalAlpha = 1;
 }
 
-function DrawBlocksAroundPlayer(spaceX = 15, SpaceY = 11) {
+function DrawBlocksAroundPlayer(spaceX = 15, SpaceY = 12) {
    var playerX = Math.floor(player.x/32);
    var RangeY = Math.floor(scrollY/32);
    var PlayersLeft = playerX - spaceX;
