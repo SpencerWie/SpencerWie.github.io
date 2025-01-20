@@ -20,17 +20,18 @@ The original game <em>Block Run</em>, was created as a simple platform game in P
 
 <h3>Future Planned Changes:</h3>
 <ul>
-  <li>More Bosses (planned) 0.8x-1.0x</li>
+  <li>More Bosses 0.9x-1.0x</li>
   <li>New Enemies</li>
   <li>Diamond Store</li>
   <li>New Town Area after beating Big Red</li>
-  <li>Ice tiles. (planned)</li>
-  <li>Stage 6</li>
+  <li>Ice tiles.</li>
   <li>Title Screen + Intro Tutorial</li>
 </ul>  
 
-<h3>Current Version: <strong><em>v0.80</em></strong></h3>
+<h3>Current Version: <strong><em>v0.82</em></strong></h3>
 <ul>
+  <li>Stage 6 is completed.</li>
+  <li>Enemy optimizations and bug fixes.</li>
   <li>Diamond Store - Planned</li>
   <li>Breath Meter - Planned</li>
   <li>New unlockable ability: Swim (2 Diamonds + 200 coins): Can swim in water (double jump unlimited while in water). This also allows sprinting while in water. - Planned</li>
