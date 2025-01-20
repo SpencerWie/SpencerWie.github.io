@@ -170,7 +170,7 @@ var level_5 = [
    '#     WWWW            M    WWWWWWWWWWWWWWWWWWWWWWW##WWWWWWWWWWWWWWWWWWWWWWWWWWWWW#     WW#                 o   o   o   o   o           oo      S            k  #WW#',  
    '#     WWWW         #########WWWWWWWWWWWWWWWWWWWWWW##WWWWWWWWWWWWWWWWWWWWWWWWWWWW##     WW# o  o  o  o  #WW####################         ~         oo         ~  #WW#',  
    '#     WWWW         #       #WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW###########  __  WW#             #WW#      #WWWWWWWWWWWW                   ~             #WW#',  
-   '#WWSWWWWWWWWWWWWWW##       #WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW##WWWW#                WW#E      E     #WW#     ##WWWWWWWWWWWWS         oo     vvvvvvvvvvvvvvvv#WW#',  
+   '#WWSWWWWWWWWWWWWWW##       #WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW##WWWW#                WW#E      E     #WW#     ##WWWWWWWWWWWW S        oo     vvvvvvvvvvvvvvvv#WW#',  
    '#WWWWWWWWWWWWWWWWW##  D K  #WWWWWWWWWWWWWWWWWWWWWWWWWWW##WWWWWWW##WWWW#  o o o o o o  #WW###############WW#######WWW########WW          ~      #################WW#',  
    '#WWWWWWWWWWWWWWWSW##  ###  #WW##WWWWWWWWW##WWWWWWWWWWWW##WWWWWWWWWWWWW#S              #WWWWWWWWWWWWSWWWWWWWWWWWWWWWW#WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW#',  
    ' ###################       LWW##WWWWWWWWW##WWWWWWWWWWWWWWWWWWWWWWWWWWW#################WWWWWWWWWWWWWWWWWWWWWWWWWWWWW##WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW#',   

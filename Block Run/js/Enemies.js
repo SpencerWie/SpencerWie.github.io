@@ -24,7 +24,7 @@ function Enemy(x, y, width, height, image, speed ,walkSteps, hp, type)
    
    this.update = function() 
    {
-    	if(DEAD) return;
+  	if(DEAD) return;
 		if(type == "red block")
 		{
 			if(this.x >= this.endWalk && this.speed > 0){

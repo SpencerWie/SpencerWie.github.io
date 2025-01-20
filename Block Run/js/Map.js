@@ -186,6 +186,10 @@ function createMap(index) {
 function addToMap(item, X, Y) {
     if (item instanceof Enemy || item instanceof BigRed) {
         Enemies.push(item);
+        closeBlocks = getBlocksNearItem(item, 1);
+        // If the left or right of the enemy is water then spawn a water block there.
+        if(MapItems[Y][closeBlocks.left] instanceof Water || MapItems[Y][closeBlocks.right] instanceof Water)
+            MapItems[Y][X] = new Water(item.x, item.y, X, Y);
     } else {
         items.push(item);
         MapItems[Y][X] = item;
