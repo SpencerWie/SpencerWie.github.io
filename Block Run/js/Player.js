@@ -37,6 +37,11 @@ function Player() {
     this.inWater = false;
 
     this.canDash = false;
+    this.startDash = false;
+    this.isDashing = false;
+    this.dashMaxTics = 10;
+    this.dashTics = 0;
+
     this.canSwim = false;
     this.canBreatheUnderwater = false;
     this.canShoot = false;
@@ -165,8 +170,11 @@ function Player() {
        
         if(this.dy < 10 && !this.jump) this.ddy = GRAVITY; // Apply Gravity
        
-        this.dy += this.inWater ? this.ddy/4 : this.ddy; // Update variables
+        // Slow rate of falling when in water or dashing
+        this.dy += this.inWater ? this.ddy/4 : this.ddy;
         this.y += this.inWater ? this.dy/4 : this.dy;
+
+        if(this.dashTics > 7 && this.dy > 0) this.dy = 0; // Stop falling when dashing
                 
         // Vertical Block collisions. (needs to be seperate from horizonal for proper collisions)
         for(i in items) {
@@ -252,6 +260,7 @@ function Player() {
             }
        } 
        this.handleDucking();
+       this.handleDashing();
        // Update position and move camra.
        this.dx = Math.round(this.inWater ? this.dx/1.5 : this.dx); // Normalize dx
        player.x -= this.dx;
@@ -283,6 +292,20 @@ function Player() {
            }          
            this.ducked = true;
        }
+    }
+
+    this.handleDashing = function() {
+        // If the player is in the air is allowed to dash and not currently dashing already then start dash.
+        if(this.canDash && this.startDash && !this.isDashing && !this.jump && !this.ducked && this.dashTics < 1) {
+            this.startDash = false;
+            this.dashTics = this.dashMaxTics;
+        }
+        if(this.dashTics > 0 && !this.jump) {
+            if(this.frameY == 1) this.dx = this.walk + this.accelerateRun;
+            else if (this.frameY == 0) this.dx = -(this.walk + this.accelerateRun);
+            this.dx *= this.dashTics / 4;
+            this.dashTics--;
+        }
     }
     
     this.handleCollisions = function() 
@@ -495,6 +518,7 @@ function Player() {
     if( e.keyCode == 39 || e.code == "KeyD" ) RIGHT = true;
     if( e.keyCode == 40 || e.code == "KeyS" ) DOWN = true;
     if( e.keyCode == 16 || e.code == "ShiftLeft" ) SHIFT = true;
+    if( e.code == "Space" && player.canDash && !chat.active ) player.startDash = true;
 });
                           
 document.addEventListener("keyup", function(e) { 
@@ -507,5 +531,5 @@ document.addEventListener("keyup", function(e) {
         if(player.unlockedColors > player.selectedColor) player.selectedColor++;
         else player.selectedColor = 0;
     } 
-    if( e.keyCode == 32|| e.code == "Space" ) action(); // SPACE
+    if( e.keyCode == 32|| e.code == "Space" ) {action(); player.startDash = false;} // SPACE
 });

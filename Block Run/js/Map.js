@@ -43,6 +43,7 @@ function distance(a, b) {
 }
 
 function action() {
+    //if(player.canDash && !chat.active) player.startDash = true;
     if(chat.active) {
         chat.active = false;
         return;
