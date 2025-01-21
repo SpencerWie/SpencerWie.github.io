@@ -44,18 +44,20 @@ var colorBtn = new Button(390, 108+btnYOffset*2, 17, 20, 50, () => {
 var doubleJumpBtn = new Button(390, 108+btnYOffset*3, 17, 20, 100, () => { player.canDoubleJump = true });
 var buttons = [exitBtn, heartBtn, armorBtn, colorBtn, doubleJumpBtn];
 
-function Shop() {
+function Shop(isDiamondShop = false) {
     this.x = 0;
     this.y = 0;
     this.width = 96;
     this.height = 64;
     this.shopW = 220;
     this.shopH = 160;
-    this.image = images["shop_vendor"];
+    this.diamondShop = isDiamondShop;
+    this.image = isDiamondShop ? images["diamond_shop"] : images["shop_vendor"];
     this.frameX = 0;
     this.frameY = 0;
     this.onButton = -1;
     this.active = false;
+    this.buttons = buttons;
 
     this.setPosition = function(x, y) {
         this.x = x - 96;
@@ -82,18 +84,20 @@ function Shop() {
             doubleJumpBtn.condition = player.canDoubleJump == false && DIAMONDS > 0;
 
             // Determine which button our mouse is over and determine the frame to draw based on it.
-            for (let i = 0; i < buttons.length; i++) {
-                if(buttons[i].mouseOver()) {
+            for (let i = 0; i < this.buttons.length; i++) {
+                if(this.buttons[i].mouseOver()) {
                     this.frameX = this.onButton = i;
                     break;
                 }
             }
             // Draw Shop
-            ctx.drawImage(images['shop_dialogs'], (this.onButton + 1)*this.shopW, this.frameY*this.shopH, this.shopW, this.shopH, canvas.width - scrollX - canvas.width/2 - this.shopW/2, this.y - this.shopH + 16 + scrollY, this.shopW, this.shopH);
-            
+            if(this.diamondShop)
+                ctx.drawImage(images['shop_dialogs'], (this.onButton + 1)*this.shopW, this.frameY*this.shopH, this.shopW, this.shopH, canvas.width - scrollX - canvas.width/2 - this.shopW/2, this.y - this.shopH + 16 + scrollY, this.shopW, this.shopH);
+            else
+                ctx.drawImage(images['shop_dialogs'], (this.onButton + 1)*this.shopW, this.frameY*this.shopH, this.shopW, this.shopH, canvas.width - scrollX - canvas.width/2 - this.shopW/2, this.y - this.shopH + 16 + scrollY, this.shopW, this.shopH);
             // Determine what the player cannot buy and show those items as disabled.
             for (let i = 0; i < buttons.length; i++) {
-                buttons[i].drawDisabled();
+                this.buttons[i].drawDisabled();
             }
         }
     }
