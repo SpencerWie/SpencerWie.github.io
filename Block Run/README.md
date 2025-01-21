@@ -28,16 +28,16 @@ The original game <em>Block Run</em>, was created as a simple platform game in P
   <li>Title Screen + Intro Tutorial</li>
 </ul>  
 
-<h3>Current Version: <strong><em>v0.82</em></strong></h3>
+<h3>Current Version: <strong><em>v0.85</em></strong></h3>
 <ul>
   <li>Stage 6 is completed.</li>
   <li>Enemy optimizations and bug fixes.</li>
-  <li>Diamond Store - Planned</li>
+  <li>Diamond Store.</li>
+  <li>New unlockable ability: Dash (2 Diamonds + 500): While in the air SPACE allows you to dash forward.</li>
+  <li>New unlockable ability: Swim (2 Diamonds + 400 coins): Can swim in water (double jump unlimited while in water). This also allows sprinting while in water.</li>
+  <li>New unlockable ability: Gills (2 Diamonds + 400 coins): Removes breath meter, can stay in water without drowning.</li>
   <li>Breath Meter - Planned</li>
-  <li>New unlockable ability: Swim (2 Diamonds + 200 coins): Can swim in water (double jump unlimited while in water). This also allows sprinting while in water. - Planned</li>
-  <li>New unlockable ability: Gills (2 Diamonds + 300 coins): Removes breath meter, can stay in water without drowning. - Planned</li>
-  <li>New unlockable ability: Dash (2 Diamonds + 400): While in the air SPACE allows you to dash forward. - Planned</li>
-  <li>Levels 6 and 7 - Planned</li>
+  <li>Stage 7 - Planned</li>
   <li>New Enemy: Piranha - Follows the player while they are in water. - Planned</li>
   <li>New Enemy: Jelly Fish - Moves diagonally across the water and bounce off walls. - Planned</li>
 </ul>
