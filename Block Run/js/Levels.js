@@ -186,8 +186,8 @@ var level_5 = [
     '#                                               r                                                                       #',
     '#                                               r                #                                                      #',
     '#                                               r   ##WWWWWWWWWWW##                                                     #',
-    '#                                     5         r  ###WWWWWWWWWWW###                                                    #',
-    '#  M      $         1   2   3   4   #####     Y r ####WWWWWWWWWWW####      d   6   7   8                                #',
+    '#        $                            5         r  ###WWWWWWWWWWW###    d                                               #',
+    '#  M                1   2   3   4   #####     Y r ####WWWWWWWWWWW####         6   7   8                                 #',
     '#########################################################################################################################', 
     '#########################################################################################################################',    
     '#                                                                                                                       #',   
@@ -209,8 +209,8 @@ function loadImages()
    
    images = {};
    var imgs = [
-      "player_blink", "block", "coin", "diamond", "heart", "background", "enemies", "portal", "boss_portal", "lock", "lock_silver", "key", "key_silver", "spikes", "platform", "falling_platform" , "enemy_spike", "shop_vendor", "shop_dialogs", "armor",
-      "BigRed", "BigRed_Attack", "block_bigred", "Miner", "Mayor", "talk", "chat"
+      "player_blink", "block", "coin", "diamond", "heart", "background", "enemies", "portal", "boss_portal", "lock", "lock_silver", "key", "key_silver", "spikes", "platform", "falling_platform" , "enemy_spike", "armor",
+      "BigRed", "BigRed_Attack", "block_bigred", "Miner", "Mayor", "talk", "chat", "shop_vendor", "shop_dialogs", "diamond_shop", "diamond_dialogs"
    ];
 
    for(var img in imgs) {

@@ -8,6 +8,7 @@ var KEYS = 0;
 var SKEYS = 0;
 var ALPHA_INTENSITY = 20.0; // Higher value means better vision of blocks.
 var ShowShop = false;
+var ShowDiamondShop = false;
 var scrollX = 0;
 var scrollY = 0;
 var yLevel = 0;
@@ -25,6 +26,8 @@ var currentMapIdx = 0;
 var MapItems = [];
 var Enemies = [];
 var Bosses = [];
+
+var chat = new Chat();
 
 function collide(a, b) {
     return (
@@ -59,9 +62,8 @@ function action() {
                     saveGame();
                 }
             }
-            if(isItem(item,'shop_vendor') && collide(player,item)) {      
-                ShowShop = true;
-            }
+            if(isItem(item,'shop_vendor') && collide(player,item)) ShowShop = true;     
+            if(isItem(item,'diamond_shop') && collide(player,item)) ShowDiamondShop = true;
             if((isItem(item,'Miner') || isItem(item,'Mayor'))  && item.active && chat.active == false) {
                 // Determine what the npc says if they have other text items
                 chat.text = item.text2 != "" && chat.text == item.text1 ? item.text2 : item.text1;
@@ -175,6 +177,7 @@ function createMap(index) {
             else if(char == '>') addToMap(new Spikes(x, y, "right"), X, Y);  
             else if(char == '<') addToMap(new Spikes(x, y, "left"), X, Y);              
             else if(char == '$') { addToMap(shop, X, Y); shop.setPosition(x, y); }
+            else if(char == 'd') { addToMap(diamondShop, X, Y); diamondShop.setPosition(x, y); }
             else if(char == 'R') { boss = new BigRed(x, y, items.length); addToMap(boss, X, Y); }
             else if(char == 'r' && !bigReadBeaten) addToMap(new Block(x, y, "block_bigred"), X, Y);
             else if(char == 'M') addToMap(new Npc(x, y, "Miner", index), X, Y);

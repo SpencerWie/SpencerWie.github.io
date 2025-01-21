@@ -36,6 +36,11 @@ function Player() {
     this.colors = [{r: 0, g: 0, b: 0}, {r: 255, g: 249, b: 128}, {r: 255, g: 255, b: 255}];
     this.inWater = false;
 
+    this.canDash = false;
+    this.canSwim = false;
+    this.canBreathUnderwater = false;
+    this.canShoot = false;
+
     var duckLeft =  { x: 2, y: 2 };
     var duckRight = { x: 1, y: 2 };
 
@@ -289,6 +294,8 @@ function Player() {
 
 
     this.handleStaticCollisions = function() {
+        shop.active = false;
+        diamondShop.active = false;
         var blocks = getBlocksNearItem(player);
         for(var Y = blocks.above; Y < blocks.below; Y++ ) {
            for(var X = blocks.left; X < blocks.right; X++ ) {
@@ -344,19 +351,16 @@ function Player() {
                 }
                 // Coins
                 if( isItem(item,'coin') && collide(this,item) ) {
-                    //items.splice(i, 1);
                     MapItems[Y][X] = null;
                     COINS++;
                 }
                 // Hearts
                 if( isItem(item,'heart') && collide(this,item) ) {
-                    //items.splice(i, 1);
                     MapItems[Y][X] = null;
                     HEARTS++;
                 }
-                // Hearts
+                // Diamonds
                 if( isItem(item,'diamond') && collide(this,item) && item.collected == false ) {
-                    //items.splice(i, 1);
                     MapItems[Y][X] = null;
                     DIAMONDS++;
                     DiamondsCollected[item.index] = true;
@@ -366,7 +370,7 @@ function Player() {
                     this.die();
                 }         
                 // Shop: Toggle space to open text
-                if( isItem(item, 'shop_vendor') ) {
+                if( isItem(item, 'shop_vendor') || isItem(item, 'diamond_shop') ) {
                     if (collide(item, this)) item.active = true;
                     else item.active = false;
                 }
