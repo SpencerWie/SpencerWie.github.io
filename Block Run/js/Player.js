@@ -38,7 +38,7 @@ function Player() {
 
     this.canDash = false;
     this.canSwim = false;
-    this.canBreathUnderwater = false;
+    this.canBreatheUnderwater = false;
     this.canShoot = false;
 
     var duckLeft =  { x: 2, y: 2 };
@@ -161,7 +161,7 @@ function Player() {
         }
 
         //Swim if your allowed to
-        //if(this.inWater && UP && this.dy > 3) this.dy = -this.jumpPower/1.5;
+        if(this.canSwim && this.inWater && UP && this.dy > 3) this.dy = -this.jumpPower/1.5;
        
         if(this.dy < 10 && !this.jump) this.ddy = GRAVITY; // Apply Gravity
        

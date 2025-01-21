@@ -1,10 +1,11 @@
 // Shop Buy and exit buttons
-function Button(x, y, w, h, cost, callback) {
+function Button(x, y, w, h, cost, callback, diamondCost = 0) {
     this.x = x;
     this.y = y;
     this.w = w;
     this.h = h;
     this.cost = cost;
+    this.diamondCost = diamondCost;
     this.condition = true;
 
     this.click = function() {
@@ -12,7 +13,8 @@ function Button(x, y, w, h, cost, callback) {
         if(this.canBuy()) {
             callback();
             COINS -= this.cost;
-            if(this.cost == 100) DIAMONDS--; // Double Jump cost a diamond.
+            DIAMONDS -= this.diamondCost;
+            //if(this.cost == 100) DIAMONDS--; // Double Jump cost a diamond.
             saveGame();
         }
     }
@@ -22,7 +24,7 @@ function Button(x, y, w, h, cost, callback) {
         return MouseX > this.x && MouseY > this.y && MouseX < this.x + this.w && MouseY < this.y + this.h;
     }
 
-    this.canBuy = function() { return this.condition && COINS >= this.cost; }
+    this.canBuy = function() { return this.condition && COINS >= this.cost && DIAMONDS >= this.diamondCost; }
 
     this.drawDisabled = function() {
         if(!this.canBuy()) {
@@ -42,7 +44,7 @@ var colorBtn = new Button(390, 108+btnYOffset*2, 17, 20, 50, () => {
     player.selectedColor = player.unlockedColors;
     shop.frameY = 1;
 });
-var doubleJumpBtn = new Button(390, 108+btnYOffset*3, 17, 20, 100, () => { player.canDoubleJump = true });
+var doubleJumpBtn = new Button(390, 108+btnYOffset*3, 17, 20, 100, () => { player.canDoubleJump = true }, 1);
 var buttons = [exitBtn, heartBtn, armorBtn, colorBtn, doubleJumpBtn];
 
 function Shop(e) {
@@ -110,10 +112,10 @@ function Shop(e) {
 // Diamond Shop buttons
 var btnYOffset = 34;
 var exitDiamondBtn = new Button(435, 84, 20, 16, 0, () => { ShowDiamondShop = false; });
-var airDashBtn = new Button(410, 108, 17, 20, 500, () => { player.canDash = true; });
-var swimBtn = new Button(410, 108+btnYOffset, 17, 20, 400, () => { player.canSwim = true; });
-var gillsBtn = new Button(410, 108+btnYOffset*2, 17, 20, 500, () => { player.canBreatheUnderwater = true; });
-var shootBtn = new Button(410, 108+btnYOffset*3, 17, 20, 3000, () => { player.canShoot = true });
+var airDashBtn = new Button(410, 108, 17, 20, 500, () => { player.canDash = true; }, 2);
+var swimBtn = new Button(410, 108+btnYOffset, 17, 20, 400, () => { player.canSwim = true; }, 2);
+var gillsBtn = new Button(410, 108+btnYOffset*2, 17, 20, 400, () => { player.canBreatheUnderwater = true; }, 2);
+var shootBtn = new Button(410, 108+btnYOffset*3, 17, 20, 3000, () => { player.canShoot = true }, 2);
 var diamondButtons = [exitDiamondBtn, airDashBtn, swimBtn, gillsBtn, shootBtn];
 
 function DiamondShop() {
@@ -134,12 +136,12 @@ function DiamondShop() {
         ctx.drawImage(this.image, this.frameX*this.width, 0, this.width, this.height, this.x, this.y, this.width, this.height);
 
         if(ShowDiamondShop) {
-            // All buttons are prerequisites of the previous button along with the diamond cost.
+            // All buttons are prerequisites of the previous button along with the diamond cost. Once you buy it once you cannot get it again.
             this.onButton = -1;
-            airDashBtn.condition = DIAMONDS > 1;
-            swimBtn.condition = player.canDash && DIAMONDS > 1;
-            gillsBtn.condition = player.canSwim && DIAMONDS > 1;
-            shootBtn.condition = player.canBreathUnderwater && DIAMONDS > 1;
+            airDashBtn.condition = !player.canDash && DIAMONDS > 1;
+            swimBtn.condition = !player.canSwim && player.canDash && DIAMONDS > 1;
+            gillsBtn.condition = !player.canBreatheUnderwater && player.canSwim && DIAMONDS > 1;
+            shootBtn.condition = !player.shootBtn && player.canBreatheUnderwater && DIAMONDS > 1;
 
             this.drawDialog('diamond_dialogs');
         }

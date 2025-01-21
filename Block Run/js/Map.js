@@ -74,7 +74,8 @@ function action() {
 }
 
 function saveGame(){
-    let gameData = {"COINS": COINS, "HEARTS": HEARTS, "ARMOR": ARMOR, "DIAMONDS": DIAMONDS, "UnlockedLevels": UnlockedLevels, "DiamondsCollected": DiamondsCollected, "UnlockedColors": player.unlockedColors, "DoubleJump": player.canDoubleJump};
+    let gameData = {"COINS": COINS, "HEARTS": HEARTS, "ARMOR": ARMOR, "DIAMONDS": DIAMONDS, "UnlockedLevels": UnlockedLevels, "DiamondsCollected": DiamondsCollected, "UnlockedColors": player.unlockedColors, 
+                    "DoubleJump": player.canDoubleJump, "CanDash": player.canDash, "CanSwim": player.canSwim, "CanBreatheUnderwater": player.canBreatheUnderwater, "CanShoot": player.canShoot};
     localStorage.setItem("BlockRunData", JSON.stringify(gameData));
     console.log("Game Saved");
 }
@@ -90,6 +91,10 @@ function loadGame(){
         DiamondsCollected = gameData.DiamondsCollected || DiamondsCollected;
         player.unlockedColors = gameData.UnlockedColors;
         player.canDoubleJump = gameData.DoubleJump ? true : false;
+        player.canDash = gameData.CanDash ? true : false;
+        player.canSwim = gameData.CanSwim ? true : false;
+        player.canBreatheUnderwater = gameData.CanBreatheUnderwater ? true : false;
+        player.canShoot = gameData.CanShoot ? true : false;
         console.log("Game Loaded");
     }
 }
