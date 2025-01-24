@@ -55,7 +55,7 @@ function action() {
             if((isItem(item,'portal') || isItem(item,'boss_portal')) && collide(player,item)) {
                 if(!item.unlocked) return;
                 var level = Number.parseInt(item.map)
-                if(level) {
+                if(level && levels.length > level) {
                     currentMapIdx = level;
                     createMap(level);
                 } else {
