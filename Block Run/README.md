@@ -22,8 +22,7 @@ The original game <em>Block Run</em>, was created as a simple platform game in P
 <ul>
   <li>More Bosses 0.9x-1.0x</li>
   <li>New Enemies</li>
-  <li>Diamond Store</li>
-  <li>New Town Area after beating Big Red</li>
+  <li>More Town NPCs</li>
   <li>Ice tiles.</li>
   <li>Title Screen + Intro Tutorial</li>
 </ul>  
