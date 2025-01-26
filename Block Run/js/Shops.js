@@ -9,12 +9,10 @@ function Button(x, y, w, h, cost, callback, diamondCost = 0) {
     this.condition = true;
 
     this.click = function() {
-        console.log("Clicked:" + this.canBuy());
         if(this.canBuy()) {
             callback();
             COINS -= this.cost;
             DIAMONDS -= this.diamondCost;
-            //if(this.cost == 100) DIAMONDS--; // Double Jump cost a diamond.
             saveGame();
         }
     }
@@ -85,6 +83,18 @@ function Shop(e) {
         }
     }
 
+    this.crossOutButton = function(btn, width = this.shopW, startSpace = 15, endSpace = 35) {
+        var oldStrokeStyle = ctx.strokeStyle;
+        ctx.strokeStyle = "black";
+        ctx.beginPath();
+        var x = canvas.width - scrollX - canvas.width/2 - width/2 + startSpace;
+        var y = btn.y + 8;
+        ctx.moveTo(x, y);
+        ctx.lineTo(x + width - endSpace, y);
+        ctx.stroke();
+        ctx.strokeStyle = oldStrokeStyle;
+    }
+
     this.draw = function() {
         // Display Space to shop or close shop when player leaves
         if(this.active) {
@@ -103,8 +113,10 @@ function Shop(e) {
             armorBtn.condition = !ARMOR;
             colorBtn.condition = player.colors.length - 1 > player.unlockedColors;
             doubleJumpBtn.condition = player.canDoubleJump == false && DIAMONDS > 0;
-
             this.drawDialog();
+
+            // Cross out already brought upgrades
+            if(player.canDoubleJump) this.crossOutButton(doubleJumpBtn, this.shopW - 30, -5, 25);
         }
     }
 }
@@ -144,6 +156,12 @@ function DiamondShop() {
             shootBtn.condition = !player.shootBtn && player.canBreatheUnderwater && DIAMONDS > 1;
 
             this.drawDialog('diamond_dialogs');
+
+            // Cross out already brought upgrades (This show the player can tell which one they are on)
+            if(player.canDash) this.crossOutButton(airDashBtn);
+            if(player.canSwim) this.crossOutButton(swimBtn);
+            if(player.canBreatheUnderwater) this.crossOutButton(gillsBtn);
+            if(player.shootBtn) this.crossOutButton(shootBtn);
         }
     }
 }
