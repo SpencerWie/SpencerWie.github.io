@@ -408,7 +408,9 @@ function Player() {
                 if( isItem(item,'diamond') && collide(this,item) && item.collected == false ) {
                     MapItems[Y][X] = null;
                     DIAMONDS++;
-                    DiamondsCollected[item.index] = true;
+                    
+                    if(DiamondsCollected.length > item.index) DiamondsCollected[item.index] = true;
+                    else DiamondsCollected.push(true);
                 }       
                 // Spikes
                 if( isItem(item,'spikes') && collide(this,item) ) {

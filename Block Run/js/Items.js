@@ -213,6 +213,12 @@ function Coin(x, y) {
     this.draw = function() {
         if(this.unlocked) {
             ctx.drawImage(this.image, this.active ? this.width : 0, 0, this.width, this.height, this.x, this.y, this.width, this.height);
+            if(DiamondsCollected.length > this.map && DiamondsCollected[this.map] && this.active) {
+               ctx.globalAlpha = 0.6;
+               //ctx.drawImage(images["diamond_icon"], this.x + 64 + 6, this.y + 64 + 16 + 4);
+               ctx.drawImage(images["diamond_icon"], this.x + 64 + 12, this.y + 2);
+               ctx.globalAlpha = 1.0
+            }
         } else {
             ctx.globalAlpha = 0.5;
             ctx.drawImage(this.image, 0, 0, this.width, this.height, this.x, this.y, this.width, this.height);

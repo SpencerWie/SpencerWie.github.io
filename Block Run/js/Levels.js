@@ -210,7 +210,7 @@ function loadImages()
    images = {};
    var imgs = [
       "player_blink", "block", "coin", "diamond", "heart", "background", "enemies", "portal", "boss_portal", "lock", "lock_silver", "key", "key_silver", "spikes", "platform", "falling_platform" , "enemy_spike", "armor",
-      "BigRed", "BigRed_Attack", "block_bigred", "Miner", "Mayor", "talk", "chat", "shop_vendor", "shop_dialogs", "diamond_shop", "diamond_dialogs"
+      "BigRed", "BigRed_Attack", "block_bigred", "Miner", "Mayor", "talk", "chat", "shop_vendor", "shop_dialogs", "diamond_shop", "diamond_dialogs", "diamond_icon"
    ];
 
    for(var img in imgs) {
