@@ -61,3 +61,40 @@ function Enemy(x, y, width, height, image, speed ,walkSteps, hp, type)
    	}
 	}
 }
+
+function JellyFish(x, y, size) {
+	Enemy.call(this, x, y, size, size, images["jellyfish"], 5, 0, 1, "jellyfish");
+	this.MaxFrames = 8;
+	this.frameTicks = 8;
+	this.frame = 0;
+	this.ticks = 0;
+	this.movementSpeed = 1;
+	this.speed = this.movementSpeed;
+
+	this.draw = function(){
+		this.update();
+		var oldAlpha = ctx.globalAlpha;
+		ctx.globalAlpha = 0.8;
+		ctx.drawImage(this.image, this.frame*this.width, 0, this.width, this.height, this.x, this.y, this.width, this.height);
+		ctx.globalAlpha = oldAlpha;
+	}
+
+	this.update = function() {
+		this.animate();
+		var blocks = getBlocksNearItem(this, 1);
+		var aboveBlock = MapItems[blocks.above]?.[blocks.left+1];
+		var belowBlock = MapItems[blocks.below-1]?.[blocks.left+1];
+		if(!aboveBlock || aboveBlock.image != 'water' || this.y <= 0) this.speed = this.movementSpeed;
+		else if(!belowBlock || belowBlock.image != 'water') this.speed = -this.movementSpeed;
+	 	this.y += this.speed;
+	}
+
+	this.animate = function() {
+		this.ticks++;
+		if(this.ticks >= this.frameTicks) {
+			this.ticks = 0;
+			this.frame++;
+			if(this.frame >= this.MaxFrames) this.frame = 0;
+		}
+	}
+}

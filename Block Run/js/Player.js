@@ -483,7 +483,7 @@ function Player() {
                 } 
             }
             // Spike Enemy: Player dies on hit
-            if( isItem(enemy,'enemy_spike') && collide(enemy, this) ) this.die();
+            if( (isItem(enemy,'enemy_spike') | isItem(enemy,'jellyfish')) && collide(enemy, this) ) this.die();
             // Shop: Toggle space to open text
             if( isItem(enemy, 'shop_vendor') ) {
                 if (collide(enemy, this)) enemy.active = true;
