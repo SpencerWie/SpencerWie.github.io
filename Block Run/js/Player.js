@@ -35,6 +35,9 @@ function Player() {
     this.unlockedColors = 0; // Unlocked color indexes
     this.colors = [{r: 0, g: 0, b: 0}, {r: 255, g: 249, b: 128}, {r: 255, g: 255, b: 255}];
     this.inWater = false;
+    this.MaxBreathe = 33;
+    this.breatheTicks = 0.05;
+    this.breathe = 33;
 
     this.canDash = false;
     this.startDash = false;
@@ -53,7 +56,7 @@ function Player() {
     var armorTimer = 1;
     
     this.draw = function() {
-        if(this.inWater) ctx.globalAlpha = 0.5;
+        this.drawWaterBreathe();
         ctx.drawImage(this.image, this.frameX*this.size, this.frameY*this.size, this.size, this.size, this.x, this.y, this.size, this.size);
         ctx.globalAlpha = 1;
         this.drawPlayerSelectedColors();
@@ -68,6 +71,25 @@ function Player() {
                 armorTimer = 1;
             }
         }
+    }
+
+    this.drawWaterBreathe = function() { 
+        var lastFillStyle = ctx.fillStyle;
+        if(this.inWater && !this.canBreatheUnderwater) {
+            ctx.globalAlpha = 0.8;
+            if(this.breathe > 0) this.breathe -= this.breatheTicks;
+            ctx.fillStyle = "rgba(0, 0, 65, 1)";
+            ctx.fillRect(this.x - 4, this.y - 20, this.MaxBreathe + 5, 10);
+            ctx.fillStyle = "lightblue";
+            ctx.fillRect(this.x - 2, this.y - 19, this.breathe, 8);
+            if(this.breathe <= 0) this.die();
+        }
+        ctx.fillStyle = lastFillStyle;
+
+        if(this.inWater) 
+            ctx.globalAlpha = 0.5;
+        else 
+            this.breathe = this.MaxBreathe;
     }
     
     this.update = function() 
@@ -480,6 +502,7 @@ function Player() {
        var self = this
         if(ARMOR) {
             armorBreak = true;
+            this.breathe = this.MaxBreathe / 4;
         } else if(!DEAD){
             DEAD = true;
             setTimeout(function(){
@@ -489,8 +512,8 @@ function Player() {
                     createMap(-1);
                     saveGame();
                 }
-                // If the player has hearts subtract, if the player is out of lives restart.
-                if( HEARTS > 1 ) HEARTS--;
+                // If the player has hearts subtract, if the player is out of lives restart. If the player dies in town they do not lose a heart.
+                if( HEARTS > 1 && currentMapIdx != 0 ) HEARTS--;
                 else location.reload();
          }, 3000);
        }
