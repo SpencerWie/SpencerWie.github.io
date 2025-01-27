@@ -36,7 +36,7 @@ function Player() {
     this.colors = [{r: 0, g: 0, b: 0}, {r: 255, g: 249, b: 128}, {r: 255, g: 255, b: 255}];
     this.inWater = false;
     this.MaxBreathe = 33;
-    this.breatheTicks = 0.05;
+    this.breatheTicks = 0.04;
     this.breathe = 33;
 
     this.canDash = false;
@@ -504,7 +504,7 @@ function Player() {
        var self = this
         if(ARMOR) {
             armorBreak = true;
-            this.breathe = this.MaxBreathe / 4;
+            if(this.breathe < 1) this.breathe = this.MaxBreathe / 4;
         } else if(!DEAD){
             DEAD = true;
             setTimeout(function(){

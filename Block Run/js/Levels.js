@@ -146,9 +146,9 @@ var level_5 = [
    '#                #WW#                               ooo                #                                                                                  WW          #',
    '#                 WW                                                   #                                                                                  WW          #',
    '#                 WW                    oo           v      oo         #                                                                                  WW        P #',
-   '# o o o o o       WW        oo          __          >#<     __         #                                                                                  WW   #__#####',
+   '# o o o o o       WW        oo          __          >#<     __         #                                                                             oo   WW   #__#####',
    '##############    WW        __                      >#<                #       ###                                                                   ~    WW   #WW#   ',
-   '#             #WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW#WWWWWWWWWWWWWWWWW#_       #WWWWWWWWWWWWWWWWWWWWWWWWWWW##                              o             WW   #WW#   ',
+   '#             #WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW#WWWWWWWWWWWWWWWWW#_       #WWWWWWWWWWWWWWWWWWWWWWWWWWW##      o                       o             WW   #WW#   ',
    '#             #WWWjWWWWWWWWWWWWWWW##WWWWWWWWWWWWWWWWW#WWWWWWWWWWWWWW#WW#  o o   #WWWWWWWWWWWWWWWWWWWWWWWWWWW##     >#<   o            o    >#<            WW   #WW#   ',
    '#   _______   #WWWWWWWWWWWWWWWWWSWWWWWWWWWWWWWWWWWWWW#WWWWWWWWWWWWWW#WW#EoEo o  #WWW##WWWWWjWWWWWWWWWWWWWWW###     >#<  >#<    o     >#<   >#<            WW   #WW#   ',
    '#WWWWWWWWWWWWW#WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWS#######WWWWWWWWWWW#WW##########WWW##WWWWWWWWWWWWWWWWWWWW####     >#<  >#<   >#<    >#<   >#<   ##       WW   #WW#   ',
@@ -159,7 +159,7 @@ var level_5 = [
    '# oHo#WWWW#    o WWWW o       #  #                                o      o                                                                          ^^     ~   #WW#',
    '# ___#WWWW#    __WWWW__       #  #                S                  vv                                                     vv       S   vv                    #WW#',
    '#    #WWWW# o    WWWW       o #  #                           ooo    >##<    ooo   o         o                       oo     >##<    oo   >##<    ~       ~      #WW#',   
-   '#oo  #WWWW#__    WWjW       __#  #                    oo    >###<   >##<   >###<  ##E      ##      oo              ####    >##<    ~    >##<                   #WW#',   
+   '#oo  #WWWW#__    WWjW       __#  #                    oo    >###<   >##<   >###<  ##E      ##      oo              ####    >##<    ~    >##<    oo      oo     #WW#',   
    '#__  #WWWW#WWWWWWWWWWWWWWWWWWW#  #                   >##<    ^^^     ^^     ^^^    #########       ~         ##             ^^           ^^     ~       ~      #WW#',
    '#    #WWWW##WWWWWWWWWWWWWWWWWW#oo#      ___           ^^                           #       #                 ##vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv#WW#', 
    '#  oo#WWWW###WWWWWWWWWWWWWWWWWlool             _#vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv#       #vvvvvvvvvvvvvvvvv###################################################WW#',  
@@ -168,7 +168,7 @@ var level_5 = [
    '#oo   WWWW                ##WWWWWWWWWWWWW##WWWWWWWWWWWWWWWWWWWWWWWWWWW###ooo##WWWWWWWWWWW#                                                                     #WW#',  
    '#__   WWWW                 WWWWWWWWWWWWWW##WWWWWWWWWWWWWWWWWWWWWWWWWWWWW#ooo##WWW#_____WW#                                                                     #WW#',  
    '#     WWWW            M    WWWWjWWWWWWWWWWWWWWWWWW##WWWWWWWWWWWWWWWWWWWWWWWWWWWWW#     WW#                 o   o   o   o   o           oo      S            k  #WW#',  
-   '#     WWWW         #########WWWWWWWWWWWWWWWWWWWWWW##WWWWjWWWWWWWWWWWWWWWWWWWWWWW##     WW# o  o  o  o  #WWW###################         ~         oo         ~  #WW#',  
+   '#     WWWW         #########WWWWWWWWWWWWWWWWWWWWWW##WWWWjWWWWWWWWWWWWWWWWWWWWWWW## oo  WW# o  o  o  o  #WWW###################         ~         oo         ~  #WW#',  
    '#     WWWW         #       #WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW###########  __  WW#             #WWW#     #WWWWWWWWWWWW                   ~             #WW#',  
    '#WWSWWWWWWWWWWWWWW##       #WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW##WWWW#                WW#E      E     #WjW#    ##WWWWWWWWWWWW S        oo     vvvvvvvvvvvvvvvv#WW#',  
    '#WWWWWWWWWWWWWWWWW##  D K  #WWWWWWWWWWWWWWWWWWWWWWWWWWW##WWWWWWW##WWWW#  o o o o o o  #WW###############WWW######WWW########WW          ~      #################WW#',  
@@ -176,7 +176,41 @@ var level_5 = [
    ' ###################       LWW##WWWWWWWWW##WWWWWWWWWWWWWWWWWWWWWWWWWWW#################WWWWWWWWWWWWWWWWWWWWWWWWWWWWW##WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW#',   
    '                      ##########vvvvvvvvv##vvvvvvvvvvvvvvvvvvvvvvvvvvv#############################################################################################',  
    '###################################################################################################################################################################',  
-]
+];
+
+var level_6 = [
+   '######################                                                                                       ######################   ',
+   '#   #            # # #                                                                                         WWWWWWWWWWWWW# ooo #   ',
+   '#   #            # # #                                                                                         WWWWWWWWWWjWW# oKo #   ',
+   '# D l   P    M   L L L                                                                                       ####WWWWWWWWWWW# ooo #   ',
+   '#######################                                                                                         #WWWWWWWWWWW##WWWW#   ',
+   '#                    ###                                               #####  S     TT                          #WWWWWWjWWWWWWWWWW#   ',
+   '#                    ####                                             ######                                    ##WWWWWWWWWWWWWjW##   ',
+   '#                    #####                                           #######        S     TT                    #WWWWWWWWWWjWWWWWW#   ',
+   '#                    ######                                         ########                                   o#WWWWWWWWWWWWWWWWW#   ',
+   '#           o      o ##########################################  ###########vvvvvvvvv                oo        o#WWWWWW###############',
+   '##############WWWW####                                             o o o ###^^^^^^^^^                ~          #WWWjWWWWWWWWWWWWW oo#',
+   '##############WWWW#                 ######################################<                                     ##WWWWWWWWWWWWWWWW oo#',
+   '#WWWWWWW#    #WWWW#                #    WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW#<                                   ~ #WWWWWWWSWWWWWW#######',
+   '#jWWWWjW######WWWW#               #  k  WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW#<                 oo       TT         #WWWWWWWWWWWWWWWWW#',
+   '#WWW#WWWWWWWWWWWWW#                ###################################WWj#<  S      TT      TT                  ###WWWWWWWWWWWWWWW#',
+   '#WWW#WWWWWWWWWWWWW#        oo                                         #WW#<         S                           #WWWWWWWWWWWWWWWWW#',
+   '#WWW###############        ~                                          #WW#<                    S                #WWWWWWWW#oo#WWWWW#',
+   '#WWW#####WWWWWWWW##  oo                                               #WW#<   TT                                #WWWWWWWWW##WWWWjW#',
+   '#WWjWWWWWWWWWWWWW##  ~         o  o  o  o      o      o      o        #WW#<                 oo      oo        K #WWWWWWWWWWWWWWWWW#',
+   '#WWWWWWWWWWW#WWWW##                            #E     #E     #E       #WW#<         TT      TT      TT       TTT#WWWWWWWWWWWWWWW###',
+   '#############WWWW#########################WWWWW#####################  #WW#<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv#WWWWWWjWWWWWWWWWW#',
+   '#           #WWWW#         #             #WWWjW#                      #WW##########################################WWWWWWWWWWWWWWW#',
+   '#           #WWWW#         #             ##WWWW# K  o  o   o  o       #WW#     #WW#  #WW#                    #oo WWWWWWWWWWWWWWWWW#',
+   '#           #    #         #             #WWWWW#                     ##WW##    #jW#  #Wj# H o o o o o o o    #oo WWWWWWWWWWWWWWWWW#',
+   '#                        #################WWWWW#########o o############WW#######WW####WW###########   #############WWWWWWWWWWWWWWW#',
+   '#                         WWWWWWWWWWWWWWWWWWWW#WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW#',
+   '#          o o o o        WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW###',
+   '#                         WWWWWWWWWWWWWWWWWjWWWWWWWWWWWWWWWWWWWWWWWWWWWjWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW#',
+   '#  o o o  ##########     #######################################################Wj####jW#############################WWWWWWWWWWWWW#',
+   '#         #        #       #                                                   #WW#  #WW# o  o  o  o  o  o  o  o     WWWWWWWWWWWWW#',
+   '##################################################################################################################################W',
+];
  
  var town = [
     '#                                               r                                                                       #',
@@ -186,9 +220,9 @@ var level_5 = [
     '#                                               r                                                                       #',
     '#                                               r                #                                                      #',
     '#                                               r   ##WWWWWWWWWWW##                                                     #',
-    '#        $                            5         r  ###WWWWjWWWWWW###    d                                               #',
+    '#        $                            5         r  ###WWWWWjWWWWW###    d                                               #',
     '#  M                1   2   3   4   #####     Y r ####WWWWWWWWWWW####         6   7   8                                 #',
-    '#########################################################################################################################', 
+    '#######################################################WWWWWWWWWW########################################################', 
     '#########################################################################################################################',    
     '#                                                                                                                       #',   
     '#                                                           #WW#           #WWWWWWWWWWWW                                #',  
@@ -202,7 +236,7 @@ var level_5 = [
     '#########################################################################################################################',
  ];
 
- var levels = [town, level_1, level_2, level_3, level_4, boss_level_1, level_5];
+ var levels = [town, level_1, level_2, level_3, level_4, boss_level_1, level_5, level_6];
 
 function loadImages() 
 {

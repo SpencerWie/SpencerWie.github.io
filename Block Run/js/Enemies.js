@@ -63,11 +63,12 @@ function Enemy(x, y, width, height, image, speed ,walkSteps, hp, type)
 }
 
 function JellyFish(x, y, size) {
-	Enemy.call(this, x, y, size, size, images["jellyfish"], 5, 0, 1, "jellyfish");
+	Enemy.call(this, x, y, size - 4, size - 4, images["jellyfish"], 5, 0, 1, "jellyfish");
 	this.MaxFrames = 8;
 	this.frameTicks = 8;
 	this.frame = 0;
 	this.ticks = 0;
+	this.size = size;
 	this.movementSpeed = 1;
 	this.speed = this.movementSpeed;
 
@@ -75,7 +76,7 @@ function JellyFish(x, y, size) {
 		this.update();
 		var oldAlpha = ctx.globalAlpha;
 		ctx.globalAlpha = 0.8;
-		ctx.drawImage(this.image, this.frame*this.width, 0, this.width, this.height, this.x, this.y, this.width, this.height);
+		ctx.drawImage(this.image, this.frame*this.size, 0, this.size, this.size, this.x + 2, this.y + 2, this.size, this.size);
 		ctx.globalAlpha = oldAlpha;
 	}
 
