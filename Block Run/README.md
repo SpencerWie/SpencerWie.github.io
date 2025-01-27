@@ -18,18 +18,18 @@ The original game <em>Block Run</em>, was created as a simple platform game in P
   <li><em><strong>C:</strong></em> Change player color if brought, cycles through them going back to the default color.</li>
 </ul>
 
-<h3>Future Planned Changes:</h3>
+<h3>Planned Changes: 0.9x-1.0</h3>
 <ul>
-  <li>More Bosses 0.9x-1.0x</li>
-  <li>New Enemies</li>
+  <li>Boss: Big Jelly </li>
+  <li>Small Red: Like big red but dies in one hit, shoots small laser ball </li>
   <li>More Town NPCs</li>
-  <li>Ice tiles.</li>
+  <li>Town Hospital: Allows you to donate Hearts for Coins</li>
   <li>Title Screen + Intro Tutorial</li>
 </ul>  
 
-<h3>Current Version: <strong><em>v0.87</em></strong></h3>
+<h3>Current Version: <strong><em>v0.9</em></strong></h3>
 <ul>
-  <li>Stage 6 is completed.</li>
+  <li>Stage 6 and Stage 7 is completed.</li>
   <li>Enemy optimizations and bug fixes.</li>
   <li>Diamond Store.</li>
   <li>New unlockable ability: Dash (2 Diamonds + 500): While in the air SPACE allows you to dash forward.</li>
@@ -37,8 +37,6 @@ The original game <em>Block Run</em>, was created as a simple platform game in P
   <li>New unlockable ability: Gills (2 Diamonds + 400 coins): Removes breath meter, can stay in water without drowning.</li>
   <li>Breath Meter</li>
   <li>New Enemy: Jelly Fish - Moves up and down in water</li>
-  <li>Stage 7 - Planned</li>
-  <li>New Enemy: Piranha - Follows the player while they are in water. - Maybe</li>
 </ul>
 
 <h3><em>v0.7</em></h3>
