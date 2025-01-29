@@ -5,7 +5,7 @@
 <img src="screenshot.PNG" style="display:block; margin: auto" alt="Game Play Example" />
 
 <p>
-The original game <em>Block Run</em>, was created as a simple platform game in Python (using pyGame). It was the first "real" game that I've created, because of this things were not done in the most effiecent way. Now I'm doing a new and improved <em>Block Run</em> written in JavaScript using the HTML5 Canvas. 
+The original game <em>Block Run</em>, was created as a simple platform game in Python (using pyGame). It was the first <em>"real"</em> game that I've created, because of this things were not done in the most effiecent way. Now I'm doing a new and improved <em>Block Run</em> written in JavaScript using the HTML5 Canvas. 
 </p>
 
 <h3>How to Play:</h3>
@@ -14,20 +14,20 @@ The original game <em>Block Run</em>, was created as a simple platform game in P
 	<li><em><strong>Up Arrow key:</strong></em> Jump.</li>
 	<li><em><strong>Down Arrow key:</strong></em> Duck.</li>
 	<li><em><strong>Shift (Hold):</strong></em> Sprint.</li>
-	<li><em><strong>Space:</strong></em> Action (Use Portal/Shop/etc).</li>
+	<li><em><strong>Space:</strong></em> Action (Use Portal/Shop/Ability/etc).</li>
   <li><em><strong>C:</strong></em> Change player color if brought, cycles through them going back to the default color.</li>
 </ul>
 
-<h3>Planned Changes: 0.9x-1.0</h3>
+<h3>Current Version: <strong><em>v0.90</em></strong></h3>
 <ul>
-  <li>Boss: Big Jelly </li>
-  <li>Small Red: Like big red but dies in one hit, shoots small laser ball </li>
-  <li>More Town NPCs</li>
-  <li>Town Hospital: Allows you to donate Hearts for Coins</li>
-  <li>Title Screen + Intro Tutorial</li>
-</ul>  
+  <li>Boss: Big Jelly - Planned</li>
+  <li>Small Red: Like big red but dies in one hit, shoots small laser ball - Planned</li>
+  <li>More Town NPCs - Planned</li>
+  <li>Town Hospital: Allows you to donate Hearts for Coins - Planned</li>
+  <li>Title Screen + Intro Tutorial - Planned</li>
+</ul>
 
-<h3>Current Version: <strong><em>v0.9</em></strong></h3>
+<h3><em>v0.9</em></h3>
 <ul>
   <li>Stage 6 and Stage 7 is completed.</li>
   <li>Enemy optimizations and bug fixes.</li>
