@@ -65,6 +65,7 @@ function action() {
             }
             if(isItem(item,'shop_vendor') && collide(player,item)) ShowShop = true;     
             if(isItem(item,'diamond_shop') && collide(player,item)) ShowDiamondShop = true;
+            if(isItem(item,'donate_shop') && collide(player,item)) item.donate();
             if((isItem(item,'Miner') || isItem(item,'Mayor'))  && item.active && chat.active == false) {
                 // Determine what the npc says if they have other text items
                 chat.text = item.text2 != "" && chat.text == item.text1 ? item.text2 : item.text1;
@@ -185,6 +186,7 @@ function createMap(index) {
             else if(char == '<') addToMap(new Spikes(x, y, "left"), X, Y);              
             else if(char == '$') { addToMap(shop, X, Y); shop.setPosition(x, y); }
             else if(char == 'd') { addToMap(diamondShop, X, Y); diamondShop.setPosition(x, y); }
+            else if(char == 'h') { addToMap(donateShop, X, Y); donateShop.setPosition(x, y); }
             else if(char == 'R') { boss = new BigRed(x, y, items.length); addToMap(boss, X, Y); }
             else if(char == 'r' && !bigReadBeaten) addToMap(new Block(x, y, "block_bigred"), X, Y);
             else if(char == 'M') addToMap(new Npc(x, y, "Miner", index), X, Y);

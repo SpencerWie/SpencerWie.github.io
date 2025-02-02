@@ -41,6 +41,7 @@ function Npc(x, y, type, index, beatBigRed = false) {
     this.index = index;
     this.text1 = "I'm a diamond miner. Collecting diamonds lets you purchase \n rare items and abilities!";
     this.text2 = "";
+    var townMayor = this.type == "Mayor" && this.index == 0;
     
     if(this.type == "Miner" && this.index == 0) this.text2 = "Normal levels have secret paths and often require Double\n Jump for their diamond. Defeating a boss gives you one too!"
     if(this.type == "Miner" && this.index == 1) this.text1 = "If you had Double Jump and Armor you might be able to get \n to the diamond up there somehow.";
@@ -49,8 +50,9 @@ function Npc(x, y, type, index, beatBigRed = false) {
     if(this.type == "Miner" && this.index == 4) this.text1 = "There must be a silver key around somewhere. Such a \n shinny diamond so close to us!";
     if(this.type == "Miner" && this.index == 5) this.text1 = "Congratulations on beating Big Red and he had a diamond! \nThat may allow you to find more them in pervious levels.";
     if(this.type == "Miner" && this.index == 6) this.text1 = "Not sure how to get that one down there. But something \n tells me you need to be able to Dash and Swim to get it.";
-    if(this.type == "Mayor" && this.index == 0 && !beatBigRed) this.text1 = "That Big Red has blocked the way to to rest of our town! \n If someone could defeat him maybe the way will open up.";
-    if(this.type == "Mayor" && this.index == 0 && beatBigRed) this.text1 = "Amazing you beat Big Red! Thank you for playing Block Run. \n Part 2 soon. Pervious levels has challenges for diamonds!";
+    if(townMayor && !beatBigRed) this.text1 = "That Big Red has blocked the way to to rest of our town! \n If someone could defeat him maybe the way will open up.";
+    if(townMayor && beatBigRed) this.text1 = "Amazing you beat Big Red! Thank you for playing Block Run. \n Pervious levels has challenges for diamonds!";
+    if(townMayor && this.index == 0) this.text2 = "I'm the Mayor here at Block Town, we need your help! If\n you have extra lives you can donate them for coins."
     if(this.type == "Mayor" && this.index == 2) this.text1 = "Seems like Big Red's older brother Dark Red has been \n locked away down here. Be carefull!";
     this.text = this.text1;
 

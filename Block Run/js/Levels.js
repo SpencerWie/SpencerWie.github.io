@@ -220,8 +220,8 @@ var level_6 = [
     '#                                               r                                                                       #',
     '#                                               r                #                                                      #',
     '#                                               r   ##WWWWWWWWWWW##                                                     #',
-    '#        $                            5         r  ###WWWWWjWWWWW###    d                                               #',
-    '#  M                1   2   3   4   #####     Y r ####WWWWWWWWWWW####         6   7   8                                 #',
+    '# h           $                       5         r  ###WWWWWjWWWWW###    d                                               #',
+    '#      M            1   2   3   4   #####     Y r ####WWWWWWWWWWW####         6   7   8                                 #',
     '#######################################################WWWWWWWWWW########################################################', 
     '#########################################################################################################################',    
     '#                                                                                                                       #',   
@@ -244,7 +244,7 @@ function loadImages()
    images = {};
    var imgs = [
       "player_blink", "block", "coin", "diamond", "heart", "background", "enemies", "portal", "boss_portal", "lock", "lock_silver", "key", "key_silver", "spikes", "platform", "falling_platform" , "enemy_spike", "armor",
-      "BigRed", "BigRed_Attack", "block_bigred", "Miner", "jellyfish", "Mayor", "talk", "chat", "shop_vendor", "shop_dialogs", "diamond_shop", "diamond_dialogs", "diamond_icon"
+      "BigRed", "BigRed_Attack", "block_bigred", "Miner", "jellyfish", "Mayor", "talk", "chat", "shop_vendor", "shop_dialogs", "diamond_shop", "diamond_dialogs", "diamond_icon", "donate_shop"
    ];
 
    for(var img in imgs) {

@@ -341,6 +341,7 @@ function Player() {
     this.handleStaticCollisions = function() {
         shop.active = false;
         diamondShop.active = false;
+        donateShop.active = false;
         var blocks = getBlocksNearItem(player);
         for(var Y = blocks.above; Y < blocks.below; Y++ ) {
            for(var X = blocks.left; X < blocks.right; X++ ) {
@@ -417,7 +418,7 @@ function Player() {
                     this.die();
                 }         
                 // Shop: Toggle space to open text
-                if( isItem(item, 'shop_vendor') || isItem(item, 'diamond_shop') ) {
+                if( isItem(item, 'shop_vendor') || isItem(item, 'diamond_shop') || isItem(item, 'donate_shop') ) {
                     if (collide(item, this)) item.active = true;
                     else item.active = false;
                 }

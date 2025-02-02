@@ -166,6 +166,31 @@ function DiamondShop() {
     }
 }
 
+function DonateShop() {
+    Shop.call(this); 
+    this.image = images["donate_shop"];
+
+    this.draw = function() {
+        // Display Space to shop or close shop when player leaves
+        if(this.active) {
+            if(HEARTS > 4) this.frameX = 2;
+            else this.frameX = 1;
+        } else {
+            this.frameX = 0;
+        }
+
+        // Draw Vendor
+        ctx.drawImage(this.image, this.frameX*this.width, 0, this.width, this.height, this.x, this.y, this.width, this.height);
+    }
+
+    this.donate = function() {
+        if(this.frameX == 2 && HEARTS > 4) {
+            HEARTS--;
+            COINS+= 15
+        }
+    }
+}
+
 
 document.onmousemove = function(e){
     MouseX = e.clientX - canvas.offsetLeft;
@@ -174,6 +199,7 @@ document.onmousemove = function(e){
 
 var shop = new Shop();
 var diamondShop = new DiamondShop();
+var donateShop = new DonateShop();
 
 document.onmouseup = function(e) {
     if(ShowShop) {
