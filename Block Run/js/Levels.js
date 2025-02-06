@@ -270,7 +270,7 @@ var level_7 = [
     '#########################################################################################################################',
  ];
 
- var levels = [town, level_1, level_2, level_3, level_4, boss_level_1, level_5, level_6];
+ var levels = [town, level_1, level_2, level_3, level_4, boss_level_1, level_5, level_6, level_7];
 
 function loadImages() 
 {
