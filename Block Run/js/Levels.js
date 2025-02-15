@@ -224,20 +224,20 @@ var level_7 = [
    '# o o o  #     #WWWWWWWWWWWWWWWjWW#WWWWWWWWWWWWWWWWWW#     ##     #                         T         S       T                  o#   ',
    '#       #  k   LWWWWWWWWWSWWWWWWWW#WWWWWWWWWWWWWWWWWW#vvvvv##vvvvv#vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv#         ##   ',
    '########################################################################################################################WWWWWWWWWW#   ',
-   '###################                 ######################################<                                     ##WWWWWWWWWWWWWWWW#   ',
-   '#WWWWWWW#    #WWWW#                #    WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW#<                                   ~ #WWWWWWWSWWWWWW#######',
-   '#jWWWWjW######WWWW#               #  k  WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW#<                 oo       TT         #WWWWWWWWWWWWWWWWW#',
-   '#WWW#WWWWWWWWWWWWW#                ###################################WWj#<  S      TT      TT                  ###WWWWWWWWWWWWWWW#',
-   '#WWW#WWWWWWWWWWWWW#        oo                                         #WW#<         S                           #WWWWWWWWWWWWWWWWW#',
-   '#WWW###############        ~                                          #WW#<                    S                #WWWWWWWW#oo#WWWWW#',
-   '#WWW#####WWWWWWWW##  oo                                               #WW#<   TT                                #WWWWWWWWW##WWWWjW#',
-   '#WWjWWWWWWWWWWWWW##  ~         o  o  o  o      o      o      o        #WW#<                 oo      oo        K #WWWWWWWWWWWWWWWWW#',
-   '#WWWWWWWWWWW#WWWW##                            #E     #E     #E       #WW#<         TT      TT      TT       TTT#WWWWWWWWWWWWWWW###',
-   '#############WWWW#########################WWWWW#####################  #WW#<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv#WWWWWWjWWWWWWWWWW#',
-   '#           #WWWW#         #             #WWWjW#                      #WW##########################################WWWWWWWWWWWWWWW#',
-   '#           #WWWW#         #             ##WWWW# K  o  o   o  o       #WW#     #WW#  #WW#                    #oo WWWWWWWWWWWWWWWWW#',
-   '#           #    #         #             #WWWWW#                     ##WW##    #jW#  #Wj# H o o o o o o o    #oo WWWWWWWWWWWWWWWWW#',
-   '#                        #################WWWWW#########o o############WW#######WW####WW###########   #############WWWWWWWWWWWWWWW#',
+   '#                                                                                                               ##WWWWWWWWWWWWWWWW#   ',
+   '#                                                                                                               #WWWWWWWWWWWWWW#######',
+   '#                       Y                                                                                       #WWWWWWWWWWWWWWWWW#',
+   '#                    #############                                    o     oo      oo        # o  o  oS o  o   ###WWjWWWWWWWWWWWW#',
+   '#                    #           #                                    E     ##E     ##        #S oo   o   oo    #WWWWWWWWWWWWWWWWW#',
+   '#    R               #           #~               oo         oo       ###################WWWWW###################WWWWWWWWWWWWWWWWW#',
+   '#         ~          #  o o o o  #                ~          ~        #WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW#oo#WWWWWjWW#',
+   '#                    #   K   k   #                                    #WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW##WWWWWWWWW#',
+   '#                    L  o o o o  l         #vvvvvvvvvvvvvvvvvvvvvvvvvv#WWWW######################################WWWWWWWWWWWWWWW###',
+   '#######################################################################WWWW#                                    #WWWWWWjWWWWWWWWWW#',
+   '#           #WWWW#         #             #WWWjW#                      #WWWW########################################WWWWWWWWWWWWWWW#',
+   '#           #WWWW#         #             ##WWWW# K  o  o   o  o       #WWWW#                                 #oo WWWWWWWWWWWWWWWWW#',
+   '#           #    #         #             #WWWWW#                     ##WWWW#                                 #oo WWWWWWWWW#oo#WWWW#',
+   '#                        #################WWWWW#########o o############WWWW#####WW####WW###########   #############WWWWWWWW##WWWWW#',
    '#                         WWWWWWWWWWWWWWWWWWWW#WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW#',
    '#          o o o o        WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW###',
    '#                         WWWWWWWWWWWWWWWWWjWWWWWWWWWWWWWWWWWWWWWWWWWWWjWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW#',
@@ -278,7 +278,7 @@ function loadImages()
    images = {};
    var imgs = [
       "player_blink", "block", "coin", "diamond", "heart", "background", "enemies", "portal", "boss_portal", "lock", "lock_silver", "key", "key_silver", "spikes", "platform", "falling_platform" , "enemy_spike", "armor",
-      "BigRed", "BigRed_Attack", "block_bigred", "Miner", "jellyfish", "Mayor", "talk", "chat", "shop_vendor", "shop_dialogs", "diamond_shop", "diamond_dialogs", "diamond_icon", "donate_shop"
+      "BigRed", "BigRed_Attack", "BigRed_Attack_inv", "block_bigred", "Miner", "jellyfish", "Mayor", "talk", "chat", "shop_vendor", "shop_dialogs", "diamond_shop", "diamond_dialogs", "diamond_icon", "donate_shop"
    ];
 
    for(var img in imgs) {

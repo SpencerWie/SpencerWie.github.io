@@ -4,7 +4,8 @@ function BigRedAttack(x, y)
 	this.y = y;
 	this.width = 755;
 	this.height = 145;
-	this.image = images['BigRed_Attack'];
+	this.image = currentMapIdx == 8 ? images['BigRed_Attack_inv']: images['BigRed_Attack'];
+
 }
 
 function BigRed(x, y, index) 
@@ -28,6 +29,8 @@ function BigRed(x, y, index)
 	this.vulnerableTimer = 0; // Timer for how long boss is exposed to damage
 	this.deathTimer = 0;      // On death how long before boss is removed for death animation.
 	this.energy = 2;
+	this.isReverseRed = currentMapIdx == 8;
+	this.isDarkRed = currentMapIdx == 2;
 
 	this.draw = function() {
 		this.update();
@@ -35,11 +38,20 @@ function BigRed(x, y, index)
 
 		// When vulnerable add transparency to draw
 		var vulnerable = this.hit || this.deathTimer > 0
-		if(currentMapIdx == 2) ctx.globalCompositeOperation="multiply"; // Challenge BigRed is darker in color
+		if(this.isDarkRed) ctx.globalCompositeOperation="multiply"; // Challenge BigRed is darker in color
 		if(vulnerable) ctx.globalAlpha = 0.5;
 		ctx.drawImage(this.image, this.frameX*this.width, this.frameY*this.height, this.width, this.height + 1 - this.deathTimer, this.x, this.y + this.deathTimer, this.width, this.height + 1 - this.deathTimer);
 		if(vulnerable) ctx.globalAlpha = 1;
-		if(currentMapIdx == 2) ctx.globalCompositeOperation="source-over";
+
+		if(this.isReverseRed) {
+			ctx.globalCompositeOperation="difference";
+			ctx.fillStyle="white";
+			vulnerableHeight = 0;
+			if(vulnerable) vulnerableHeight = 6;
+			ctx.fillRect(this.x + 4, this.y + 4 + vulnerableHeight, this.width - 4, this.height - 4 - vulnerableHeight);
+		}
+
+		if(this.isDarkRed|| this.isReverseRed) ctx.globalCompositeOperation="source-over";
 
 		if(this.attackTimer) {
 			var attackFrame = Math.floor((110 - this.attackTimer)/10);
@@ -103,6 +115,9 @@ function BigRed(x, y, index)
 		// The lower the boss hp the faster it moves
 		if(this.speed > 0) this.speed = 3 + ((this.maxHp - this.hp)/2);
 		else this.speed = -3 - ((this.maxHp - this.hp)/2);
+		
+		// Inverse red moves much faster..
+		if(this.isReverseRed) this.speed *= 2;
 
 		var blocks = getBlocksNearItem(this, 5);
 		for(var Y = blocks.above; Y < blocks.below; Y++ ) {
@@ -137,7 +152,8 @@ function BigRed(x, y, index)
 			this.attackTimer--;
 			// If close to death charge up part of the attack is twice as fast
 			if(this.hp <= 2 && this.attackTimer > 70) this.attackTimer--; 
-			if(this.attackTimer == 0) {
+			if(this.isReverseRed) this.attackTimer-= 2; // Reverse Red attacks twice as fast
+			if(this.attackTimer <= 0) {
 				this.stop = false;
 				this.frameX = 0;
 				this.energy--;
