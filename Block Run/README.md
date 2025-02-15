@@ -18,10 +18,12 @@ The original game <em>Block Run</em>, was created as a simple platform game in P
   <li><em><strong>C:</strong></em> Change player color if brought, cycles through them going back to the default color.</li>
 </ul>
 
-<h3>Current Version: <strong><em>v0.92</em></strong></h3>
+<h3>Current Version: <strong><em>v0.95</em></strong></h3>
 <ul>
   <li>More Town NPCs: Heart donate hospital. Allows you to trade hearts for coins as long as you have 5 lives or more.</li>
-  <li>Stage 8 - Planned</li>
+  <li>Stage 8 - Completed</li>
+  <li>Boss: Reverse-Red (Apart of Stage 8)</li>
+  <li>Bug Fixes: Spike properly bounces off silver locks, player resets to start if falls off map, fixes some boss mechanics.</li>
   <li>Boss: Big Jelly - Planned</li>
   <li>Small Red: Like big red but dies in one hit, shoots small laser ball - Planned</li>
   <li>Title Screen + Intro Tutorial - Planned</li>
@@ -43,7 +45,7 @@ The original game <em>Block Run</em>, was created as a simple platform game in P
 <ul>
   <li>New Ability <em>Double Jump</em> can be brought in the shop</li>
   <li>Armor: Protects you where you would of died. When triggered armor icon will appear above your character and fade out and you will be unkillable for about 4 seconds.
-  <li>Boss: Big Red </li>
+  <li>Boss: Big Red (Opt: Boss Dark Red)</li>
   <li>Falling tiles.</li>
   <li>Boss Stage</li>
   <li>Diamond Currency</li>

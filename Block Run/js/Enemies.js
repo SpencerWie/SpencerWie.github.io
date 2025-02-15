@@ -46,7 +46,7 @@ function Enemy(x, y, width, height, image, speed ,walkSteps, hp, type)
 				 for(var X = blocks.left; X < blocks.right; X++ ) {
 					var item = MapItems[Y][X];
 					if(!item) continue;
-					var isSolidBlock = (isItem(item,'block') || isItem(item,'lock'));  
+					var isSolidBlock = (isItem(item,'block') || isItem(item,'lock') || isItem(item,'lock_silver'));  
 					if (isSolidBlock && collide(item, this)) {
 						if(this.speed > 0)
 							this.x = item.x - this.width;
