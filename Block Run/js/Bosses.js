@@ -48,7 +48,7 @@ function BigRed(x, y, index)
 			ctx.fillStyle="white";
 			vulnerableHeight = 0;
 			if(vulnerable) vulnerableHeight = 6;
-			ctx.fillRect(this.x + 4, this.y + 4 + vulnerableHeight, this.width - 4, this.height - 4 - vulnerableHeight);
+			ctx.fillRect(this.x + 2, this.y + 2 + vulnerableHeight, this.width - 4, this.height - 2 - vulnerableHeight);
 		}
 
 		if(this.isDarkRed|| this.isReverseRed) ctx.globalCompositeOperation="source-over";
@@ -83,22 +83,8 @@ function BigRed(x, y, index)
 					if(currentMapIdx == 2) SKEYS++;
 					else KEYS++;
 					COINS+=40;
+					Enemies = Enemies.filter(item => !isItem(item, "BigRed"));
 					boss = false;
-					Enemies = [];
-					delete this;
-				} else {
-					// If for some reason the index is wrong find boss directly and remove
-					console.log("Boss index was incorrect");
-					var bigRedIndex = -1;
-					for(var i in items) {
-						if(isItem(items[i], "BigRed")) bigRedIndex = i;
-					}
-					if(bigRedIndex >= 0) items.splice(bigRedIndex, 1);
-					if(currentMapIdx == 2) SKEYS++;
-					else KEYS++;
-					COINS+=40;
-					boss = false;
-					Enemies = [];
 					delete this;
 				}
 			}
@@ -133,6 +119,7 @@ function BigRed(x, y, index)
 					this.speed *= -1;
 					// Soon after turning around get ready to attack with some degree of randomness, attacks are faster the higher the speed is.
 					this.attackDelay =  Math.abs(this.speed) + Math.round(Math.random() * (100/Math.abs(this.speed)));
+					if(this.isReverseRed) this.attackDelay /= 2; // Reverse Red has half the delay to make up for the double speed.
 					break;
 				}
 			}
@@ -152,7 +139,6 @@ function BigRed(x, y, index)
 			this.attackTimer--;
 			// If close to death charge up part of the attack is twice as fast
 			if(this.hp <= 2 && this.attackTimer > 70) this.attackTimer--; 
-			if(this.isReverseRed) this.attackTimer-= 2; // Reverse Red attacks twice as fast
 			if(this.attackTimer <= 0) {
 				this.stop = false;
 				this.frameX = 0;

@@ -50,11 +50,12 @@ function Npc(x, y, type, index, beatBigRed = false) {
     if(this.type == "Miner" && this.index == 4) this.text1 = "There must be a silver key around somewhere. Such a \n shinny diamond so close to us!";
     if(this.type == "Miner" && this.index == 5) this.text1 = "Congratulations on beating Big Red and he had a diamond! \nThat may allow you to find more them in pervious levels.";
     if(this.type == "Miner" && this.index == 6) this.text1 = "Not sure how to get that one down there. But something \n tells me you need to be able to Dash and Swim to get it.";
+    if(this.type == "Miner" && this.index == 8) this.text1 = "Keep swiming left for the diamond.\nBut you need to be able to breath under water!";
     if(townMayor && !beatBigRed) this.text1 = "That Big Red has blocked the way to to rest of our town! \n If someone could defeat him maybe the way will open up.";
     if(townMayor && beatBigRed) this.text1 = "Amazing you beat Big Red! Thank you for playing Block Run. \n Pervious levels has challenges for diamonds!";
     if(townMayor && this.index == 0) this.text2 = "I'm the Mayor of Block Town and could use your help! If\n you have extra lives you can donate them for coins."
     if(this.type == "Mayor" && this.index == 2) this.text1 = "Seems like Big Red's older brother Dark Red has been \n locked away down here. Be carefull!";
-    if(this.type == "Mayor" && this.index == 8) this.text1 = "Looks like Big Red became Reverse-Red after you beat him\n. Careful it's alot faster!";
+    if(this.type == "Mayor" && this.index == 8) this.text1 = "Looks like Big Red became Reverse-Red after you beat him.\n Careful it's alot faster!";
     this.text = this.text1;
 
     this.draw = function() { 

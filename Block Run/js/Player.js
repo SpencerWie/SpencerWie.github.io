@@ -227,6 +227,9 @@ function Player() {
         //Speed limits
         if(this.dy > this.maxYSpeed) this.dy = this.maxYSpeed;          
         if(this.dy < this.minYSpeed) this.dy = this.minYSpeed;   
+
+        // If below map reset 
+        if(this.y > 2000) this.reset();
     }
 
     this.bounceOffEnemy = function(enemy) {
@@ -509,8 +512,8 @@ function Player() {
         } else if(!DEAD){
             DEAD = true;
             setTimeout(function(){
-                // Death on normal resets to start, death on boss resets to town
-                if(!boss) self.reset();
+                // Death on normal resets to start, death on boss resets to town (Make excpetion for ReverseRed on level 8)
+                if(!boss || currentMapIdx == 8) self.reset();
                 else {
                     createMap(-1);
                     saveGame();

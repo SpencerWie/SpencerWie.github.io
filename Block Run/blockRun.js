@@ -9,7 +9,7 @@ timer = setInterval(function()
    ctx.fillStyle = player.color;
    handleYscroll(false);
    DrawBlocksAroundPlayer();
-   for(e in Enemies) Enemies[e].draw();
+   for(e in Enemies) if(Enemies[e]) Enemies[e].draw();
    player.update();
    player.draw();   
    drawUI();
