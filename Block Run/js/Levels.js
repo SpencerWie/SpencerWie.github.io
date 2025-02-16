@@ -243,31 +243,41 @@ var level_7 = [
    '#   o o   oo  P  oo   o o   #WWWWWWWWWWWWWWWWWWWWWWWWjWWWjWWWjWWWjWWWjWjWWWWWWS##################################WWWWWWWW###WWWWWW#',
    '#  o o o  #########  o o o  ###################################################                                 ##WWWWWWWWWWWWWWWW#',
    '#   o o   #       # S o o   o  o   o   o   o   o   o   o   o   o   o   o   o  l    o  o  o  o  o  o  o  o  o  o WWWWWWWWWWWWWWWWWW#',
-   '##################################################################################################################################W',
+   '###################################################################################################################################',
 ];
  
  var town = [
-    '#                                               r                                                                       #',
-    '#                                               r                                                                       #',
-    '#                                               r                                                                       #', 
-    '#                                               r                                                                       #',
-    '#                                               r                                                                       #',
-    '#                                               r                #                                                      #',
-    '#                                               r   ##WWWWWWWWWWW##                                                     #',
-    '#     $                          5     h        r  ###WWWWWjWWWWW###    d                   9                           #',
-    '# M            1   2   3   4   #####          Y r ####WWWWWWWWWWW####         6   7   8   #####                         #',
-    '#######################################################WWWWWWWWWW########################################################', 
-    '#########################################################################################################################',    
-    '#                                                                                                                       #',   
-    '#                                                           #WW#           #WWWWWWWWWWWW                                #',  
-    '#                                                            WW            #WWWWWWW###WW                                #', 
-    '#                                                            WW            #WWWWWWWW# WW                                #', 
-    '#                                                            WW            ###WWWWWW# WW  __                            #', 
-    '#                                                          WWWWWW          #WWWWWWWW# WW                                #', 
-    '#                                                  WWWWWWWWWWWWWWWWWWWWWW  #WWWWWW### WW                                #', 
-    '#                                        #WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW#WWWWWWW##                          #', 
-    '#                                       ##WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW#WWWWWWW###                         #', 
-    '#########################################################################################################################',
+    '#                                               r                                                                                            #',
+    '#                                               r                                                                                            #',
+    '#                                               r                                                                                            #', 
+    '#                                               r                                                                                            #',
+    '#                                               r                                                                                            #',
+    '#                                               r                #                                                                           #',
+    '#                                               r   ##WWWWWWWWWWW##                              9                                           #',
+    '#     $                          5     h        r  ###WWWWWjWWWWW###    d                      _____                                         #',
+    '# M            1   2   3   4   #####          Y r ####WWWWWWWWWWW####         6   7   8                                                      #',
+    '#######################################################WWWWWWWWWW##########################WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW#', 
+    '###########################################################################################WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW#',    
+    '#                            WWWWWWWWWWWWWWWW#ooooooooooooo#WWWWWWWW#WWWWWWWWWWW###########WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW#',   
+    '#                            WWWWWWWWWWWWWWWW#ooooooooooooo#WWWWWWWW#WWWWWWWWWWW############WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW#', 
+    '#                            WWWWWWWWWWWWWWWW#ooooooooooooo#WWWWWWWW#WWWWWWWWWWW############WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW#', 
+    '#                            WWWWWWWWWWWWWWWW#ooooooooooooo#######WW#WWWWW#WWWWW#############WWWWWWjWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW#', 
+    '#                            WWWWWWWWWWWWWWWW#_oooo   oooo_oooooo#WW#WWWWW#WWWWW#############WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW#', 
+    '#                            WWWWWWWWWWWWWWWW#ooooo P ooooooooooo#WW#WWWWW#WWWWW#############WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW#', 
+    '#                            WWWWWWWWWWWWWWWW#ooooo###ooooooooooo#WW#WWWWW#WWWWW##############WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW#', 
+    '#                            WWWWWWWWWWWWWWWW#ooooo###ooooooooooo#WW#WWWWW#WWWWW##############WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW#', 
+    '#                            WWWWWWWWWWWWWWWW###############_____#WW#WWWWW#WWWWW##############WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW#', 
+    '#                            WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW#WWWWW#WW#WWWWW#WWWWW###############WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW#', 
+    '#                            WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW#WWWWW#WW#WWWWW#WWWWW###############WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW#', 
+    '#                            WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW#WWWWW#WW#WWWWW#WWWWW###############WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW#', 
+    '#                            WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW#WWWWW#WW#WWWWW#WWWWW################WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW#', 
+    '#                            WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW#WWWWW#WW#WWWWW#WWWWW################WWWWWWWWWWWWWWWWWWWWWjWWWWWWWWWWWWWWWWWWWWWWW#', 
+    '#                            WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW#WWWWW#WW#WWWWW#WWWWW################WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW#', 
+    '#                            WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW#WWWWW####WWWWW#WWWWW#################WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW#', 
+    '#                            WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW#WWWWWWWWWWWWWW#WWWWW#################WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW#', 
+    '#                            WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW#WWWWWWWWWWWWWW#WWWWW##################WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW#', 
+    '#                            WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW#WWWWWWWWWWWWWW#WWWWWbbbbbbbbbbbbbbbbbbWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW#', 
+    '##############################################################################################################################################', 
  ];
 
  var levels = [town, level_1, level_2, level_3, level_4, boss_level_1, level_5, level_6, level_7];
@@ -278,7 +288,7 @@ function loadImages()
    images = {};
    var imgs = [
       "player_blink", "block", "coin", "diamond", "heart", "background", "enemies", "portal", "boss_portal", "lock", "lock_silver", "key", "key_silver", "spikes", "platform", "falling_platform" , "enemy_spike", "armor",
-      "BigRed", "BigRed_Attack", "BigRed_Attack_inv", "block_bigred", "Miner", "jellyfish", "Mayor", "talk", "chat", "shop_vendor", "shop_dialogs", "diamond_shop", "diamond_dialogs", "diamond_icon", "donate_shop"
+      "BigRed", "BigRed_Attack", "BigRed_Attack_inv", "block_bigred", "block_bigjelly", "Miner", "jellyfish", "Mayor", "talk", "chat", "shop_vendor", "shop_dialogs", "diamond_shop", "diamond_dialogs", "diamond_icon", "donate_shop"
    ];
 
    for(var img in imgs) {

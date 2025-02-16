@@ -351,7 +351,7 @@ function Player() {
                 if(!MapItems[Y][X]) continue;
 
                 var item = MapItems[Y][X];
-                var isSolidBlock = isItem(item,'block') || isItem(item,'lock') || isItem(item,'lock_silver') || isItem(item,'block_bigred');
+                var isSolidBlock = isItem(item,'block') || isItem(item,'lock') || isItem(item,'lock_silver') || isItem(item,'block_bigred') || isItem(item,'block_bigjelly');
                 var movingRight = this.dx <= 0; 
                 var movingLeft = this.dx > 0;
 

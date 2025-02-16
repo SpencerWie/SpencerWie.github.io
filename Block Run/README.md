@@ -18,14 +18,15 @@ The original game <em>Block Run</em>, was created as a simple platform game in P
   <li><em><strong>C:</strong></em> Change player color if brought, cycles through them going back to the default color.</li>
 </ul>
 
-<h3>Current Version: <strong><em>v0.95</em></strong></h3>
+<h3>Current Version: <strong><em>v0.96</em></strong></h3>
 <ul>
   <li>More Town NPCs: Heart donate hospital. Allows you to trade hearts for coins as long as you have 5 lives or more.</li>
   <li>Stage 8 - Completed</li>
   <li>Boss: Reverse-Red (Apart of Stage 8)</li>
   <li>Bug Fixes: Spike properly bounces off silver locks, player resets to start if falls off map, fixes some boss mechanics.</li>
+  <li>Town Update: Added ocean and under water treasure when finnal boss is beat and more NPCs</li>
   <li>Boss: Big Jelly - Planned</li>
-  <li>Small Red: Like big red but dies in one hit, shoots small laser ball - Planned</li>
+  <li>Small Red: Like big red but dies in one hit, shoots small laser ball - Planned (Opt)</li>
   <li>Title Screen + Intro Tutorial - Planned</li>
 </ul>
 
