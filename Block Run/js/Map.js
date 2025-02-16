@@ -157,8 +157,7 @@ function createMap(index) {
     KEYS = 0;
     SKEYS = 0;
 
-    let bigReadBeaten = false;
-    if(UnlockedLevels.length >= 7 && UnlockedLevels[6] == true) bigReadBeaten = true;
+    let bigReadBeaten = beatBigRed();
     
     for(var Y = 0; Y < map.length; Y++ ) {
         for(var X = 0; X < map[0].length; X++ ) {
@@ -193,6 +192,10 @@ function createMap(index) {
             else if(char == 'Y') addToMap(new Npc(x, y, "Mayor", index, bigReadBeaten), X, Y);
        }
     }
+}
+
+function beatBigRed() {
+    return UnlockedLevels.length >= 7 && UnlockedLevels[6] == true;
 }
 
 function addToMap(item, X, Y) {

@@ -82,7 +82,8 @@ function BigRed(x, y, index)
 				if(foundBoss) {
 					if(currentMapIdx == 2) SKEYS++;
 					else KEYS++;
-					COINS+=40;
+					COINS+=50;
+					if(!beatBigRed()) COINS+=200;
 					Enemies = Enemies.filter(item => !isItem(item, "BigRed"));
 					boss = false;
 					delete this;

@@ -53,7 +53,7 @@ function Npc(x, y, type, index, beatBigRed = false) {
     if(this.type == "Miner" && this.index == 8) this.text1 = "Keep swiming left for the diamond. You'll need to be able\n breath under water and have a sheild!";
     if(townMayor && !beatBigRed) this.text1 = "That Big Red has blocked the way to to rest of our town! \n If someone could defeat him maybe the way will open up.";
     if(townMayor && beatBigRed) this.text1 = "Amazing you beat Big Red! Thank you for playing Block Run. \n Pervious levels has challenges for diamonds!";
-    if(townMayor && this.index == 0) this.text2 = "I'm the Mayor of Block Town and could use your help! If\n you have extra lives you can donate them for coins."
+    if(townMayor && this.index == 0) this.text2 = "If you have extra lives you can donate them for coins.\nBeating a boss for the first time gives 5x the rewards."
     if(this.type == "Mayor" && this.index == 2) this.text1 = "Seems like Big Red's older brother Dark Red has been \n locked away down here. Be carefull!";
     if(this.type == "Mayor" && this.index == 8) this.text1 = "Looks like Big Red became Reverse-Red after you beat him.\n Careful it's alot faster!";
     this.text = this.text1;
