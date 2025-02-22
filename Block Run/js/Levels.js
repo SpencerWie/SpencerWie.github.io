@@ -280,7 +280,22 @@ var level_7 = [
     '##############################################################################################################################################', 
  ];
 
- var levels = [town, level_1, level_2, level_3, level_4, boss_level_1, level_5, level_6, level_7];
+ var boss_level_2 = [
+   '#                      #',
+   '#                      #',
+   '#                      #',
+   '#                      #',
+   '#                      #',
+   '#~                   ~ #',
+   '#WWWWWWWWWWWWWWWWWWWWWW#',
+   '#WWWWWWWWWWWWWWWWWWWWWW#',
+   '###WWWWWWWWWWWWWWWWWW###',
+   '###WWWWWWWWWWWWWWWWWW###',
+   '########################',
+   '#                      #',
+];
+
+ var levels = [town, level_1, level_2, level_3, level_4, boss_level_1, level_5, level_6, level_7, boss_level_2];
 
 function loadImages() 
 {
