@@ -83,6 +83,7 @@ function Shop(e) {
         }
     }
 
+    // Cross out upgrade button to indicate the player brought it already
     this.crossOutButton = function(btn, width = this.shopW, startSpace = 15, endSpace = 35) {
         var oldStrokeStyle = ctx.strokeStyle;
         ctx.strokeStyle = "black";
@@ -166,6 +167,7 @@ function DiamondShop() {
     }
 }
 
+// Shop where if the player has enough hearts can convert them into coins
 function DonateShop() {
     Shop.call(this); 
     this.image = images["donate_shop"];
@@ -191,15 +193,15 @@ function DonateShop() {
     }
 }
 
+var shop = new Shop();
+var diamondShop = new DiamondShop();
+var donateShop = new DonateShop();
 
+// Mouse events for tracking shop button clicks
 document.onmousemove = function(e){
     MouseX = e.clientX - canvas.offsetLeft;
     MouseY = e.clientY - canvas.offsetTop;
 };
-
-var shop = new Shop();
-var diamondShop = new DiamondShop();
-var donateShop = new DonateShop();
 
 document.onmouseup = function(e) {
     if(ShowShop) {

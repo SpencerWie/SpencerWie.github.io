@@ -102,8 +102,9 @@ function Player() {
        if(DEAD) { this.frameX = 0; this.frameY = 2; }
     }
     
+    // Keep track of the last few positions for the run animation
     this.recordPosition = function(x, y) 
-    {   // Push to positions array, new items are the first and old are the last.
+    {   
          this.lastPositions.unshift({'x': x, 'y': y});
          if(this.lastPositions.length > this.lastPositionsMax) this.lastPositions.length = this.lastPositionsMax;
          if(!SHIFT || this.ducked ) {this.lastPositions.pop(); this.lastPositions.pop()}
@@ -224,7 +225,7 @@ function Player() {
             }
         }
        
-        //Speed limits
+        // Speed limits
         if(this.dy > this.maxYSpeed) this.dy = this.maxYSpeed;          
         if(this.dy < this.minYSpeed) this.dy = this.minYSpeed;   
 

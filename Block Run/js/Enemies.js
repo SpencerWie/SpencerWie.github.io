@@ -25,6 +25,7 @@ function Enemy(x, y, width, height, image, speed ,walkSteps, hp, type)
    this.update = function() 
    {
   	if(DEAD) return;
+		// Red Block Enemies move side to side.
 		if(type == "red block")
 		{
 			if(this.x >= this.endWalk && this.speed > 0){
@@ -39,6 +40,7 @@ function Enemy(x, y, width, height, image, speed ,walkSteps, hp, type)
 			}
 			this.x += this.speed;
 		}
+		// Spike enemies move side to side and bounce off soild blocks
 		else if(type == "spike")
 		{
 			var blocks = getBlocksNearItem(this);
@@ -62,6 +64,7 @@ function Enemy(x, y, width, height, image, speed ,walkSteps, hp, type)
 	}
 }
 
+// Jellyfish moves in water and goes up and down, will bounce on non-water items to stay in the water.
 function JellyFish(x, y, size) {
 	Enemy.call(this, x, y, size - 4, size - 4, images["jellyfish"], 5, 0, 1, "jellyfish");
 	this.MaxFrames = 8;
