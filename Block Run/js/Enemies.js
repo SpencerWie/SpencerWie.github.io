@@ -25,7 +25,7 @@ function Enemy(x, y, width, height, image, speed ,walkSteps, hp, type)
    this.update = function() 
    {
   	if(DEAD) return;
-		// Red Block Enemies move side to side.
+		// Red Block Enemies move side to side between startWalk and endWalk
 		if(type == "red block")
 		{
 			if(this.x >= this.endWalk && this.speed > 0){
@@ -83,6 +83,7 @@ function JellyFish(x, y, size) {
 		ctx.globalAlpha = oldAlpha;
 	}
 
+	// Check for blocks above and below, if the block above or below isn't water flip direction
 	this.update = function() {
 		this.animate();
 		var blocks = getBlocksNearItem(this, 1);
