@@ -103,7 +103,7 @@ function BigRed(x, y, index)
 		if(this.speed > 0) this.speed = 3 + ((this.maxHp - this.hp)/2);
 		else this.speed = -3 - ((this.maxHp - this.hp)/2);
 		
-		// Inverse red moves much faster..
+		// Inverse red moves much faster
 		if(this.isReverseRed) this.speed *= 2;
 
 		var blocks = getBlocksNearItem(this, 5);
