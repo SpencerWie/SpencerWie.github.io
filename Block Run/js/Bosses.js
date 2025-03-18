@@ -8,6 +8,16 @@ function BigRedAttack(x, y)
 
 }
 
+function BigJellyAttack(x, y) 
+{
+	this.x = x;
+	this.y = y;
+	this.width = 145;
+	this.height = 755;
+	this.image = images['BigJelly_Attack'];
+
+}
+
 function BigJelly(x, y, index) 
 {
 	this.x = x;
@@ -19,7 +29,7 @@ function BigJelly(x, y, index)
 	this.height = 128;
 	this.image = images['BigJelly'];
 	this.atk = new BigRedAttack(this.x, this.y);
-	this.speed = -4;
+	this.speed = 2;
 	this.stop = false;
 	this.hit = false;
 	this.hp = 10; // If on Level 2 this is the diamond unlock BigJelly so more hp.
@@ -63,7 +73,7 @@ function BigJelly(x, y, index)
 				}
 			}
 			this.deathTimer++;
-			this.frameX = 3;
+			// this.frameX = [Death Frame];
 			return;
 		}
 
