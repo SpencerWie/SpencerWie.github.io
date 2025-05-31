@@ -5,7 +5,6 @@ function BigRedAttack(x, y)
 	this.width = 755;
 	this.height = 145;
 	this.image = currentMapIdx == 8 ? images['BigRed_Attack_inv']: images['BigRed_Attack'];
-
 }
 
 function BigJellyAttack(x, y) 
@@ -15,7 +14,6 @@ function BigJellyAttack(x, y)
 	this.width = 145;
 	this.height = 755;
 	this.image = images['BigJelly_Attack'];
-
 }
 
 function BigJelly(x, y, index) 
