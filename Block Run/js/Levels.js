@@ -282,7 +282,7 @@ var level_7 = [
 
  var boss_level_2 = [
    '#                      #',
-   '#                      #',
+   '#          J           #',
    '#                      #',
    '#WWWWWWWWWWWWWWWWWWWWWW#',
    '#WWWWWWWWWWWWWWWWWWWWWW#',
@@ -313,7 +313,8 @@ function loadImages()
    images = {};
    var imgs = [
       "player_blink", "block", "coin", "diamond", "heart", "background", "enemies", "portal", "boss_portal", "lock", "lock_silver", "key", "key_silver", "spikes", "platform", "falling_platform" , "enemy_spike", "armor",
-      "BigRed", "BigRed_Attack", "BigRed_Attack_inv", "block_bigred", "block_bigjelly", "Miner", "jellyfish", "Mayor", "talk", "chat", "shop_vendor", "shop_dialogs", "diamond_shop", "diamond_dialogs", "diamond_icon", "donate_shop"
+      "BigRed", "BigRed_Attack", "BigRed_Attack_inv", "block_bigred", "block_bigjelly", "Miner", "jellyfish", "Mayor", "talk", "chat", "shop_vendor", "shop_dialogs", "diamond_shop", "diamond_dialogs", "diamond_icon", "donate_shop",
+      "BigJelly", 
    ];
 
    for(var img in imgs) {

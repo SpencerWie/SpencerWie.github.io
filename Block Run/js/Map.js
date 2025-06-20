@@ -175,6 +175,7 @@ function createMap(index) {
             else if(char == 'E') addToMap(new Enemy(x, y, 40, 52, images["enemies"], 4, 5, 2, "red block"), X, Y);
             else if(char == 'S') addToMap(new Enemy(x, y, 30, 30, images["enemy_spike"], 4, 5, 2, "spike"), X, Y);
             else if(char == 'j') addToMap(new JellyFish(x, y, 32), X, Y);
+            else if(char == 'J') { boss = new BigJelly(x, y, items.length); addToMap(boss, X, Y); }
             else if(char == 'P' || Number.parseInt(char)) addToMap(new Portal(x, y, char), X, Y);
             else if(char == 'T') addToMap(new GhostBlock(x, y), X, Y);
             else if(char.toUpperCase() == 'L') addToMap(new Lock(x, y, char), X, Y);
@@ -203,7 +204,7 @@ function beatBigJelly() {
 }
 
 function addToMap(item, X, Y) {
-    if (item instanceof Enemy || item instanceof BigRed || item instanceof JellyFish) {
+    if (item instanceof Enemy || item instanceof BigRed || item instanceof JellyFish || item instanceof BigJelly) {
         Enemies.push(item);
         closeBlocks = getBlocksNearItem(item, 1);
         // If the left or above is water spawn the enemy in the water.

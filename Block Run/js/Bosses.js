@@ -37,17 +37,16 @@ function BigJelly(x, y, index)
 	this.vulnerableTimer = 0; // Timer for how long boss is exposed to damage
 	this.deathTimer = 0;      // On death how long before boss is removed for death animation.
 	this.energy = 2;
+	this.animationFrames = 20; // Animation frame loops
 
 	this.draw = function() {
 		this.update();
 
 		// When vulnerable add transparency to draw
 		var vulnerable = this.hit || this.deathTimer > 0
-		if(this.isDarkRed) ctx.globalCompositeOperation="multiply"; // Challenge BigJelly is darker in color
 		if(vulnerable) ctx.globalAlpha = 0.5;
 		ctx.drawImage(this.image, this.frameX*this.width, this.frameY*this.height, this.width, this.height - this.deathTimer, this.x, this.y + this.deathTimer, this.width, this.height - this.deathTimer);
 		if(vulnerable) ctx.globalAlpha = 1;
-
 
 		if(this.attackTimer) {
 			// Do Big Jelly attacks. The boss goes between a few seperate attaks. A whole area attack that hits the entire map and homing ligning strikes from above.
