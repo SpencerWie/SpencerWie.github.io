@@ -23,8 +23,8 @@ function BigJelly(x, y, index)
 	this.index = index;
 	this.frameX = 0; // X frame on tilemap sprite
 	this.frameY = 0; // Y frame on tilemap sprite
-	this.width = 128;
-	this.height = 128;
+	this.width = 130;
+	this.height = 120;
 	this.image = images['BigJelly'];
 	this.atk = new BigRedAttack(this.x, this.y);
 	this.speed = 2;
@@ -37,21 +37,43 @@ function BigJelly(x, y, index)
 	this.vulnerableTimer = 0; // Timer for how long boss is exposed to damage
 	this.deathTimer = 0;      // On death how long before boss is removed for death animation.
 	this.energy = 2;
-	this.animationFrames = 20; // Animation frame loops
+	this.MaxFrames = 20; // Animation frame loops
+	this.frameTicks = 5; // Amount of frames before animation tick
+	this.ticks = 0;
+	this.animationCycle = 0;
+	this.vulnerable = false;
 
 	this.draw = function() {
+		this.animate();
 		this.update();
 
 		// When vulnerable add transparency to draw
 		var vulnerable = this.hit || this.deathTimer > 0
 		if(vulnerable) ctx.globalAlpha = 0.5;
-		ctx.drawImage(this.image, this.frameX*this.width, this.frameY*this.height, this.width, this.height - this.deathTimer, this.x, this.y + this.deathTimer, this.width, this.height - this.deathTimer);
+		ctx.drawImage(this.image, this.frameX*this.width, this.frameY*this.height, this.width, this.height - this.deathTimer, this.x, this.y + this.deathTimer + (this.vulnerableTimer/10), this.width, this.height - this.deathTimer);
 		if(vulnerable) ctx.globalAlpha = 1;
 
 		if(this.attackTimer) {
 			// Do Big Jelly attacks. The boss goes between a few seperate attaks. A whole area attack that hits the entire map and homing ligning strikes from above.
 		}
 		
+	}
+
+	this.animate = function() {
+		this.ticks++;
+		if(this.ticks >= this.frameTicks) {
+			this.ticks = 0;
+			this.frameX++;
+			if(this.frameX >= this.MaxFrames) { 
+				this.frameX = 0; 
+				this.animationCycle++;
+			}
+		}
+		if(this.animationCycle > 2) {
+			this.frameX = 0; 
+			this.vulnerableTimer = 150;
+			this.animationCycle = 0;
+		}
 	}
 
 	this.update = function() {
@@ -70,7 +92,6 @@ function BigJelly(x, y, index)
 				}
 			}
 			this.deathTimer++;
-			// this.frameX = [Death Frame];
 			return;
 		}
 
@@ -80,6 +101,7 @@ function BigJelly(x, y, index)
 
 	this.handleMovementAndCollisions = function() {
 		// The lower the boss hp the faster it moves
+		if(this.vulnerableTimer > 0) return;
 		if(this.speed > 0) this.speed = 3 + ((this.maxHp - this.hp)/2);
 		else this.speed = -3 - ((this.maxHp - this.hp)/2);
 
@@ -124,9 +146,10 @@ function BigJelly(x, y, index)
 
 		// If out of energy after doing an attack boss is vulnerable to taking damage
 		if(this.vulnerableTimer > 0) {
+			this.hit = true;
 			this.vulnerableTimer--;
 			this.stop = true;
-			this.frameX = this.hit ? 3 : 2;
+			this.frameX = 0;
 			if(this.vulnerableTimer == 0) {
 				this.stop = this.hit = false;
 				this.frameX = 0;

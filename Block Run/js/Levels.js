@@ -282,13 +282,13 @@ var level_7 = [
 
  var boss_level_2 = [
    '#                      #',
-   '#          J           #',
    '#                      #',
+   '#                      #',
+   '#          J           #',
+   '# ~                 ~  #',
    '#WWWWWWWWWWWWWWWWWWWWWW#',
    '#WWWWWWWWWWWWWWWWWWWWWW#',
-   '##WWWWWWWWWWWWWWWWWWWW##',
-   '##WWWWWWWWWWWWWWWWWWWW##',
-   '##WWWWWWWWWWWWWWWWWWWW##',
+   '###WWWWWWWWWWWWWWWWWW###',
    '####WWWWWWWWWWWWWWWW####',
    '#  #WWWWWWWWWWWWWWWWL  #',
    '#  ##################  #',
