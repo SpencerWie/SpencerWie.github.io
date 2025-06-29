@@ -50,13 +50,13 @@ function BigJelly(x, y, index)
 		// When vulnerable add transparency to draw
 		var vulnerable = this.hit || this.deathTimer > 0
 		if(vulnerable) ctx.globalAlpha = 0.5;
+		else ctx.globalAlpha = 0.8;
 		ctx.drawImage(this.image, this.frameX*this.width, this.frameY*this.height, this.width, this.height - this.deathTimer, this.x, this.y + this.deathTimer + (this.vulnerableTimer/10), this.width, this.height - this.deathTimer);
-		if(vulnerable) ctx.globalAlpha = 1;
 
 		if(this.attackTimer) {
 			// Do Big Jelly attacks. The boss goes between a few seperate attaks. A whole area attack that hits the entire map and homing ligning strikes from above.
 		}
-		
+		ctx.globalAlpha = 1;
 	}
 
 	this.animate = function() {

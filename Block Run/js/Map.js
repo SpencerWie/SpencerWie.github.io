@@ -204,7 +204,7 @@ function beatBigJelly() {
 }
 
 function addToMap(item, X, Y) {
-    if (item instanceof Enemy || item instanceof BigRed || item instanceof JellyFish || item instanceof BigJelly) {
+    if (item instanceof Enemy || item instanceof BigRed || item instanceof JellyFish || item instanceof BigJelly || item instanceof FallingPlatform) {
         Enemies.push(item);
         closeBlocks = getBlocksNearItem(item, 1);
         // If the left or above is water spawn the enemy in the water.
