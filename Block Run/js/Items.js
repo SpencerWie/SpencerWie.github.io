@@ -66,6 +66,7 @@ function FallingPlatform(x, y) {
    this.respawnTimer = 100;
    this.falling = false;
    this.startY = y;
+   this.inWater = false;
 
    this.startFalling = function() {
       this.falling = true;
@@ -89,6 +90,12 @@ function FallingPlatform(x, y) {
       ctx.globalAlpha = this.alpha;
       ctx.drawImage(this.image, this.x - 0.5, this.y + 2.5 - (this.alpha*3), this.width+2.5, this.height+2.5);
       ctx.globalAlpha = oldAlpha;
+      if(this.inWater) {
+         ctx.globalAlpha = 0.5
+         ctx.fillStyle = "blue";
+         ctx.fillRect(this.x, this.y, 32, 32);
+         ctx.globalAlpha = 1.0;
+      }
   }
 }
  

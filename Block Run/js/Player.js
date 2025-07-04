@@ -212,15 +212,22 @@ function Player() {
                 this.y = item.y + this.size;
             }// For downwards collision check if we are moving down and hit a block, if so place player at the top of block and halt verticle motion.
             else if(this.dy >= 0 && collide(this,item) && (isItem(item,'block') || platformCollision)) {
-                this.dy = 0;
-                this.ddy = 0;
+                if(isItem(item,'falling_platform') ) {
+                    if(item.alpha < 0.1) this.dy = this.ddy = 0;
+                } else {
+                    this.dy = this.ddy = 0;
+                }
                 this.y = item.y - this.size + 1;
                 this.jump = this.doubleJump = true;
                 // If we are on a falling platform start falling and disappearing
                 if(isItem(item,'falling_platform') && item.alpha > 0) {
                     this.y = item.y - this.size + 3;
                     item.startFalling();
-                    this.dy = 0.04;
+                    if(this.inWater) {
+                        this.dy = 0; this.dyy = 0.01;
+                        this.y+=1;
+                    }
+                    else this.dy = 0.04;
                 }
             }
         }
