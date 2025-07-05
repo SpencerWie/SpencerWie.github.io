@@ -255,7 +255,7 @@ var level_7 = [
     '#                                               r                #                                                                     #',
     '#                                               r   ##WWWWWWWWWWW##                              9                                     #',
     '#     $                          5     h        r  ###WWWWWjWWWWW###    d                      _____                                   #',
-    '# M            1   2   3   4   #####          Y r ####WWWWWWWWWWW####         6   7   8                                                #',
+    '# M            1   2   3   4   #####          Y r ####WWWWWWWWWWW####         6   7   8   F                                            #',
     '#######################################################WWWWWWWWWW##########################WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW#', 
     '###########################################################################################WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW#',    
     '#                           #WWWWWWWWWWWWWWWW#ooooooooooooo#WWWWWWWW#WWWWWWWWWWW###########WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW#',   
@@ -281,28 +281,25 @@ var level_7 = [
  ];
 
  var boss_level_2 = [
-   '########################                            #',
-   '#WWWWWWWWWWWWWWWWWWWWWW#                            #',
-   '#WWWWWWWWJWWWWWWWWWWWWW#                            #',
-   '#WWWWWWWWWWWWWWWWWWWWWW#                            #',
-   '#WWWWWWWWWWWWWWWWWWWWWW#                            #',
-   '#WWWWWWWWWWWWWWWWWWWWWW#                            #',
-   '#WWWWWWWWWWWWWWWWWWWWWW#                            #',
-   '#WWW~WWWWWWWWWWWWW~WWWW#                            #',
-   '#WWWWWWWWWWWWWWWWWWWWWW#                            #',
-   '#WWWWWWWWWWWWWWWWWWWWWWL                            #',
-   '########################                            #',
-   '#                                                   #',
-   '#                                                   #',
-   '#                                                   #',
-   '#                                                   #',
-   '#                                                   #',
-   '#                                                   #',
-   '#                                                   #',
-   '#                                                   #',
-   '#                                                   #',
-   '#####################################################',
-   '#####################################################',
+   '########################',
+   '#                      #',
+   '#             J        #',
+   '#WWWWWWWWWWWWWWWWWWWWWW#',
+   '#WWWWWWWWWWWWWWWWWWWWWW#',
+   '##WWWWWWWWWWWWWWWWWWWW##',
+   '#WWWWWWWWWWWWWWWWWWWWWW#',
+   '#WWW~WWWWWWWWWWWWW~WWWW#',
+   '#WWWWWWWWWWWWWWWWWWWWWW#',
+   '#WWWWWWWWWWWWWWWWWWWWWWL                                                     #',
+   '########################                                                     #',
+   '#                                                                            #',
+   '#                                                                            #',
+   '#                       ooooo o  o    o    o  o o  o   ooo                   #',
+   '#                         o   o  o   o o   oo o ooo   oo                     #',
+   '#                         o   oooo  ooooo  o oo o o     oo                   #',
+   '#                         o   o  o o     o o  o o  o  ooo    Y      M     P  #',
+   '##############################################################################',
+   '##############################################################################',
 ];
 
  var levels = [town, level_1, level_2, level_3, level_4, boss_level_1, level_5, level_6, level_7, boss_level_2];
@@ -313,8 +310,8 @@ function loadImages()
    images = {};
    var imgs = [
       "player_blink", "block", "coin", "diamond", "heart", "background", "enemies", "portal", "boss_portal", "lock", "lock_silver", "key", "key_silver", "spikes", "platform", "falling_platform" , "enemy_spike", "armor",
-      "BigRed", "BigRed_Attack", "BigRed_Attack_inv", "block_bigred", "block_bigjelly", "Miner", "jellyfish", "Mayor", "talk", "chat", "shop_vendor", "shop_dialogs", "diamond_shop", "diamond_dialogs", "diamond_icon", "donate_shop",
-      "BigJelly", 
+      "BigRed", "BigRed_Attack", "BigRed_Attack_inv", "block_bigred", "Miner", "Fisher", "Mayor", "talk", "chat", "shop_vendor", "shop_dialogs", "diamond_shop", "diamond_dialogs", "diamond_icon", "donate_shop",
+      "jellyfish", "BigJelly", "block_bigjelly",
    ];
 
    for(var img in imgs) {

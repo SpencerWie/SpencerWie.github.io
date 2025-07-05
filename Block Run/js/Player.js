@@ -75,7 +75,8 @@ function Player() {
 
     this.drawWaterBreathe = function() { 
         var lastFillStyle = ctx.fillStyle;
-        if(this.inWater && !this.canBreatheUnderwater) {
+        if(this.inWater && (!this.canBreatheUnderwater || isItem(boss,'BigJelly'))) {
+            if(this.canBreatheUnderwater) this.breatheTicks = 0.02; // When fighting BigJelly you can hold your breath for double the time
             ctx.globalAlpha = 0.8;
             if(this.breathe > 0) this.breathe -= this.breatheTicks;
             ctx.fillStyle = "rgba(0, 0, 65, 1)";
@@ -240,8 +241,8 @@ function Player() {
         if(this.y > 2000) this.reset();
     }
 
-    this.bounceOffEnemy = function(enemy) {
-        this.dy = -this.jumpPower/1.25;
+    this.bounceOffEnemy = function(enemy, factor=1.25) {
+        this.dy = -this.jumpPower/factor;
         this.ddy = -1;
         this.y = enemy.y - 25;
     }
@@ -467,8 +468,9 @@ function Player() {
         for(e in Enemies) { 
             var enemy = Enemies[e];
             // Monsters
-            if( (isItem(enemy,'enemies') || isItem(enemy,'BigRed')) && collide(enemy, this) ) {
+            if( (isItem(enemy,'enemies') || isItem(enemy,'BigRed') || isItem(enemy,'BigJelly')) && collide(enemy, this) ) {
                 var hitBigRed = isItem(enemy,'BigRed');
+                var hitBigJelly = isItem(enemy,'BigJelly');
                 //Red Block Enemy:Player land on head, enemey is damaged (shift XFrame or die if out of hp)
                 if( this.y + this.height < enemy.y + this.dy + 5  && this.dy > 0 ) {
                     if(enemy.type == "red block") {
@@ -489,9 +491,13 @@ function Player() {
                         enemy.takeDamage();
                         this.bounceOffEnemy(enemy);
                     }
+                    if(hitBigJelly && enemy.vulnerableTimer > 0 && enemy.frameY != 1) { 
+                        enemy.takeDamage();
+                        this.bounceOffEnemy(enemy, 2);
+                    }
                 } else { 
                     if(enemy.type == "red block") this.die(); 
-                    if(hitBigRed && enemy.vulnerableTimer <= 0) this.die(true); 
+                    if((hitBigRed || hitBigJelly) && enemy.vulnerableTimer <= 0) this.die(true); 
                 } 
             }
             // Spike Enemy: Player dies on hit

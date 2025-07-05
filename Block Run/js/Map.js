@@ -66,7 +66,7 @@ function action() {
             if(isItem(item,'shop_vendor') && collide(player,item)) ShowShop = true;     
             if(isItem(item,'diamond_shop') && collide(player,item)) ShowDiamondShop = true;
             if(isItem(item,'donate_shop') && collide(player,item)) item.donate();
-            if((isItem(item,'Miner') || isItem(item,'Mayor'))  && item.active && chat.active == false) {
+            if((item instanceof Npc) && item.active && chat.active == false) {
                 // Determine what the npc says if they have other text items
                 chat.text = item.text2 != "" && chat.text == item.text1 ? item.text2 : item.text1;
                 chat.active = true; 
@@ -190,6 +190,7 @@ function createMap(index) {
             else if(char == 'R') { boss = new BigRed(x, y, items.length); addToMap(boss, X, Y); }
             else if(char == 'r' && !bigReadBeaten) addToMap(new Block(x, y, "block_bigred"), X, Y);
             else if(char == 'M') addToMap(new Npc(x, y, "Miner", index), X, Y);
+            else if(char == 'F') addToMap(new Npc(x, y, "Fisher", index), X, Y);
             else if(char == 'Y') addToMap(new Npc(x, y, "Mayor", index, bigReadBeaten), X, Y);
             else if(char == 'b') beatBigJelly() ? addToMap(new Water(x, y), X, Y) : addToMap(new Block(x, y, "block_bigjelly"), X, Y);
        }
