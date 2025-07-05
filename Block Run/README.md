@@ -18,22 +18,28 @@ The original game <em>Block Run</em>, was created as a simple platform game in P
   <li><em><strong>C:</strong></em> Change player color if brought, cycles through them going back to the default color.</li>
 </ul>
 
-<h3>Current Version: <strong><em>v0.96</em></strong></h3>
+<h3>Current Version: <strong><em>v1.00</em></strong></h3>
 <ul>
-  <li>More Town NPCs: Heart donate hospital. Allows you to trade hearts for coins as long as you have 5 lives or more. - Completed</li>
-  <li>Stage 8 - Completed</li>
-  <li>Boss: Reverse-Red (Apart of Stage 8) - Completed</li>
-  <li>Bug Fixes: Spike properly bounces off silver locks, player resets to start if falls off map, fixes some boss mechanics. - Completed</li>
-  <li>Town Update: Added ocean and under water treasure when finnal boss is beat and more NPCs. - Completed</li>
-  <li>Boss: Big Jelly - Planned</li>
-  <li>Small Red: Like big red but dies in one hit, shoots small laser ball - Planned (Opt)</li>
   <li>Title Screen + Intro Tutorial - Planned</li>
+  <li>Big Jelly Challenge Diamond: Harder varient of Big Jelly after the fight - Planned</li>
+  <li>Laser Shoot Upgrade: Shoot lasers at enemies - Planned</li>
+  <li>Small Red: Like big red but dies in one hit, shoots small laser ball - Possible</li>
 </ul>
 
 <h3><em>v0.9</em></h3>
 <ul>
-  <li>Stage 6 and Stage 7 is completed.</li>
+  <li>More Town NPCs: Heart donate hospital. Allows you to trade hearts for coins as long as you have 5 lives or more.</li>
+  <li>Stage 8</li>
+  <li>Boss: Reverse-Red (Apart of Stage 8)</li>
+  <li>Bug Fixes: Spike properly bounces off silver locks, player resets to start if falls off map, fixes some boss mechanics.</li>
+  <li>Town Update: Added ocean and under water treasure when finnal boss is beat and more NPCs.</li>
   <li>Enemy optimizations and bug fixes.</li>
+  <li>Boss: Big Jelly</li>
+</ul>
+
+<h3><em>v0.8</em></h3>
+<ul>
+  <li>Stage 6 and Stage 7 is completed.</li>
   <li>Diamond Store.</li>
   <li>New unlockable ability: Dash (2 Diamonds + 500): While in the air SPACE allows you to dash forward.</li>
   <li>New unlockable ability: Swim (2 Diamonds + 400 coins): Can swim in water (double jump unlimited while in water). This also allows sprinting while in water.</li>
