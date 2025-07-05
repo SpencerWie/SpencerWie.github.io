@@ -100,7 +100,7 @@ function BigJelly(x, y, index)
 				if(foundBoss) {
 					KEYS++;
 					COINS+=200;
-					if(!beatBigJelly()) COINS+=500;
+					if(!beatBigJelly()) COINS+=600;
 					Enemies = Enemies.filter(item => !isItem(item, "BigJelly"));
 					boss = false;
 					delete this;

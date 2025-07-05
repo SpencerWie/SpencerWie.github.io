@@ -190,7 +190,7 @@ function createMap(index) {
             else if(char == 'R') { boss = new BigRed(x, y, items.length); addToMap(boss, X, Y); }
             else if(char == 'r' && !bigReadBeaten) addToMap(new Block(x, y, "block_bigred"), X, Y);
             else if(char == 'M') addToMap(new Npc(x, y, "Miner", index), X, Y);
-            else if(char == 'F') addToMap(new Npc(x, y, "Fisher", index), X, Y);
+            else if(char == 'F') addToMap(new Npc(x, y, "Fisher", index, beatBigJelly()), X, Y);
             else if(char == 'Y') addToMap(new Npc(x, y, "Mayor", index, bigReadBeaten), X, Y);
             else if(char == 'b') beatBigJelly() ? addToMap(new Water(x, y), X, Y) : addToMap(new Block(x, y, "block_bigjelly"), X, Y);
        }

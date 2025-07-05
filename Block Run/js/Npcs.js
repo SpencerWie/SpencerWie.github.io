@@ -27,7 +27,7 @@ function Chat(){
     }
 }
 
-function Npc(x, y, type, index, beatBigRed = false) {
+function Npc(x, y, type, index, beatBoss= false) {
     this.x = x;
     this.y = y;
     this.width = 32;
@@ -45,6 +45,7 @@ function Npc(x, y, type, index, beatBigRed = false) {
     if(this.type == "Fisher") {
         this.width = 64; 
         this.text1 = "Fish just aint catching ever since that monster showed up.\n We are barely getting by these days...";
+        if(beatBoss) this.text1 = "Thanks so much for beating that monster! I've never\nseen so much fish, we can feed everyone now!";
         this.text2 = "Be warned challenging that beast. The water is denser\n and harder to breath even if have no trouble normally.";
     }
     
@@ -56,9 +57,9 @@ function Npc(x, y, type, index, beatBigRed = false) {
     if(this.type == "Miner" && this.index == 5) this.text1 = "Congratulations on beating Big Red and he had a diamond! \nThat may allow you to find more them in pervious levels.";
     if(this.type == "Miner" && this.index == 6) this.text1 = "Not sure how to get that one down there. But something \n tells me you need to be able to Dash and Swim to get it.";
     if(this.type == "Miner" && this.index == 8) this.text1 = "Keep swiming left for the diamond. You'll need to be able\n breath under water and have a sheild!";
-    if(this.type == "Miner" && this.index == 9) this.text1 = "You win! Thank you so much for playing this lil game :)\n. Look out for more updates in the future!";
-    if(townMayor && !beatBigRed) this.text1 = "That Big Red has blocked the way to to rest of our town! \n If someone could defeat him maybe the way will open up.";
-    if(townMayor && beatBigRed) this.text1 = "Amazing you beat Big Red! Now we can access the entire town. \n Pervious levels has challenges for diamonds!";
+    if(this.type == "Miner" && this.index == 9) this.text1 = "You win! Thank you so much for playing this lil game :)\n Look out for more updates in the future!";
+    if(townMayor && !beatBoss) this.text1 = "That Big Red has blocked the way to to rest of our town! \n If someone could defeat him maybe the way will open up.";
+    if(townMayor && beatBoss) this.text1 = "Amazing you beat Big Red! The rest of the town is open. \n Pervious levels has challenges for diamonds!";
     if(townMayor && this.index == 0) this.text2 = "If you have extra lives you can donate them for coins.\nBeating a boss for the first time gives 5x the rewards."
     if(this.type == "Mayor" && this.index == 2) this.text1 = "Seems like Big Red's older brother Dark Red has been \n locked away down here. Be carefull!";
     if(this.type == "Mayor" && this.index == 8) this.text1 = "Looks like Big Red became Reverse-Red after you beat him.\n Careful it's alot faster!";
