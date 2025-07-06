@@ -99,8 +99,8 @@ function BigJelly(x, y, index)
 			if(this.deathTimer > 128) {
 				if(foundBoss) {
 					KEYS++;
-					COINS+=200;
-					if(!beatBigJelly()) COINS+=600;
+					COINS+=100;
+					if(!beatBigJelly()) COINS+=400;
 					Enemies = Enemies.filter(item => !isItem(item, "BigJelly"));
 					boss = false;
 					delete this;

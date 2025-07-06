@@ -60,7 +60,7 @@ function Npc(x, y, type, index, beatBoss= false) {
     if(this.type == "Miner" && this.index == 9) this.text1 = "You win! Thank you so much for playing this lil game :)\n Look out for more updates in the future!";
     if(townMayor && !beatBoss) this.text1 = "That Big Red has blocked the way to to rest of our town! \n If someone could defeat him maybe the way will open up.";
     if(townMayor && beatBoss) this.text1 = "Amazing you beat Big Red! The rest of the town is open. \n Pervious levels has challenges for diamonds!";
-    if(townMayor && this.index == 0) this.text2 = "If you have extra lives you can donate them for coins.\nBeating a boss for the first time gives 5x the rewards."
+    if(townMayor && this.index == 0) this.text2 = "If you have extra lives you can donate them for coins.\nBeating a boss for the first time gives a bigger reward."
     if(this.type == "Mayor" && this.index == 2) this.text1 = "Seems like Big Red's older brother Dark Red has been \n locked away down here. Be carefull!";
     if(this.type == "Mayor" && this.index == 8) this.text1 = "Looks like Big Red became Reverse-Red after you beat him.\n Careful it's alot faster!";
     if(this.type == "Mayor" && this.index == 9) this.text1 = "With Big Jelly defeated the town can finally be at peace!\n Thank you so much for saving our town!";
