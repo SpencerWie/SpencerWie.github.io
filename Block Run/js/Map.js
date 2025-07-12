@@ -101,32 +101,33 @@ function loadGame(){
     }
 }
 
-function handleYscroll(reset) {
-   if(player.y > yLevelMax*2 && yLevel == 1){
-      scrollY+= yLevelMax;
-      ctx.translate(0, -yLevelMax);
-      yLevel = 2;
-      images["background"].src = "imgs/ground_deep.jpg";
-   }
-   else if(player.y > yLevelMax && yLevel == 0){
-      scrollY+= yLevelMax;
-      ctx.translate(0, -yLevelMax);
-      yLevel = 1;
-      images["background"].src = "imgs/ground.jpg";
-   }
-   else if((player.y <= yLevelMax && yLevel == 1)){
-      scrollY-= yLevelMax;
-      ctx.translate(0, yLevelMax);
-      yLevel = 0;
-      images["background"].src = "imgs/clouds.jpg";
-   }   
-   else if(player.y <= yLevelMax*2 && yLevel == 2){
-      scrollY-= yLevelMax;
-      ctx.translate(0, yLevelMax);
-      yLevel = 1;
-      images["background"].src = "imgs/ground.jpg";
-   }      
-   if(reset) images["background"].src = "imgs/clouds.jpg";
+// Determines what Y level the camera should be at and what background to show
+function handleYscroll(reset=false) {
+    if(player.y > yLevelMax*2 && yLevel == 1){
+        scrollY+= yLevelMax;
+        ctx.translate(0, -yLevelMax);
+        yLevel = 2;
+        images["background"].src = "imgs/ground_deep.jpg";
+    }
+    else if(player.y > yLevelMax && yLevel == 0){
+        scrollY+= yLevelMax;
+        ctx.translate(0, -yLevelMax);
+        yLevel = 1;
+        images["background"].src = "imgs/ground.jpg";
+    }
+    else if((player.y <= yLevelMax && yLevel == 1)){
+        scrollY-= yLevelMax;
+        ctx.translate(0, yLevelMax);
+        yLevel = 0;
+        images["background"].src = "imgs/clouds.jpg";
+    }   
+    else if(player.y <= yLevelMax*2 && yLevel == 2){
+        scrollY-= yLevelMax;
+        ctx.translate(0, yLevelMax);
+        yLevel = 1;
+        images["background"].src = "imgs/ground.jpg";
+    }
+    if(reset) images["background"].src = "imgs/clouds.jpg";
 }
 
 function createMap(index) {

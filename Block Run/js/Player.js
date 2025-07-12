@@ -551,7 +551,7 @@ function Player() {
         this.x = this.startX;
         this.y = this.startY;
         this.dy = 0; this.dx = 0;
-        handleYscroll(true); // Handle yScroll based on new position.
+        handleYscroll(reset=true); // Set background to default
     }
  }
 
@@ -574,5 +574,5 @@ document.addEventListener("keyup", function(e) {
         if(player.unlockedColors > player.selectedColor) player.selectedColor++;
         else player.selectedColor = 0;
     } 
-    if( e.keyCode == 32|| e.code == "Space" ) {action(); player.startDash = false;} // SPACE
+    if( e.keyCode == 32|| e.code == "Space" ) {action(); player.startDash = false;}
 });

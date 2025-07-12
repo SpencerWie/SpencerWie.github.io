@@ -7,7 +7,7 @@ timer = setInterval(function()
 {
    ctx.drawImage(images["background"],-scrollX, scrollY, canvas.width, canvas.height);
    ctx.fillStyle = player.color;
-   handleYscroll(false);
+   handleYscroll();
    DrawBlocksAroundPlayer();
    for(e in Enemies) if(Enemies[e]) Enemies[e].draw();
    player.update();
