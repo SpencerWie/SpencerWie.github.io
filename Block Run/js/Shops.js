@@ -162,7 +162,7 @@ function DiamondShop() {
             if(player.canDash) this.crossOutButton(airDashBtn);
             if(player.canSwim) this.crossOutButton(swimBtn);
             if(player.canBreatheUnderwater) this.crossOutButton(gillsBtn);
-            if(player.shootBtn) this.crossOutButton(shootBtn);
+            if(player.canShoot) this.crossOutButton(shootBtn);
         }
     }
 }

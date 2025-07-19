@@ -47,7 +47,51 @@ function Player() {
 
     this.canSwim = false;
     this.canBreatheUnderwater = false;
-    this.canShoot = false;
+    this.canShoot = true; // Ensure the player can shoot
+    this.lasers = []; // Array to store active lasers
+
+    this.shootLaser = function() {
+        if (this.canShoot) {
+            this.lasers.push({
+                x: this.x + screenX + (this.frameY === 0 ? this.size : -10), // Laser starts at player's position
+                y: this.y + this.size / 2,
+                dx: this.frameY === 0 ? 15 : -15, // Direction based on player's facing direction
+                width: 10,
+                height: 4,
+                color: 'red'
+            });
+        }
+    };
+
+    this.updateLasers = function() {
+        for (let i = this.lasers.length - 1; i >= 0; i--) {
+            const laser = this.lasers[i];
+            laser.x += laser.dx;
+
+            // Remove laser if it goes off-screen
+            if (laser.x + scrollX < 0 || laser.x + scrollX > canvas.width) {
+                this.lasers.splice(i, 1);
+                continue;
+            }
+
+            // Check for collisions with enemies
+            for (let e = Enemies.length - 1; e >= 0; e--) {
+                const enemy = Enemies[e];
+                if (collide(laser, enemy)) {
+                    this.damageEnemy(enemy, e, playerBounce=false);
+                    this.lasers.splice(i, 1); // Remove laser
+                    break;
+                }
+            }
+        }
+    };
+
+    this.drawLasers = function() {
+        for (const laser of this.lasers) {
+            ctx.fillStyle = laser.color;
+            ctx.fillRect(laser.x, laser.y, laser.width, laser.height);
+        }
+    };
 
     var duckLeft =  { x: 2, y: 2 };
     var duckRight = { x: 1, y: 2 };
@@ -60,6 +104,7 @@ function Player() {
         ctx.drawImage(this.image, this.frameX*this.size, this.frameY*this.size, this.size, this.size, this.x, this.y, this.size, this.size);
         ctx.globalAlpha = 1;
         this.drawPlayerSelectedColors();
+        this.drawLasers();
 
         // If we have armor on hit draw the armor icon above while the player is invulnerable
         if(armorBreak && ARMOR) {
@@ -100,6 +145,7 @@ function Player() {
        this.horizontalMovement();
        this.handleCollisions();
        this.recordPosition(this.x, this.y);
+       this.updateLasers();
        if(DEAD) { this.frameX = 0; this.frameY = 2; }
     }
     
@@ -473,28 +519,7 @@ function Player() {
                 var hitBigJelly = isItem(enemy,'BigJelly');
                 //Red Block Enemy:Player land on head, enemey is damaged (shift XFrame or die if out of hp)
                 if( this.y + this.height < enemy.y + this.dy + 5  && this.dy > 0 ) {
-                    if(enemy.type == "red block") {
-                        this.bounceOffEnemy(enemy);
-                        enemy.hp--;
-                        if(enemy.hp == 1){ 
-                            enemy.y += 20;
-                            enemy.height -= 20; 
-                        }
-                        if( enemy.hp > 0 ) enemy.frameX++;
-                        else { 
-                            Enemies.splice(e, 1); 
-                            spawnOnMap(enemy, new Coin(enemy.x, enemy.y + 5));
-                        }
-                    }
-                    // Boss takes damage if currently vulnerable and not already hit
-                    if(hitBigRed && enemy.vulnerableTimer > 0 && enemy.frameX != 3) { 
-                        enemy.takeDamage();
-                        this.bounceOffEnemy(enemy);
-                    }
-                    if(hitBigJelly && enemy.vulnerableTimer > 0 && enemy.frameY != 1) { 
-                        enemy.takeDamage();
-                        this.bounceOffEnemy(enemy, 2);
-                    }
+                    this.damageEnemy(enemy, e, true, hitBigRed, hitBigJelly);
                 } else { 
                     if(enemy.type == "red block") this.die(); 
                     if((hitBigRed || hitBigJelly) && enemy.vulnerableTimer <= 0) this.die(true); 
@@ -514,6 +539,36 @@ function Player() {
             if(collide(boss.atk, player)) {
                 this.die(true);
             }
+        }
+    }
+
+    this.damageEnemy = function(enemy, e, playerBounce = true, hitBigRed = false, hitBigJelly = false) {
+        if(enemy.type == "red block") {
+            if(playerBounce) this.bounceOffEnemy(enemy);
+            enemy.hp--;
+            console.log("enemyhp", enemy.hp)
+            if(enemy.hp == 1){ 
+                enemy.y += 20;
+                enemy.height -= 20; 
+            }
+            if( enemy.hp > 0 ) enemy.frameX++;
+            else { 
+                Enemies.splice(e, 1); 
+                spawnOnMap(enemy, new Coin(enemy.x, enemy.y + 5));
+            }
+        }
+        // Boss takes damage if currently vulnerable and not already hit
+        if(hitBigRed && enemy.vulnerableTimer > 0 && enemy.frameX != 3) { 
+            enemy.takeDamage();
+            if(playerBounce) this.bounceOffEnemy(enemy);
+        }
+        if(hitBigJelly && enemy.vulnerableTimer > 0 && enemy.frameY != 1) { 
+            enemy.takeDamage();
+            if(playerBounce) this.bounceOffEnemy(enemy, 2);
+        }
+        if(!playerBounce && isItem(enemy,'jellyfish')) {
+            Enemies.splice(e, 1); 
+            spawnOnMap(enemy, new Coin(enemy.x, enemy.y + 5));
         }
     }
 
@@ -570,9 +625,12 @@ document.addEventListener("keyup", function(e) {
     if( e.keyCode == 39 || e.code == "KeyD" ) RIGHT = false;
     if( e.keyCode == 40 || e.code == "KeyS" ) DOWN = false;  
     if( e.keyCode == 16 || e.code == "ShiftLeft" ) SHIFT = false;
+    if( e.keyCode == 32|| e.code == "Space" ) {action(); player.startDash = false;}
     if( e.keyCode == 67 || e.code == "KeysC") { // C For Color Change
         if(player.unlockedColors > player.selectedColor) player.selectedColor++;
         else player.selectedColor = 0;
     } 
-    if( e.keyCode == 32|| e.code == "Space" ) {action(); player.startDash = false;}
+    if (e.keyCode == 70 || e.code == "KeyF") { // F for shooting
+        player.shootLaser();
+    }
 });
