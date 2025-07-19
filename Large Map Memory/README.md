@@ -1,6 +1,6 @@
 Large Map Memory Management:
 
-http://cs.iupui.edu/~spdwiecz/JavaScript/Large_Map_Memory/memOut.html
+https://spencerwie.github.io/Large%20Map%20Memory/memOut.html
 
 This is a test to show the management of huge amounts of items. In this case there is a single player and 100,000 moving blocks. This is implemented by checked distance of each block, although all blocks need to be checked, the distance formula is basic and only requires addition and basic multiplcation. If the block is out of range it performs no operations such as (drawing on screen, collision checked, etc).
 
