@@ -28,6 +28,7 @@ function Chat(){
 }
 
 function Npc(x, y, type, index, beatBoss= false) {
+    console.log(type, x, y);
     this.x = x;
     this.y = y;
     this.width = 32;
@@ -58,6 +59,10 @@ function Npc(x, y, type, index, beatBoss= false) {
     if(this.type == "Miner" && this.index == 6) this.text1 = "Not sure how to get that one down there. But something \n tells me you need to be able to Dash and Swim to get it.";
     if(this.type == "Miner" && this.index == 8) this.text1 = "Keep swiming left for the diamond. You'll need to be able\n breath under water and have a sheild!";
     if(this.type == "Miner" && this.index == 9) this.text1 = "You win! Thank you so much for playing this lil game :)\n Look out for more updates in the future!";
+    if(this.type == "Miner" && this.index == 0 && this.y > 800) {
+        this.text1 = "Amazing you unlocked every ability! We are still\n currently working On some cool secret stuff.";
+        this.text2 = "Thank you so much for playing and collecting everything!\n Look out for more games to play on my main site too.";
+    }
     if(townMayor && !beatBoss) this.text1 = "That Big Red has blocked the way to to rest of our town! \n If someone could defeat him maybe the way will open up.";
     if(townMayor && beatBoss) this.text1 = "Amazing you beat Big Red! The rest of the town is open. \n Pervious levels has challenges for diamonds!";
     if(townMayor && this.index == 0) this.text2 = "If you have extra lives you can donate them for coins.\nBeating a boss for the first time gives a bigger reward."

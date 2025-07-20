@@ -44,6 +44,12 @@ function Lock(x, y, type) {
     this.image = images[lockType];
 }
 
+function BreakableBlock(x, y) {
+   Block.call(this, x, y);
+   this.width = 30; this.height = 30;
+   this.image = images['breakable_block'];
+}
+
 function Key(x, y, type) {
     Block.call(this, x, y);
     var keyType = "key";

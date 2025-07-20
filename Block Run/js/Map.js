@@ -26,6 +26,7 @@ var currentMapIdx = 0;
 var MapItems = [];
 var Enemies = [];
 var Bosses = [];
+var BreakableBlocks = [];
 
 var chat = new Chat();
 
@@ -43,7 +44,6 @@ function distance(a, b) {
 }
 
 function action() {
-    //if(player.canDash && !chat.active) player.startDash = true;
     if(chat.active) {
         chat.active = false;
         return;
@@ -146,6 +146,7 @@ function createMap(index) {
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     
     items = [];
+    BreakableBlocks = [];
     Enemies = [];
     Bosses = [];
     MapItems = new Array(map.length);
@@ -194,6 +195,7 @@ function createMap(index) {
             else if(char == 'F') addToMap(new Npc(x, y, "Fisher", index, beatBigJelly()), X, Y);
             else if(char == 'Y') addToMap(new Npc(x, y, "Mayor", index, bigReadBeaten), X, Y);
             else if(char == 'b') beatBigJelly() ? addToMap(new Water(x, y), X, Y) : addToMap(new Block(x, y, "block_bigjelly"), X, Y);
+            else if(char == '+') addToMap(new BreakableBlock(x, y), X, Y);
        }
     }
 }
@@ -222,6 +224,10 @@ function addToMap(item, X, Y) {
         items.push(item);
         MapItems[Y][X] = item;
     }
+    /*if (item instanceof BreakableBlock) {
+        BreakableBlocks.push(item);
+        MapItems[Y][X] = item;
+    }*/
 }
 
 // Look for an empty space near the enemy location and spawn the item there.

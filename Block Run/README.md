@@ -18,12 +18,14 @@ The original game <em>Block Run</em>, was created as a simple platform game in P
   <li><em><strong>C:</strong></em> Change player color if brought, cycles through them going back to the default color.</li>
 </ul>
 
-<h3>Current Version: <strong><em>v1.00</em></strong></h3>
+<h3>Current Version: <strong><em>v1.02</em></strong></h3>
 <ul>
   <li>Title Screen + Intro Tutorial - Planned</li>
   <li>Big Jelly Challenge Diamond: Harder varient of Big Jelly after the fight - Planned</li>
-  <li>Laser Shoot Upgrade: Shoot lasers at enemies - Planned</li>
   <li>Small Red: Like big red but dies in one hit, shoots small laser ball - Possible</li>
+  <li>Laser Shoot Upgrade: Shoot lasers at enemies - Completed</li>
+  <li>Breakable Blocks: Lasers can destroy these to access otherwise inaccessable areas. - Completed</li>
+  <li>New Town NPC: Fisherman - Completed</li>
 </ul>
 
 <h3><em>v0.9</em></h3>

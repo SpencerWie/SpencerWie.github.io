@@ -83,6 +83,31 @@ function Player() {
                     break;
                 }
             }
+            // Check for collisions with breakables
+            let breakablesNear = getBlocksNearItem(laser, 3);
+            for(var Y = breakablesNear.above; Y < breakablesNear.below; Y++ ) {
+                for(var X = breakablesNear.left; X < breakablesNear.right; X++ ) {
+                    const box = MapItems[Y]?.[X];
+                    if (box instanceof BreakableBlock && collide(laser, box)) {
+
+                        if (MapItems[Y] && MapItems[Y][X]) {
+                            MapItems[Y][X] = null; // Remove from Map
+                            addToMap(new Coin(box.x, box.y), X, Y);
+                            // Find and remove the box from items array
+                            for (let i = 0; i < items.length; i++) {
+                                if (items[i].x === box.x && items[i].y === box.y) {
+                                    items.splice(i, 1);
+                                    break;
+                                }
+                            }
+                            console.log(MapItems);
+                        }
+
+                        this.lasers.splice(i, 1); // Remove laser
+                        break;
+                    }
+                }
+            }
         }
     };
 
@@ -253,12 +278,13 @@ function Player() {
             var isPlatform = isItem(item,'platform') || (isItem(item,'falling_platform') && item.alpha > 0.1)
             var platformCollision = !DOWN && isPlatform && this.y+(this.height/2) <= item.y;
             // For upwards collision check if we are moving up and hit a block, if so place player at the bottom of block and halt verticle motion.
-            if(this.dy < 0 && collide(this,item) && isItem(item,'block')) {
+            if(this.dy < 0 && collide(this,item) && (isItem(item,'block') || isItem(item,'breakable_block'))) {
                 this.dy = 0;
                 this.ddy = 0;
                 this.y = item.y + this.size;
             }// For downwards collision check if we are moving down and hit a block, if so place player at the top of block and halt verticle motion.
-            else if(this.dy >= 0 && collide(this,item) && (isItem(item,'block') || platformCollision)) {
+            else if(this.dy >= 0 && collide(this,item) && (isItem(item,'block') || platformCollision || isItem(item,'breakable_block'))) {
+                console.log("move up")
                 if(isItem(item,'falling_platform') ) {
                     if(item.alpha < 0.1) this.dy = this.ddy = 0;
                 } else {
@@ -406,7 +432,7 @@ function Player() {
                 if(!MapItems[Y][X]) continue;
 
                 var item = MapItems[Y][X];
-                var isSolidBlock = isItem(item,'block') || isItem(item,'lock') || isItem(item,'lock_silver') || isItem(item,'block_bigred') || isItem(item,'block_bigjelly');
+                var isSolidBlock = isItem(item,'block') || isItem(item,'lock') || isItem(item,'lock_silver') || isItem(item,'block_bigred') || isItem(item,'block_bigjelly') || isItem(item, 'breakable_block');
                 var movingRight = this.dx <= 0; 
                 var movingLeft = this.dx > 0;
 
@@ -496,7 +522,7 @@ function Player() {
             for(var X = blocks.left; X < blocks.right; X++ ) {
                 if(!MapItems[Y][X]) continue;
                 var item = MapItems[Y][X];
-                var isPlatformBlock = (isItem(item,'block') || isItem(item,'lock') || isItem(item,'platform') || isItem(item,'falling_platform'));  
+                var isPlatformBlock = isItem(item,'block') || isItem(item,'lock') || isItem(item,'platform') || isItem(item,'falling_platform') || isItem(item, 'breakable_block');  
 
                 if(collide(groundPoint, item) && isPlatformBlock && this.dy >= 0) { 
                     this.jump = true; // When we found a collision we stop looking
