@@ -28,7 +28,6 @@ function Chat(){
 }
 
 function Npc(x, y, type, index, beatBoss= false) {
-    console.log(type, x, y);
     this.x = x;
     this.y = y;
     this.width = 32;

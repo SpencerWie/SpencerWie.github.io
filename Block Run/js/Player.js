@@ -75,8 +75,8 @@ function Player() {
             }
 
             // Check for collisions with enemies
-            for (let e = Enemies.length - 1; e >= 0; e--) {
-                const enemy = Enemies[e];
+            for (var e = 0; e < Enemies.length; e++) {
+                var enemy = Enemies[e];
                 if (collide(laser, enemy)) {
                     this.damageEnemy(enemy, e, playerBounce=false);
                     this.lasers.splice(i, 1); // Remove laser
@@ -89,7 +89,6 @@ function Player() {
                 for(var X = breakablesNear.left; X < breakablesNear.right; X++ ) {
                     const box = MapItems[Y]?.[X];
                     if (box instanceof BreakableBlock && collide(laser, box)) {
-
                         if (MapItems[Y] && MapItems[Y][X]) {
                             MapItems[Y][X] = null; // Remove from Map
                             addToMap(new Coin(box.x, box.y), X, Y);
@@ -100,9 +99,7 @@ function Player() {
                                     break;
                                 }
                             }
-                            console.log(MapItems);
                         }
-
                         this.lasers.splice(i, 1); // Remove laser
                         break;
                     }
@@ -572,7 +569,6 @@ function Player() {
         if(enemy.type == "red block") {
             if(playerBounce) this.bounceOffEnemy(enemy);
             enemy.hp--;
-            console.log("enemyhp", enemy.hp)
             if(enemy.hp == 1){ 
                 enemy.y += 20;
                 enemy.height -= 20; 
