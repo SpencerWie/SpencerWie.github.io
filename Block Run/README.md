@@ -18,7 +18,7 @@ The original game <em>Block Run</em>, was created as a simple platform game in P
   <li><em><strong>C:</strong></em> Change player color if brought, cycles through them going back to the default color.</li>
 </ul>
 
-<h3>Current Version: <strong><em>v1.02</em></strong></h3>
+<h3>Current Version: <strong><em>v1.04</em></strong></h3>
 <ul>
   <li>Title Screen + Intro Tutorial - Planned</li>
   <li>Big Jelly Challenge Diamond: Harder varient of Big Jelly after the fight - Planned</li>
