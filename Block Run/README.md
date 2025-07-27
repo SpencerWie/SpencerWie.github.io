@@ -1,11 +1,11 @@
-<h1>Block Run Beta</h1>
+<h1>Block Run</h1>
 
 <p><a href="https://spencerwie.github.io/Block%20Run/blockRun.html"> Click here to play the lastest version of the game</a></p>
 
 <img src="screenshot.PNG" style="display:block; margin: auto" alt="Game Play Example" />
 
 <p>
-The original game <em>Block Run</em>, was created as a simple platform game in Python (using pyGame). It was the first <em>"real"</em> game that I've created, because of this things were not done in the most effiecent way. Now I'm doing a new and improved <em>Block Run</em> written in JavaScript using the HTML5 Canvas. 
+The original game <strong>Block Run</strong>, was created as a simple platform game in Python (using pyGame). It was the first <em>"real"</em> game that I've created, because of this things were not done in the most effiecent way. I've created a new and improved <em>Block Run</em> written in JavaScript using the HTML5 Canvas.
 </p>
 
 <h3>How to Play:</h3>
