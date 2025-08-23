@@ -22,93 +22,85 @@ function Ship(){
 	this.armor = 1.0; //The higher the lass damage taken when falling.
 	this.power = 1.0; //The higher the faster the Ship can dig.
 	this.backPack = 10; //The larger the more the Ship can carry.
+	this.fullNotice = false;
+	this.textAlpha = 1;
 
-this.Event = function(){
-	this.xSpeed*=this.acc;//friction
-	this.ySpeed*=this.acc;//friction
-	MapX+=this.xSpeed;
-	MapY+=this.ySpeed;
-	if(this.ySpeed>-15){
-	this.ySpeed-=GRAVITY;//gravity
-	}
-	//if(this.x>0 && this.y>0 && this.x<WIDTH && this.y<HEIGHT){ Will be replaced
-		if(intersect(this, Gas,80)){//If player is next to GasStation and presses Space, re-fill fuel.
+	this.Event = function() {
+		this.xSpeed*=this.acc;//friction
+		this.ySpeed*=this.acc;//friction
+		MapX+=this.xSpeed;
+		MapY+=this.ySpeed;
+		if(this.ySpeed>-15) this.ySpeed-=GRAVITY;//gravity
+		if(intersect(this, Gas,80)) {//If player is next to GasStation and presses Space, re-fill fuel.
 			Gas.image = gasStation_fill;
 			if(SPACE){Fuel+=5;}
-		}else{
+		} else {
 			Gas.image = gasStation;
 		}
-		if(intersect(this, Trade,80)){//If player is next to TradeStation and presses Space, sell items and empty inv.
-		//Copper = 10$, iron = 30$, silver = 80$, gold = 200$.
+		if(intersect(this, Trade,80)) {//If player is next to TradeStation and presses Space, sell items and empty inv.
 			Trade.image = tradeStation_sell;
-			if(SPACE){
-			Cash+= 10*COPPER + 30*IRON + 80*SILVER + 200*GOLD; 
-			//console.log(Cash); 
-			STORAGE=0; 
-			COPPER=0;IRON=0;SILVER=0;GOLD=0;
+			if(SPACE) {
+				Cash+= 10*COPPER + 30*IRON + 80*SILVER + 200*GOLD; 
+				STORAGE=0; 
+				COPPER=0;IRON=0;SILVER=0;GOLD=0;
 			}
-		}else{
+		} else {
 			Trade.image = tradeStation;
 		}
-		if(intersect(this, Shop,80)){//If player is next to TradeStation and presses Space, sell items and empty inv.
-		//Copper = 10$, iron = 30$, silver = 80$, gold = 200$.
+		if(intersect(this, Shop,80)) {//If player is next to TradeStation and presses Space, sell items and empty inv.
 			Shop.image = shopStation_shop;
-			if(SPACE){
-			 Menu.active = true;
-			}
-		}else{
+			if(SPACE) Menu.active = true;
+		} else {
 			Shop.image = shopStation;
 		}
+
 		//If user pressed LEFT then move left and make the image left.
-		if(LEFT && MapX<270){
+		if(LEFT && MapX<270) {
 			DigCountR, DigCountD = 0;
-			if(this.xSpeed<11 && this.xSpeed>(-11)){
-				this.xSpeed++;//Move Left
-			}
+			if(this.xSpeed < 11 && this.xSpeed > -11) this.xSpeed++;//Move Left
 			this.Left=true
-			if(this.xSpeed>0 && UP==false){
-			canvas.drawImage(this.imgShipL, this.x, this.y);
-			}
+			if(this.xSpeed>0 && !UP) canvas.drawImage(this.imgShipL, this.x, this.y);
 		}
 		//If user pressed RIGHT, we don't want to be drawing left and right at the same time. so ELSE IF
 		else if(RIGHT && MapX> -(SIZE*COLS-220)){
 			DigCountL, DigCountD = 0;
-			if(this.xSpeed<11 && this.xSpeed>(-11)){
-				this.xSpeed--;//Move Right
-				}
+			if(this.xSpeed<11 && this.xSpeed>-11) this.xSpeed--;//Move Right
 			this.Right=true;
-			if(this.xSpeed<0 && UP==false){
-				canvas.drawImage(this.imgShipR, this.x, this.y);
-				}
+			if(this.xSpeed<0 && !UP) canvas.drawImage(this.imgShipR, this.x, this.y);
 		}
+		
 		//If the user pressed UP
 		if(UP){
 			DigCountL, DigCountR, DigCountD = 0;
-			if(this.ySpeed<FanPower){
-				this.ySpeed+=2;
-			}
+			if(this.ySpeed<FanPower) this.ySpeed+=2;
 			canvas.drawImage(this.imgShipU, this.x, this.y);
 			this.Up = true;
 		}
+
 		//If the user pressed DOWN
-		if(DOWN){
-			this.xSpeed*=0.5;//Slow down xSpeed;
+		if(DOWN) {
+			this.xSpeed*=0.5; //Slow down xSpeed;
 			DigCountL, DigCountR = 0;
-			if(this.ySpeed<4 && this.ySpeed>(-4)){
-				this.ySpeed--;//Move Down
-			}
+			if(this.ySpeed<4 && this.ySpeed>-4) this.ySpeed--; //Move Down
 			canvas.drawImage(this.imgShipD, this.x, this.y);
 			this.Down = true;
+		} else {
+			if(this.xSpeed>=0) canvas.drawImage(this.imgShipL, this.x, this.y); 
+			else if(this.xSpeed<0) canvas.drawImage(this.imgShipR, this.x, this.y); 
 		}
-		else{
-			if(this.xSpeed>=0){canvas.drawImage(this.imgShipL, this.x, this.y);}
-			else if(this.xSpeed<0){canvas.drawImage(this.imgShipR, this.x, this.y);}
+		if(MapX>270) this.xSpeed=-1; 
+		if(MapX<-(SIZE*COLS-250)) this.xSpeed=1;
+		if(this.fullNotice) {
+			this.textAlpha -= 0.025
+			canvas.font = "18px Arial";
+			canvas.fillStyle = "rgba(255, 0, 0, "+this.textAlpha+")";
+			canvas.fillText("Storage Full", ship.x - 24, ship.y - 10);
+			if(this.textAlpha < 0) {
+				this.textAlpha = 1;
+				this.fullNotice = false;
+			}
 		}
-		if(MapX>270){this.xSpeed=-1;}
-		if(MapX<-(SIZE*COLS-250)){this.xSpeed=1;}
-	//}
-}
-
+	}
 }
 
 var ship = new Ship();
@@ -140,8 +132,9 @@ function addToPack(item){
 			}
 		}
 	//If item dug was an ore and storage is full say that storage is full.
-	}else if(item.image==copperOre_Hit3 || item.image==ironOre_Hit3 || item.image==silverOre_Hit3 || item.image==goldOre_Hit3){
-	//console.log("Storage Full!");
+	} else if(item.image==copperOre_Hit3 || item.image==ironOre_Hit3 || item.image==silverOre_Hit3 || item.image==goldOre_Hit3){
+		ship.fullNotice = true;
+		console.log("full")
 	}
 }
 
