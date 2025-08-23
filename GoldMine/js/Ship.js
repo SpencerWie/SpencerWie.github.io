@@ -92,9 +92,9 @@ function Ship(){
 		if(MapX<-(SIZE*COLS-250)) this.xSpeed=1;
 		if(this.fullNotice) {
 			this.textAlpha -= 0.025
-			canvas.font = "18px Arial";
+			canvas.font = "14px Arial";
 			canvas.fillStyle = "rgba(255, 0, 0, "+this.textAlpha+")";
-			canvas.fillText("Storage Full", ship.x - 24, ship.y - 10);
+			canvas.fillText("Storage Full", ship.x - 18, ship.y - 10);
 			if(this.textAlpha < 0) {
 				this.textAlpha = 1;
 				this.fullNotice = false;
@@ -110,31 +110,31 @@ function addToPack(item){
 		if(item.image==copperOre_Hit3){
 			if(STORAGE<UpgradePowers[1]){
 				STORAGE++;
-				COPPER++;//console.log("Copper: "+COPPER);
+				COPPER++;
 				}
 		}
 		if(item.image==ironOre_Hit3){
 			if(STORAGE<UpgradePowers[1]){
 				STORAGE++;
-				IRON++;//console.log("Iron: "+IRON);
+				IRON++;
 			}
 		}
 		if(item.image==silverOre_Hit3){
 			if(STORAGE<UpgradePowers[1]){
 				STORAGE++;
-				SILVER++;//console.log("Silver: "+SILVER);
+				SILVER++;
 			}
 		}
 		if(item.image==goldOre_Hit3){
 			if(STORAGE<UpgradePowers[1]){
 				STORAGE++;
-				GOLD++;//console.log("Gold: "+GOLD);
+				GOLD++;
 			}
 		}
+		if(STORAGE == UpgradePowers[1]) ship.fullNotice = true;
 	//If item dug was an ore and storage is full say that storage is full.
 	} else if(item.image==copperOre_Hit3 || item.image==ironOre_Hit3 || item.image==silverOre_Hit3 || item.image==goldOre_Hit3){
 		ship.fullNotice = true;
-		console.log("full")
 	}
 }
 
