@@ -75,12 +75,12 @@ function makeCanvas() {
 makeCanvas();
 
 //To clear the canvas
-function clearCanvas(){
-    var infoCanvas = document.getElementById("Canvas");
-    var tempCanvas = getCanvas();
+function drawBackground(){
+	var infoCanvas = document.getElementById("Canvas");
+	var tempCanvas = getCanvas();
 	//Fill OutofMap Background.
-    tempCanvas.fillStyle = "#111111";
-    tempCanvas.fillRect(0,0,infoCanvas.width,infoCanvas.height)
+	tempCanvas.fillStyle = "#111111";
+	tempCanvas.fillRect(0,0,infoCanvas.width,infoCanvas.height)
 	//Fill Map Lighting.
 	var my_gradient=tempCanvas.createLinearGradient(MapX,MapY-2000,MapX,MapY+SIZE*ROWS);
 	my_gradient.addColorStop(0.07,"#111111");//Black (Space)

@@ -43,6 +43,10 @@ function Ship(){
 				Cash+= 10*COPPER + 30*IRON + 80*SILVER + 200*GOLD; 
 				STORAGE=0; 
 				COPPER=0;IRON=0;SILVER=0;GOLD=0;
+				localStorage.setItem('goldmine_save', JSON.stringify({
+					"Cash": Cash,
+					"UpgradeArray": UpgradeArray
+				}))
 			}
 		} else {
 			Trade.image = tradeStation;
@@ -145,7 +149,6 @@ function DigPaths(intensity){// This is OK to be seperate since it only happens 
 	if(intensity<0){intensity=0;}
 	//anything over 0.25 does not make sense, adujust the input by /4.
 	intensity = intensity/4;
-	//canvas = getCanvas();
 	for(var i=0;i<ROWS;i++){
 		for(var j=0;j<COLS;j++){
 			if(tileMap[i][j]==0){//tile to check needs to be blank

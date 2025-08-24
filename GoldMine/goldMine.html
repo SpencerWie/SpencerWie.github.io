@@ -27,7 +27,7 @@ body {
 	<script type="text/javascript" src="js/BuildingsAndMenus.js" ></script>
 	<script type="text/javascript" >
 		function update(){
-			clearCanvas();
+			drawBackground();
 			BlockCollision();
 			DrawMap();
 			ship.Event();
@@ -36,6 +36,14 @@ body {
 		}
 
 		function main() {
+			// Load saved data if it exist
+			var save = localStorage.getItem('goldmine_save');
+			if(save) {
+				save = JSON.parse(save);
+				Cash = save.Cash;
+				UpgradeArray = save.UpgradeArray;
+				UpgradeStats();
+			}
 			document.getElementById('music').volume = 0.01;
 			GenerateMap();
 			DigPaths(0.4);

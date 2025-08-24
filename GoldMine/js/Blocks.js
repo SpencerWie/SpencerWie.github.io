@@ -234,29 +234,32 @@ function DigBlock(DigCount, i, j, Direction) {
 	if(tileMap[i][j].image!=rockBlock && ship.ySpeed<2 && ship.ySpeed>-2 && UP==false){
 		if(Direction){DigCount+=UpgradePowers[0];}
 		tileMap[i][j].image = animate(tileMap[i][j], DigCount);
-		if(DigCount>20){//20 will be changed to a global (drill speed) variable.
-			if(tileMap[i][j].image == lavaBlock){Reset();}
-			//If it was diamond you win.
-			if(tileMap[i][j].image == diamondOre){alert("You found it! Wow it's huge! Well congratulations my friend, you are now rich. Feel free to keep on digging if you want to rack in some extra dough. You Win! :D ");Cash+=2000;}
-			addToPack(tileMap[i][j]);
-			tileMap[i][j].x = null; tileMap[i][j].y = null; tileMap[i][j] = null;
-			tileMap[i][j]=0;//change it to an empty block and hope the GC does it's job.
-			DigCount=0;
-		}
+		DigCount = ProccessBlock(DigCount, i ,j);
 	}
-	return DigCount
+	return DigCount;
+}
+
+function ProccessBlock(DigCount, i ,j){
+	if(DigCount>20+ i/10){//20 will be changed to a global (drill speed) variable.
+		if(tileMap[i][j].image == lavaBlock){Reset();}
+		//If it was diamond you win.
+		if(tileMap[i][j].image == diamondOre){alert("You found it! Wow it's huge! Well congratulations my friend, you are now rich. Feel free to keep on digging if you want to rack in some extra dough. You Win! :D ");Cash+=2000;}
+		addToPack(tileMap[i][j]);
+		tileMap[i][j].x = null; tileMap[i][j].y = null; tileMap[i][j] = null;
+		tileMap[i][j]=0;//change it to an empty block and hope the GC does it's job.
+		DigCount=0;
+	}
+	return DigCount;
 }
 
 function BlockCollision(){
-	for(var i=0;i<ROWS;i++){
-		for(var j=0;j<COLS;j++){
-		 //We only want to check it the item in tileMap is a Block. We also don't want them to be able to dig rocks.
-		 if((tileMap[i][j] instanceof Block)){
-		 	if(distance(tileMap[i][j],ship)<100){ 	//If too far dont check. and exit function.
-			if(intersect(tileMap[i][j],ship,SIZE)){//If Ship and a block is colliding
+	for(var i=0;i<ROWS;i++) {
+		for(var j=0;j<COLS;j++) {
+		 //We only want to check it the item in tileMap is a Block, is not too far away, and if its colliding
+		 if((tileMap[i][j] instanceof Block && distance(tileMap[i][j],ship)<100) && intersect(tileMap[i][j],ship,SIZE)){
 				//Top of Block collision. Could only count when ship is falling or not moving. Also if the ship is on the edge of the block by 10 pixels on both sides don't count it (So it will be easier for the ship to fly up in caves).
-				if(ship.y+(SIZE)<tileMap[i][j].y+(SIZE/2) && ship.ySpeed<=0 && ship.x+SIZE-10>tileMap[i][j].x && ship.x+10<tileMap[i][j].x+(SIZE)){
-					//console.log("TOP")
+				var xLimits = ship.x+SIZE-10>tileMap[i][j].x && ship.x+10<tileMap[i][j].x+(SIZE);
+				if(ship.y+(SIZE)<tileMap[i][j].y+(SIZE/2) && ship.ySpeed<=0 && xLimits){
 					tileMap[i][j].y = MapY;
 					MapY-=ship.ySpeed;
 					ship.ySpeed=0;	
@@ -264,39 +267,23 @@ function BlockCollision(){
 					if(tileMap[i][j].image!=rockBlock){
 						if(DOWN){DigCountD+=UpgradePowers[0];}
 						tileMap[i][j].image = animate(tileMap[i][j], DigCountD);
-						if(DigCountD > 20 + i/10){ // As you go down it gets harder to dig.
-							//If it was lava you die.
-							if(tileMap[i][j].image == lavaBlock){Reset();}
-							//If it was diamond you win.
-							if(tileMap[i][j].image == diamondOre){LEFT=false;RIGHT=false;DOWN=false;UP=false;alert("You found it! Wow it's huge! Well congratulations my friend, you are now rich. Feel free to keep on digging if you want to rack in some extra dough. You Win! :D ");Cash+=2000;}
-							addToPack(tileMap[i][j]);
-							tileMap[i][j].x = null; tileMap[i][j].y = null; tileMap[i][j] = null;
-							tileMap[i][j]=0;//change it to an empty block and hope the GC does it's job. 0
-							DigCountD=0;
-					
-						}
+						DigCountD=ProccessBlock(DigCountD,i ,j);
 					}
 				}
 				
 				// Stops the ship on bottom of map.
-				if(ship.y+20>tileMap[i][j].y+(SIZE) && ship.ySpeed>=0 && ship.x+SIZE-10>tileMap[i][j].x && ship.x+10<tileMap[i][j].x+(SIZE)){
-					//console.log("BOTTOM")
+				if(ship.y+20>tileMap[i][j].y+(SIZE) && ship.ySpeed>=0 && xLimits){
 					tileMap[i][j].y = MapY;
 					MapY-=ship.ySpeed;
 					ship.ySpeed=0;
 				}
 
 				//We don't want the user to be able to dig while air born. So the user only can dig within a ySpeed limit.
-				if(ship.x+SIZE-15<tileMap[i][j].x && ship.y+(SIZE)>tileMap[i][j].y+(SIZE/4) && ship.y<tileMap[i][j].y+(SIZE-10) && ship.xSpeed<0) {
-					DigCountR = DigBlock(DigCountR, i, j, RIGHT);
-				}
-				if(ship.x+15>tileMap[i][j].x+SIZE && ship.y+(SIZE)>tileMap[i][j].y+(SIZE/4) && ship.y<tileMap[i][j].y+(SIZE-10) && ship.xSpeed>0) {
-					DigCountL = DigBlock(DigCountL, i, j, LEFT);
-				}
+				var yLimits = ship.y+(SIZE)>tileMap[i][j].y+(SIZE/4) && ship.y<tileMap[i][j].y+(SIZE-10);
+				if(ship.x+SIZE-15<tileMap[i][j].x && yLimits && ship.xSpeed<0) DigCountR = DigBlock(DigCountR, i, j, RIGHT);
+				if(ship.x+15>tileMap[i][j].x+SIZE && yLimits && ship.xSpeed>0) DigCountL = DigBlock(DigCountL, i, j, LEFT);
 				
 			}
-		  }
-		 }
 		}
 	}
 }
