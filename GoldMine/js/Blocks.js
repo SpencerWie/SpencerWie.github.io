@@ -227,6 +227,26 @@ function generateGroundandAir(){
 	tileMap[ROWS-2][COLS-2].image = diamondOre;
 }
 
+function DigBlock(DigCount, i, j, Direction) {
+	tileMap[i][j].x = MapX;
+	MapX-=ship.xSpeed;
+	ship.xSpeed=0;
+	if(tileMap[i][j].image!=rockBlock && ship.ySpeed<2 && ship.ySpeed>-2 && UP==false){
+		if(Direction){DigCount+=UpgradePowers[0];}
+		tileMap[i][j].image = animate(tileMap[i][j], DigCount);
+		if(DigCount>20){//20 will be changed to a global (drill speed) variable.
+			if(tileMap[i][j].image == lavaBlock){Reset();}
+			//If it was diamond you win.
+			if(tileMap[i][j].image == diamondOre){alert("You found it! Wow it's huge! Well congratulations my friend, you are now rich. Feel free to keep on digging if you want to rack in some extra dough. You Win! :D ");Cash+=2000;}
+			addToPack(tileMap[i][j]);
+			tileMap[i][j].x = null; tileMap[i][j].y = null; tileMap[i][j] = null;
+			tileMap[i][j]=0;//change it to an empty block and hope the GC does it's job.
+			DigCount=0;
+		}
+	}
+	return DigCount
+}
+
 function BlockCollision(){
 	for(var i=0;i<ROWS;i++){
 		for(var j=0;j<COLS;j++){
@@ -258,50 +278,20 @@ function BlockCollision(){
 					}
 				}
 				
+				// Stops the ship on bottom of map.
 				if(ship.y+20>tileMap[i][j].y+(SIZE) && ship.ySpeed>=0 && ship.x+SIZE-10>tileMap[i][j].x && ship.x+10<tileMap[i][j].x+(SIZE)){
 					//console.log("BOTTOM")
 					tileMap[i][j].y = MapY;
 					MapY-=ship.ySpeed;
 					ship.ySpeed=0;
 				}
+
 				//We don't want the user to be able to dig while air born. So the user only can dig within a ySpeed limit.
-				if(ship.x+SIZE-15<tileMap[i][j].x && ship.y+(SIZE)>tileMap[i][j].y+(SIZE/4) && ship.y<tileMap[i][j].y+(SIZE-10) && ship.xSpeed<0){
-					//console.log("LEFT");
-					tileMap[i][j].x = MapX;
-					MapX-=ship.xSpeed;
-					ship.xSpeed=0;
-					if(tileMap[i][j].image!=rockBlock && ship.ySpeed<2 && ship.ySpeed>-2 && UP==false){
-						if(RIGHT){DigCountR+=UpgradePowers[0];}
-						tileMap[i][j].image = animate(tileMap[i][j], DigCountR);
-						if(DigCountR>20){//20 will be changed to a global (drill speed) variable.
-							if(tileMap[i][j].image == lavaBlock){Reset();}
-							//If it was diamond you win.
-							if(tileMap[i][j].image == diamondOre){alert("You found it! Wow it's huge! Well congratulations my friend, you are now rich. Feel free to keep on digging if you want to rack in some extra dough. You Win! :D ");Cash+=2000;}
-							addToPack(tileMap[i][j]);
-							tileMap[i][j].x = null; tileMap[i][j].y = null; tileMap[i][j] = null;
-							tileMap[i][j]=0;//change it to an empty block and hope the GC does it's job.
-							DigCountR=0;
-						}
-					}
+				if(ship.x+SIZE-15<tileMap[i][j].x && ship.y+(SIZE)>tileMap[i][j].y+(SIZE/4) && ship.y<tileMap[i][j].y+(SIZE-10) && ship.xSpeed<0) {
+					DigCountR = DigBlock(DigCountR, i, j, RIGHT);
 				}
-				if(ship.x+15>tileMap[i][j].x+SIZE && ship.y+(SIZE)>tileMap[i][j].y+(SIZE/4) && ship.y<tileMap[i][j].y+(SIZE-10) && ship.xSpeed>0){
-					//console.log("RIGHT");
-					tileMap[i][j].x = MapX;
-					MapX-=ship.xSpeed;
-					ship.xSpeed = 0;
-					if(tileMap[i][j].image!=rockBlock && ship.ySpeed<2 && ship.ySpeed>-2 && UP==false){
-						if(LEFT){DigCountL+=UpgradePowers[0];}
-						tileMap[i][j].image = animate(tileMap[i][j], DigCountL);
-						if(DigCountL>20){//20 will be changed to a global (drill speed) variable
-							if(tileMap[i][j].image == lavaBlock){Reset();}
-							//If it was diamond you win.
-							if(tileMap[i][j].image == diamondOre){alert("You found it! Wow it's huge! Well congratulations my friend, you are now rich. Feel free to keep on digging if you want to rack in some extra dough. You Win! :D ");Cash+=2000;}
-							addToPack(tileMap[i][j]);
-							tileMap[i][j].x = null; tileMap[i][j].y = null; tileMap[i][j] = null;
-							tileMap[i][j]=0;//change it to an empty block and hope the GC does it's job.
-							DigCountL=0;
-						}
-					}
+				if(ship.x+15>tileMap[i][j].x+SIZE && ship.y+(SIZE)>tileMap[i][j].y+(SIZE/4) && ship.y<tileMap[i][j].y+(SIZE-10) && ship.xSpeed>0) {
+					DigCountL = DigBlock(DigCountL, i, j, LEFT);
 				}
 				
 			}

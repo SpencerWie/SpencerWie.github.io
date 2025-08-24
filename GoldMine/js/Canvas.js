@@ -114,8 +114,8 @@ function musicPlay() {
 //Control Keyboard input. (onkeydown for arrow, onkeypress for ASWD)
 document.onkeydown = function(e){
 	//On press get the key
-    var char = e.charCode || e.keyCode;
-    Key = char;
+  var char = e.charCode || e.keyCode;
+  Key = char;
 	if(Key==37 || Key==97){LEFT=true;}
 	if(Key==39 || Key==100){RIGHT=true;}
 	if(Key==38 || Key==119){UP=true;}
@@ -125,16 +125,16 @@ document.onkeydown = function(e){
 
 document.onkeyup = function(e){
 	//On press get the key set the Key to nothing(0). Or at least one we don't check.
-    var char = e.charCode || e.keyCode;
-    Key = char;
+  var char = e.charCode || e.keyCode;
+  Key = char;
 	if(Key==37 || Key==97){LEFT=false;}
 	if(Key==39 || Key==100){RIGHT=false;}
 	if(Key==38 || Key==119){UP=false;}
 	if(Key==40 || Key==115){DOWN=false;}
 	if(Key==32){SPACE=false;}
 	
-	if(Key==73 && InfoMenu.active==false){InfoMenu.active=true;/*console.log("Information In ");*/}
-	else if(Key==73 && InfoMenu.active==true){InfoMenu.active=false;/*console.log("Information Out ");*/}
+	if(Key==73 && InfoMenu.active==false) InfoMenu.active=true;
+	else if(Key==73 && InfoMenu.active==true) InfoMenu.active=false;
 }
 
 document.onmousemove = function(e){
@@ -146,11 +146,11 @@ document.onmousemove = function(e){
 
 
 function Reset(){
-if(!ReLoad){
-alert("You Died!");
-location.reload("goldMine.html");
-ReLoad=true;
-}
+	if(!ReLoad){
+		alert("You Died!");
+		location.reload("goldMine.html");
+		ReLoad=true;
+	}
 }
 
 function distance(obj1,obj2){ // Get distance as effiecent as possible.

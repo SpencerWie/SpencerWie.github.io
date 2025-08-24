@@ -61,7 +61,7 @@ function Ship(){
 			this.Left=true
 			if(this.xSpeed>0 && !UP) canvas.drawImage(this.imgShipL, this.x, this.y);
 		}
-		//If user pressed RIGHT, we don't want to be drawing left and right at the same time. so ELSE IF
+		//If user pressed RIGHT, we don't want to be drawing left and right at the same time.
 		else if(RIGHT && MapX> -(SIZE*COLS-220)){
 			DigCountL, DigCountD = 0;
 			if(this.xSpeed<11 && this.xSpeed>-11) this.xSpeed--;//Move Right
