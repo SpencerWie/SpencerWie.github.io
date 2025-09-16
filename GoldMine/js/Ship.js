@@ -66,7 +66,7 @@ function Ship(){
 			if(this.xSpeed>0 && !UP) canvas.drawImage(this.imgShipL, this.x, this.y);
 		}
 		//If user pressed RIGHT, we don't want to be drawing left and right at the same time.
-		else if(RIGHT && MapX > -(SIZE*COLS-220)){
+		else if(RIGHT && MapX> -(SIZE*COLS-220)){
 			DigCountL, DigCountD = 0;
 			if(this.xSpeed<11 && this.xSpeed>-11) this.xSpeed--;//Move Right
 			this.Right=true;
@@ -92,8 +92,8 @@ function Ship(){
 			if(this.xSpeed>=0) canvas.drawImage(this.imgShipL, this.x, this.y); 
 			else if(this.xSpeed<0) canvas.drawImage(this.imgShipR, this.x, this.y); 
 		}
-		if(MapX>240) this.xSpeed=-1; 
-		if(MapX<-(SIZE*COLS-250)) this.xSpeed=1;
+		if(MapX>270) this.xSpeed=-1; 
+		if(MapX<-(SIZE*COLS-310)) this.xSpeed=1;
 		if(this.fullNotice) {
 			this.textAlpha -= 0.025
 			canvas.font = "14px Arial";
