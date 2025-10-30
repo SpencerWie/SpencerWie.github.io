@@ -8,7 +8,7 @@
 </ul>
 <p>Both games are made purely in JavaScript without any external liberies.</p>
 
-<h3>JavaScript tutorial (in progress): </h3>
+<h3>JavaScript tutorial:</h3>
 <ul>
 <li><a href="https://spencerwie.github.io/JS_Tut/js_tuts.html">JavaScript Tutorial</a></li>
 </ul>
