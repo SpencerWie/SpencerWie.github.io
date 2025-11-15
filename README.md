@@ -8,7 +8,7 @@
 </ul>
 <p>Both games are made purely in JavaScript without any external liberies.</p>
 
-<h3>JavaScript tutorial (in progress): </h3>
+<h3>JavaScript tutorial:</h3>
 <ul>
 <li><a href="https://spencerwie.github.io/JS_Tut/js_tuts.html">JavaScript Tutorial</a></li>
 </ul>
@@ -33,6 +33,4 @@
 <li><a href="https://spencerwie.github.io/AI/8Puzzle/projAI.htmll">8 Puzzle Solver</a></li>
 <li><a href="https://spencerwie.github.io/AI/checkers/checkers.html">Checkers AI</a></li>
 </ul>
-
-<p>Notice: I'll be working on a sort of portfolio website to display current active projects and possibly artworks too!</p>
 
