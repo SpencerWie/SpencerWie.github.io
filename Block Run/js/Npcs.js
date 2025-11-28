@@ -1,4 +1,5 @@
 var isMac = navigator.platform.indexOf('Mac') > -1;
+
 function Chat(){
     this.x = 50;
     this.y = 50;

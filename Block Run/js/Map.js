@@ -224,10 +224,6 @@ function addToMap(item, X, Y) {
         items.push(item);
         MapItems[Y][X] = item;
     }
-    /*if (item instanceof BreakableBlock) {
-        BreakableBlocks.push(item);
-        MapItems[Y][X] = item;
-    }*/
 }
 
 // Look for an empty space near the enemy location and spawn the item there.
