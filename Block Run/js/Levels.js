@@ -232,7 +232,7 @@ var level_7 = [
    '#   ooR         oo   #           #oo           oo            oo       #################################WWWW#####WWWWWWWWWWWWWWWWWW#',
    '#   ~           ~    #  o o o o  #~            ~             ~        #WWWjW#WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW#oo#WWWWWjWW#',
    '#                    #   K H k   #                                    #WWWWWlWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW##WWWWWWWWW#',
-   '#                    L  o o o o  l  ##vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv#WWWW#####################################WWWWWWWWWWWWWWWWWW#',
+   '#                    L  o o o o  L  ##vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv#WWWW#####################################WWWWWWWWWWWWWWWWWW#',
    '#######################################################################WWWW#               # o o o o o o o     k#WWWWWWjWWWWWWWWWW#',
    '#                           ooo o o #  o o o   o o o o o o o o o o o  #WWjW#  #############################    ###WWWWWWWWWWWWWWWW#',
    '#                           oDo  o  #   o o     o o o o o o o o o o o #WWWW#  #WWWWWjWWWWWjWWWWWWWWWWWWWWWWjWWWW#WWWWWWWWWWWWWWWWW#',
